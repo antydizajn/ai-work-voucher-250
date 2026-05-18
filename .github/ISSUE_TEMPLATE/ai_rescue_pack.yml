@@ -1,0 +1,40 @@
+name: AI Rescue Pack / Voucher / Sprint
+about: Zamówienie po płatności Revolut
+labels: [order]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Dzięki. Nie wklejaj danych karty ani prywatnych numerów płatności. Wklej tylko brief i tytuł płatności.
+  - type: dropdown
+    id: product
+    attributes:
+      label: Co kupujesz?
+      options:
+        - AI Rescue Pack — 49 zł
+        - AI Work Voucher — 250 zł
+        - Overnight AI Sprint — 1000 zł
+    validations:
+      required: true
+  - type: input
+    id: payment_title
+    attributes:
+      label: Tytuł płatności
+      placeholder: np. Voucher AI Work
+    validations:
+      required: true
+  - type: textarea
+    id: brief
+    attributes:
+      label: Brief
+      description: Co mamy poprawić / przygotować / przeanalizować?
+      placeholder: Link, kontekst, cel, odbiorca, deadline.
+    validations:
+      required: true
+  - type: textarea
+    id: source
+    attributes:
+      label: Materiał wejściowy
+      description: Wklej tekst, link albo opis. Nie wklejaj sekretów.
+    validations:
+      required: false
