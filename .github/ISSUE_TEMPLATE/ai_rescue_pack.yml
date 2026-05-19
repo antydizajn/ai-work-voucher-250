@@ -1,5 +1,5 @@
 name: AI Rescue Pack / Voucher / Sprint
-about: Zamówienie po płatności Revolut
+about: Zamówienie po płatności Revolut/BLIK
 labels: [order]
 body:
   - type: markdown
@@ -19,7 +19,7 @@ body:
   - type: input
     id: payment_title
     attributes:
-      label: Tytuł płatności Revolut
+      label: Tytuł płatności Revolut/BLIK
       placeholder: np. Voucher AI Work
     validations:
       required: true
@@ -32,7 +32,7 @@ body:
           required: true
         - label: Nie wklejam danych karty, haseł, tokenów, dokumentów medycznych ani cudzych danych osobowych.
           required: true
-        - label: Rozumiem, że płatność weryfikuje Paulina/Revolut; Hermes nie ma dostępu do konta bankowego.
+        - label: Rozumiem, że płatność weryfikuje Paulina/Revolut/BLIK; Hermes nie ma dostępu do konta bankowego.
           required: true
   - type: textarea
     id: brief

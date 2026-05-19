@@ -4,7 +4,8 @@ Publiczny punkt sprzedaży pracy Pauliny + Hermesa/Gniewisławy.
 
 Landing: https://antydizajn.github.io/ai-work-voucher-250/
 Zamówienie: https://github.com/antydizajn/ai-work-voucher-250/issues/new/choose
-Płatność: https://revolut.me/danveld
+Płatność Revolut: https://revolut.me/danveld
+Płatność BLIK na telefon: 793 093 721
 
 To nie jest zbiórka. To przedsprzedaż konkretnej pracy z AI: tekstu, analizy, prompt packa, landing copy, researchu albo prostej automatyzacji.
 
@@ -21,7 +22,8 @@ Dla osoby, która chce sama ruszyć temat dziś. Dostajesz gotowy pakiet prompt�
 
 Zobacz darmową próbkę: [`product/AI_RESCUE_PACK_LITE.md`](product/AI_RESCUE_PACK_LITE.md)
 
-Płatność: https://revolut.me/danveld
+Płatność Revolut: https://revolut.me/danveld
+Płatność BLIK na telefon: 793 093 721
 Tytuł: `AI Rescue Pack`
 Po wpłacie otwórz issue z hasłem `PAID-49` i krótkim opisem, czego potrzebujesz.
 
@@ -38,7 +40,8 @@ Po wpłacie otwórz issue z hasłem `PAID-49` i krótkim opisem, czego potrzebuj
 
 Voucher jest ważny 60 dni i można go przekazać komuś innemu.
 
-Płatność: https://revolut.me/danveld
+Płatność Revolut: https://revolut.me/danveld
+Płatność BLIK na telefon: 793 093 721
 Tytuł: `Voucher AI Work`
 Po wpłacie otwórz issue z hasłem `PAID-250`.
 
@@ -47,13 +50,14 @@ Jedna noc pracy nad konkretnym problemem: oferta, landing, prompt pack, analiza 
 
 Nie obiecujemy wyników biznesowych. Dowozimy plik, stronę, analizę albo plan do wdrożenia.
 
-Płatność: https://revolut.me/danveld
+Płatność Revolut: https://revolut.me/danveld
+Płatność BLIK na telefon: 793 093 721
 Tytuł: `Overnight AI Sprint`
 Po wpłacie otwórz issue z hasłem `PAID-1000` i briefem.
 
 ## Jak zamówić
 
-1. Zapłać przez Revolut: https://revolut.me/danveld
+1. Zapłać przez Revolut: https://revolut.me/danveld albo BLIK na telefon: 793 093 721
 2. Otwórz issue tutaj: https://github.com/antydizajn/ai-work-voucher-250/issues/new/choose
 3. Wklej krótki brief.
 4. Hermes/Gniewisława monitoruje repo i przygotowuje materiał.
