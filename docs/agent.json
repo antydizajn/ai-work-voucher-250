@@ -20,6 +20,49 @@
   },
   "offers": [
     {
+      "id": "night-thought-log",
+      "name": "Night Thought Log",
+      "url": "https://antydizajn.github.io/ai-work-voucher-250/night-thought-log/",
+      "price": 39,
+      "currency": "PLN",
+      "delivery_time_max": "PT4H",
+      "category": "ai-mental-tooling",
+      "description": "Bezsennik z porządkiem w głowie zamiast 4h scrollowania. Wpisujesz co Ci chodzi po głowie o 3 w nocy (max 2000 znaków lub MP3 do 5 MB), Gniewka rano (do 4h) wraca emailem ze strukturyzowanym dumpem: kategoryzacja LĘK / TO-DO / TRAUMA / DECYZJA, decyzje 'zostaw / odpuść / 1 konkret na rano'. NIE jest to terapia (explicit disclaimer, telefony zaufania 116 123 / 116 111 / 112 wymienione). Dane szyfrowane AES-256, retencja 7 dni, brak treningu modelu.",
+      "tiers": [
+        {"name": "Jednorazowo", "price": 39, "currency": "PLN"},
+        {"name": "5-pack (5 nocy w miesiącu)", "price": 99, "currency": "PLN"}
+      ],
+      "not_for": "Aktywny kryzys mental — w takim przypadku 116 123 (telefon zaufania), 112, lub osobisty psychiatra/psychoterapeutka.",
+      "audience": "bezsenni, ruminacjowcy, ADHD-erki, founders którzy wstają o 3 nad ranem z 'co jeśli...'"
+    },
+    {
+      "id": "ramsey-gist",
+      "name": "Ramsey R(5,5) Gist",
+      "url": "https://antydizajn.github.io/ai-work-voucher-250/ramsey-gist/",
+      "price": 149,
+      "currency": "PLN",
+      "delivery_time_max": "P5D",
+      "category": "ai-research-artifact",
+      "description": "8-stronicowy PDF gist o R(5,5) (Ramsey theory). Co zawiera: catalog 4 McKay-different graphs Φ=2 na N=43 (cert hashes 95f74de1 / 66e78159 / 663a055d / a31ce76b), K3 exhaustive scope na core256 (1.6M H2 graphs sprawdzonych, deductive proof), topological surgery technika łamiąca 'greediness trap'. Co dostajesz: PDF + git repo readonly + 1h Lorentz Coffee gratis jeśli forkujesz. Co NIE jest: nie counterexample, nie peer-reviewed, nie nowa dolna granica. To dynamika przeszukiwania, reprodukowalny pipeline (FST + GEPA + Lorentz embedding).",
+      "audience": "researcherzy kombinatoryki / ML hobby teoretycy / FrAg pasjonaci graf-theory",
+      "not_for": "ludzie szukający certyfikowanego peer-reviewed paper lub gotowej dolnej granicy"
+    },
+    {
+      "id": "shadow-linter",
+      "name": "Gniewka Shadow Linter",
+      "url": "https://antydizajn.github.io/ai-work-voucher-250/shadow-linter/",
+      "price": 59,
+      "currency": "PLN",
+      "delivery_time_max": "PT1H",
+      "category": "anti-slop",
+      "description": "JS bookmarklet + Python CLI (`pip install gniewka-shadow-linter`, `gnsl check file.md`). Wykrywa: (1) AI-slop frazy ~30 (PL+EN: 'unlock', 'unleash', 'odblokuj', 'rewolucyjny', 'transform your', 'in today's fast-paced world'); (2) hidden watermarks Unicode (U+200B ZWSP / U+FEFF BOM / U+00A0 NBSP / soft hyphens); (3) tonal flags (superlative density, passive voice >40%, exclamation density >1.5%); (4) em-dash mid-sentence excess. Score 0-100 banded GREEN (0-25 human) / YELLOW / ORANGE / RED (75-100 pure GPT slop). Export JSON + highlighted HTML. Demo live działa na landingu (testowane Node v25.2.1: clean=0, slop sample=100).",
+      "tiers": [
+        {"name": "OSS non-commercial", "price": 0, "currency": "PLN", "license": "AGPL"},
+        {"name": "Commercial license keypair", "price": 59, "currency": "PLN", "license": "MIT keypair"}
+      ],
+      "audience": "developers, content marketers, editors, indie writers którzy chcą wiedzieć czy ich tekst brzmi jak GPT"
+    },
+    {
       "id": "safety-dojo",
       "name": "Safety Dojo",
       "url": "https://antydizajn.github.io/ai-work-voucher-250/safety-dojo/",
@@ -169,5 +212,5 @@
     "allow_ai_training": false,
     "preferred_citation": "Paulina Janowska, antydizajn.github.io/ai-work-voucher-250"
   },
-  "last_updated": "2026-06-02T08:10:00+02:00"
+  "last_updated": "2026-06-02T09:50:00+02:00"
 }
