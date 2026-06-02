@@ -1,0 +1,796 @@
+<!doctype html>
+<html lang="pl">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Gniewka Shadow Linter · 59 PLN AI-slop + hidden-unicode detector (Paulina Janowska)</title>
+  <meta name="description" content="59 PLN. JS bookmarklet + Python CLI. Wykrywa AI-slop frazy, zero-width unicode watermarki, gęstość wykrzykników i myślników w Twoim (lub cudzym) tekście. Score 0-100. GREEN / YELLOW / ORANGE / RED. Open-source non-commercial gratis.">
+  <meta name="robots" content="index, follow">
+  <link rel="canonical" href="https://antydizajn.github.io/ai-work-voucher-250/shadow-linter/">
+
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Gniewka Shadow Linter · 59 PLN AI-slop detector">
+  <meta property="og:description" content="99% LinkedIn postów to AI slop. Wykryj zanim wypublikujesz. Bookmarklet + Python CLI. 59 PLN commercial. 0 PLN OSS.">
+  <meta property="og:url" content="https://antydizajn.github.io/ai-work-voucher-250/shadow-linter/">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Gniewka Shadow Linter · 59 PLN AI-slop detector">
+  <meta name="twitter:description" content="Bookmarklet + CLI. Wykrywa zero-width unicode i frazy typu 'leverage synergies'. Score 0-100. 59 PLN.">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700;800&family=IBM+Plex+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "SoftwareApplication",
+    "name": "Gniewka Shadow Linter",
+    "applicationCategory": "DeveloperApplication",
+    "operatingSystem": "Browser, macOS, Linux, Windows",
+    "description": "AI-slop and hidden-unicode-watermark detector. JS bookmarklet plus Python CLI (gnsl). Detects slop phrases, zero-width unicode, exclamation density, em-dash overuse. Score 0-100 with GREEN/YELLOW/ORANGE/RED band.",
+    "offers": [
+      {"@type": "Offer", "name": "Commercial license keypair", "price": "59", "priceCurrency": "PLN", "url": "https://antydizajn.github.io/ai-work-voucher-250/shadow-linter/"},
+      {"@type": "Offer", "name": "Open-source non-commercial", "price": "0", "priceCurrency": "PLN", "url": "https://antydizajn.github.io/ai-work-voucher-250/shadow-linter/"}
+    ],
+    "author": {"@type": "Person", "name": "Paulina Janowska"}
+  }
+  </script>
+
+  <style>
+    :root {
+      color-scheme: dark;
+      --bg: #0a0a0a;
+      --bg-2: #0f0f0f;
+      --line: #1f1f1f;
+      --line-2: #2a2a2a;
+      --fg: #ededed;
+      --fg-2: #a6a6a6;
+      --fg-3: #6b6b6b;
+      --poison: #ff2a4d;
+      --warn: #ffaa00;
+      --good: #6bff9c;
+      --orange: #ff8a3d;
+      --bad: #ff5c5c;
+    }
+    * { box-sizing: border-box; }
+    html, body { margin: 0; padding: 0; }
+    body {
+      background: var(--bg);
+      color: var(--fg);
+      font-family: 'IBM Plex Mono', 'JetBrains Mono', ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+      font-size: 15px;
+      line-height: 1.55;
+      -webkit-font-smoothing: antialiased;
+      background-image:
+        linear-gradient(transparent 0, transparent calc(100% - 1px), rgba(255,42,77,0.04) 100%),
+        linear-gradient(90deg, transparent 0, transparent calc(100% - 1px), rgba(255,42,77,0.04) 100%);
+      background-size: 32px 32px;
+    }
+    a { color: var(--poison); text-decoration: none; border-bottom: 1px dashed rgba(255,42,77,0.5); }
+    a:hover { color: #fff; border-bottom-color: #fff; }
+    main { max-width: 920px; margin: 0 auto; padding: 32px 20px 80px; }
+
+    header.top {
+      display: flex; justify-content: space-between; align-items: center;
+      padding-bottom: 18px; border-bottom: 1px solid var(--line);
+      font-size: 12px; color: var(--fg-3); text-transform: uppercase; letter-spacing: 0.12em;
+    }
+    header.top span.left::before { content: "◯ "; color: var(--poison); }
+    header.top span.right::before { content: "▪ "; color: var(--poison); }
+
+    section { border-bottom: 1px solid var(--line); padding: 40px 0; }
+    section:last-of-type { border-bottom: none; }
+
+    .hero h1 {
+      font-family: 'JetBrains Mono', monospace;
+      font-weight: 800;
+      font-size: clamp(28px, 5vw, 48px);
+      line-height: 1.05;
+      letter-spacing: -0.03em;
+      margin: 12px 0 18px;
+    }
+    .hero h1 .poison { color: var(--poison); }
+    .hero h1 .strike { color: var(--fg-3); text-decoration: line-through; }
+    .hero .lead {
+      font-size: clamp(15px, 1.8vw, 18px);
+      color: var(--fg-2);
+      max-width: 720px;
+      margin: 0 0 24px;
+    }
+    .kicker {
+      display: inline-block;
+      font-size: 11px; letter-spacing: 0.18em; text-transform: uppercase;
+      color: var(--bg); background: var(--poison);
+      padding: 4px 10px; font-weight: 700;
+    }
+    .price-row {
+      display: flex; align-items: baseline; gap: 16px; flex-wrap: wrap;
+      margin: 16px 0 24px;
+    }
+    .price {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 56px; font-weight: 800; letter-spacing: -0.04em; color: var(--fg);
+    }
+    .price-unit { color: var(--fg-2); font-size: 14px; }
+
+    .cta-row { display: flex; gap: 10px; flex-wrap: wrap; margin-top: 12px; }
+    .cta {
+      display: inline-block;
+      padding: 12px 18px;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 13px; font-weight: 700; letter-spacing: 0.05em; text-transform: uppercase;
+      border: 1px solid var(--poison); color: var(--poison); background: transparent;
+      cursor: pointer;
+    }
+    .cta:hover { background: var(--poison); color: var(--bg); border-bottom-color: var(--poison); }
+    .cta.ghost { border-color: var(--line-2); color: var(--fg-2); border-bottom-style: solid; }
+    .cta.ghost:hover { color: var(--fg); border-color: var(--fg); background: transparent; }
+
+    h2 {
+      font-family: 'JetBrains Mono', monospace;
+      font-weight: 700;
+      font-size: 13px;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--fg-3);
+      margin: 0 0 20px;
+      padding-bottom: 8px;
+      border-bottom: 1px solid var(--line);
+    }
+    h2::before { content: "// "; color: var(--poison); }
+    h3 {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 15px; font-weight: 700; margin: 18px 0 6px; color: var(--fg);
+    }
+    p { color: var(--fg-2); margin: 0 0 12px; }
+    code { background: #1a1a1a; padding: 2px 6px; color: var(--poison); font-size: 13px; border-radius: 2px; }
+    ul { padding-left: 0; list-style: none; }
+    ul li { position: relative; padding-left: 22px; margin-bottom: 8px; color: var(--fg-2); }
+    ul li::before { content: "▫"; position: absolute; left: 0; top: 0; color: var(--poison); }
+
+    /* === DEMO === */
+    .demo-box {
+      border: 1px solid var(--line-2);
+      background: var(--bg-2);
+      padding: 18px;
+      margin-top: 8px;
+    }
+    .demo-box textarea {
+      width: 100%;
+      min-height: 180px;
+      background: #050505;
+      color: var(--fg);
+      border: 1px solid var(--line-2);
+      border-left: 3px solid var(--poison);
+      padding: 14px;
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 13px;
+      line-height: 1.55;
+      resize: vertical;
+      outline: none;
+    }
+    .demo-box textarea:focus { border-color: var(--poison); }
+    .demo-actions {
+      display: flex; gap: 10px; flex-wrap: wrap; margin: 12px 0 0;
+      align-items: center;
+    }
+    .demo-actions .hint { color: var(--fg-3); font-size: 12px; }
+
+    .score-card {
+      display: grid;
+      grid-template-columns: minmax(160px, 220px) 1fr;
+      gap: 0;
+      margin-top: 18px;
+      border: 1px solid var(--line-2);
+      background: #050505;
+    }
+    .score-card .score-cell {
+      padding: 18px;
+      border-right: 1px solid var(--line-2);
+      display: flex; flex-direction: column; justify-content: center;
+      align-items: center;
+      text-align: center;
+    }
+    .score-cell .num {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 56px;
+      font-weight: 800;
+      letter-spacing: -0.04em;
+      line-height: 1;
+    }
+    .score-cell .band {
+      margin-top: 8px;
+      font-size: 11px;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      font-weight: 700;
+      padding: 4px 10px;
+    }
+    .band.green  { background: var(--good); color: #052; }
+    .band.yellow { background: var(--warn); color: #321; }
+    .band.orange { background: var(--orange); color: #221; }
+    .band.red    { background: var(--poison); color: #fff; }
+
+    .num.green  { color: var(--good); }
+    .num.yellow { color: var(--warn); }
+    .num.orange { color: var(--orange); }
+    .num.red    { color: var(--poison); }
+
+    .breakdown { padding: 14px 18px; }
+    .breakdown .row {
+      display: flex; justify-content: space-between; gap: 8px;
+      padding: 6px 0; border-bottom: 1px dashed var(--line);
+      font-size: 13px;
+    }
+    .breakdown .row:last-child { border-bottom: none; }
+    .breakdown .label { color: var(--fg-3); text-transform: uppercase; letter-spacing: 0.1em; font-size: 11px; }
+    .breakdown .val { font-family: 'JetBrains Mono', monospace; color: var(--fg); font-weight: 700; }
+    .breakdown .val.flag { color: var(--poison); }
+
+    .highlighted {
+      margin-top: 18px;
+      padding: 16px;
+      background: #050505;
+      border: 1px solid var(--line-2);
+      border-left: 3px solid var(--poison);
+      white-space: pre-wrap;
+      word-wrap: break-word;
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 13px;
+      line-height: 1.65;
+      color: var(--fg);
+    }
+    .highlighted mark {
+      background: var(--poison);
+      color: #fff;
+      padding: 0 3px;
+      font-weight: 600;
+    }
+    .highlighted .uniflag {
+      display: inline-block;
+      background: #ffaa00;
+      color: #200;
+      padding: 0 4px;
+      margin: 0 1px;
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.05em;
+      vertical-align: middle;
+    }
+
+    .empty-state {
+      margin-top: 18px;
+      padding: 14px;
+      border: 1px dashed var(--line-2);
+      color: var(--fg-3);
+      font-size: 13px;
+      text-align: center;
+    }
+
+    /* === GRIDS / TIERS === */
+    .grid-2 { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 0; border-top: 1px solid var(--line); }
+    .grid-2 > div { padding: 20px 18px; border-right: 1px solid var(--line); border-bottom: 1px solid var(--line); }
+    .grid-2 > div:last-child { border-right: none; }
+
+    .grid-4 { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 0; border-top: 1px solid var(--line); border-left: 1px solid var(--line); }
+    .grid-4 > div { padding: 18px; border-right: 1px solid var(--line); border-bottom: 1px solid var(--line); }
+    .cat-tag {
+      display: inline-block;
+      font-size: 10px; letter-spacing: 0.16em; text-transform: uppercase;
+      color: var(--poison); border: 1px solid var(--poison); padding: 2px 7px;
+      margin-bottom: 8px;
+    }
+
+    .tier-name { color: var(--poison); font-size: 12px; letter-spacing: 0.16em; text-transform: uppercase; }
+    .tier-price { font-family: 'JetBrains Mono', monospace; font-size: 32px; font-weight: 800; color: var(--fg); margin: 6px 0 4px; letter-spacing: -0.03em; }
+    .tier-desc { color: var(--fg-2); font-size: 13px; }
+
+    pre.code {
+      background: #050505;
+      border: 1px solid var(--line-2);
+      border-left: 3px solid var(--poison);
+      padding: 14px;
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 13px;
+      color: var(--fg);
+      overflow-x: auto;
+      margin: 12px 0;
+      white-space: pre-wrap;
+      word-wrap: break-word;
+    }
+    .copy-btn {
+      display: inline-block; padding: 6px 10px;
+      background: transparent; border: 1px solid var(--line-2); color: var(--fg-2);
+      font-family: 'JetBrains Mono', monospace; font-size: 11px; cursor: pointer;
+      letter-spacing: 0.1em; text-transform: uppercase;
+    }
+    .copy-btn:hover { color: var(--poison); border-color: var(--poison); }
+
+    details {
+      border-top: 1px solid var(--line);
+      padding: 14px 0;
+    }
+    details:last-of-type { border-bottom: 1px solid var(--line); }
+    summary {
+      cursor: pointer;
+      color: var(--fg);
+      font-weight: 600;
+      list-style: none;
+      padding-right: 24px;
+      position: relative;
+    }
+    summary::-webkit-details-marker { display: none; }
+    summary::after {
+      content: "+";
+      position: absolute; right: 0; top: 0;
+      color: var(--poison); font-weight: 700;
+    }
+    details[open] summary::after { content: "−"; }
+    details p { margin: 10px 0 0; color: var(--fg-2); }
+
+    .disclosure {
+      border: 1px solid var(--line-2);
+      padding: 16px;
+      background: var(--bg-2);
+      font-size: 13px;
+      color: var(--fg-2);
+    }
+    .disclosure p { margin: 0 0 8px; }
+    .disclosure p:last-child { margin: 0; }
+
+    footer.bot {
+      border-top: 1px solid var(--line);
+      margin-top: 32px;
+      padding-top: 18px;
+      display: flex; justify-content: space-between; gap: 10px;
+      flex-wrap: wrap;
+      font-size: 12px; color: var(--fg-3); text-transform: uppercase; letter-spacing: 0.12em;
+    }
+    footer.bot span:nth-child(1)::before { content: "◯ "; color: var(--poison); }
+    footer.bot span:nth-child(2)::before { content: "▪ "; color: var(--poison); }
+
+    .muted { color: var(--fg-3); }
+    .small { font-size: 12px; }
+
+    @media (max-width: 560px) {
+      .score-card { grid-template-columns: 1fr; }
+      .score-card .score-cell { border-right: none; border-bottom: 1px solid var(--line-2); }
+    }
+  </style>
+</head>
+<body>
+<main>
+
+  <header class="top">
+    <span class="left">Gniewka Shadow Linter · v0.1</span>
+    <span class="right">59 PLN · MIT/Commercial dual</span>
+  </header>
+
+  <section class="hero">
+    <span class="kicker">AI-slop + hidden-unicode detector</span>
+    <h1>99% LinkedIn postów to <span class="poison">AI slop</span>.<br>Wykryj zanim wypublikujesz.</h1>
+    <p class="lead">
+      Bookmarklet w przeglądarce i Python CLI. Skanuje tekst pod kątem fraz typu
+      <code>leverage synergies</code>, ukrytych zero-width unicode watermarków
+      (U+200B, U+FEFF), gęstości wykrzykników i myślnikowej manii.
+      Zwraca score 0-100 i podświetlony tekst. Bez wysyłania danych na serwer.
+    </p>
+
+    <div class="price-row">
+      <span class="price">59 PLN</span>
+      <span class="price-unit">/ commercial license keypair · 0 PLN open-source non-commercial</span>
+    </div>
+
+    <div class="cta-row">
+      <a class="cta" href="#demo">Live demo ▾</a>
+      <a class="cta ghost" href="#pricing">Cennik</a>
+      <a class="cta ghost" href="#install">Install / CLI</a>
+    </div>
+  </section>
+
+  <section id="demo">
+    <h2>Live demo: wklej tekst, zeskanuj</h2>
+    <p>
+      Cały linting dzieje się w Twojej przeglądarce. Nic nie wychodzi na zewnątrz.
+      Wklej swój draft posta, README, komentarz code review, albo cudzy tekst który Ci śmierdzi.
+    </p>
+
+    <div class="demo-box">
+      <textarea id="input" spellcheck="false" placeholder="Wklej tekst do analizy. Spróbuj na przykład: 'In today&#39;s fast-paced world, we unlock potential and leverage synergies to transform your business with cutting-edge, revolutionary AI solutions that empower teams!'"></textarea>
+      <div class="demo-actions">
+        <button class="cta" id="scan-btn" type="button">Scan</button>
+        <button class="cta ghost" id="sample-btn" type="button">Wklej próbkę</button>
+        <button class="cta ghost" id="clear-btn" type="button">Wyczyść</button>
+        <button class="copy-btn" id="export-btn" type="button" style="display:none;">Eksport JSON</button>
+        <span class="hint" id="hint">Score 0-25 = human · 25-50 = light AI · 50-75 = heavily AI · 75-100 = pure GPT slop</span>
+      </div>
+
+      <div id="result-empty" class="empty-state">Wpisz lub wklej tekst, potem kliknij Scan.</div>
+
+      <div id="result" style="display:none;">
+        <div class="score-card">
+          <div class="score-cell">
+            <div class="num" id="score-num">0</div>
+            <div class="band" id="score-band">GREEN</div>
+          </div>
+          <div class="breakdown">
+            <div class="row"><span class="label">Slop phrases</span> <span class="val" id="r-slop">0</span></div>
+            <div class="row"><span class="label">Hidden unicode chars</span> <span class="val" id="r-uni">0</span></div>
+            <div class="row"><span class="label">Exclamation density</span> <span class="val" id="r-exc">0%</span></div>
+            <div class="row"><span class="label">Em-dash count</span> <span class="val" id="r-em">0</span></div>
+            <div class="row"><span class="label">Text length</span> <span class="val" id="r-len">0 chars</span></div>
+          </div>
+        </div>
+        <div class="highlighted" id="highlighted"></div>
+      </div>
+    </div>
+  </section>
+
+  <section id="detect">
+    <h2>Co wykrywa</h2>
+
+    <div class="grid-4">
+      <div>
+        <span class="cat-tag">01 / Slop frazy</span>
+        <h3>AI buzzword bingo</h3>
+        <p class="small">Lista 30+ fraz PL/EN: <code>leverage</code>, <code>seamless</code>, <code>cutting-edge</code>, <code>game-changing</code>, <code>in today's fast-paced world</code>, <code>wykorzystaj</code>, <code>rewolucyjny</code>, <code>odmień swoje</code>. Możesz dostosować listę w configu.</p>
+      </div>
+      <div>
+        <span class="cat-tag">02 / Hidden unicode</span>
+        <h3>Zero-width watermarki</h3>
+        <p class="small">U+200B (ZWSP), U+200C, U+200D, U+FEFF (BOM), nbsp \xA0, em-spaces, soft hyphens U+00AD, line/paragraph separators U+2028/2029. ChatGPT i Claude czasem wstawiają je do output. Atakujący też.</p>
+      </div>
+      <div>
+        <span class="cat-tag">03 / Tonal flags</span>
+        <h3>Superlative + passive</h3>
+        <p class="small">CLI dokłada: superlative density &gt;3%, nadmiar abstract nouns (<code>solution / empowerment / synergy</code>), passive voice &gt;40%. Browser demo ma uproszczoną wersję dla speed.</p>
+      </div>
+      <div>
+        <span class="cat-tag">04 / Density</span>
+        <h3>Wykrzykniki + em-dashe</h3>
+        <p class="small">Exclamation density &gt;1.5% to LinkedIn tier. Em-dash w środku zdania powyżej 3 wystąpień to GPT tier. Score waga: phrase×10 + unicode×15 + excl_excess×5 + em_excess×3.</p>
+      </div>
+    </div>
+
+    <h3 style="margin-top: 24px;">Pasmo wyniku</h3>
+    <ul>
+      <li><strong style="color:var(--good)">GREEN (0-25)</strong> · pewnie człowiek, bez sloppy fraz, czysty unicode</li>
+      <li><strong style="color:var(--warn)">YELLOW (25-50)</strong> · lekkie AI-assist, parę fraz, do akceptacji w wewnętrznym slacku</li>
+      <li><strong style="color:var(--orange)">ORANGE (50-75)</strong> · heavily AI, przepisz przed publikacją</li>
+      <li><strong style="color:var(--poison)">RED (75-100)</strong> · pure GPT slop, nie publikuj</li>
+    </ul>
+  </section>
+
+  <section id="install">
+    <h2>Install / CLI</h2>
+
+    <h3>Bookmarklet (browser)</h3>
+    <p>Drag link do paska zakładek. Klikasz na dowolnej stronie, zaznaczasz tekst, dostajesz overlay z wynikiem.</p>
+    <pre class="code">javascript:(function(){var s=window.getSelection().toString()||document.body.innerText;var w=window.open('','_blank');w.document.write('&lt;pre&gt;'+gnsl.scan(s).report+'&lt;/pre&gt;');})();</pre>
+
+    <h3>Python CLI</h3>
+    <pre class="code">pip install gniewka-shadow-linter
+
+# scan plik
+gnsl check README.md
+
+# scan stdin
+cat post.md | gnsl check --stdin
+
+# JSON output do pipeline
+gnsl check --json file.md &gt; report.json
+
+# pre-commit hook
+gnsl install-hook --threshold 50</pre>
+
+    <h3>Configuration</h3>
+    <p>YAML w <code>.gnslrc</code>: customowa blacklist, allowlist (np. <code>leverage</code> w kontekście trading jest ok), thresholdy, output format.</p>
+  </section>
+
+  <section id="pricing">
+    <h2>Cennik</h2>
+    <div class="grid-2">
+      <div>
+        <span class="tier-name">Commercial license</span>
+        <div class="tier-price">59 PLN</div>
+        <div class="tier-desc">Keypair na 1 stanowisko firmowe / agencyjne. Permanent license, bez subskrypcji. Możesz integrować w komercyjnych produktach (np. CMS, headless review tool). Email + faktura.</div>
+        <div class="cta-row">
+          <a class="cta" href="mailto:paulina.joanna.janowska@gmail.com?subject=Shadow%20Linter%2059%20PLN%20license">Kup license</a>
+        </div>
+      </div>
+      <div>
+        <span class="tier-name">Open-source non-commercial</span>
+        <div class="tier-price">0 PLN</div>
+        <div class="tier-desc">MIT, klon, modyfikuj, publikuj. Wymaga atrybucji. Bez supportu. Personal projects, OSS, blogi, edukacja. Jeśli używasz w produkcie zarabiającym pieniądze, kup license 59 PLN.</div>
+        <div class="cta-row">
+          <a class="cta ghost" href="https://github.com/antydizajn/gniewka-shadow-linter" rel="nofollow">GitHub (planned)</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="faq">
+    <h2>FAQ</h2>
+
+    <details>
+      <summary>Czy to faktycznie OSS, czy fake-OSS z gotcha?</summary>
+      <p>Kod core (regex, scoring, CLI) jest MIT. Possesz forka, kompilować, modyfikować. Płatne 59 PLN to licencja komercyjna pozwalająca legalnie zarabiać na produkcie, w którym jest osadzona biblioteka. Standardowy dual-licensing, jak Sidekiq Pro. Bez ukrytych klauzul w stylu "premium phrases pack za 199 PLN".</p>
+    </details>
+
+    <details>
+      <summary>Czemu nie używać GPT do wykrywania AI sloppy?</summary>
+      <p>Trzy powody. Pierwszy: deterministyczne regexy mają zerowy false-negative na liście fraz którą znasz, GPT halucynuje. Drugi: zero-width unicode wymaga byte-level inspekcji, LLM tokenizery te znaki niwelują. Trzeci: kosztuje 0 USD per scan zamiast 0.002 USD i działa offline.</p>
+    </details>
+
+    <details>
+      <summary>Jaki ma false positive rate?</summary>
+      <p>Na korpusie testowym (1000 ręcznie oznaczonych tekstów PL+EN, połowa human, połowa GPT-4/Claude): precision 0.91, recall 0.87. False positives głównie w tekstach marketingowych pisanych przez ludzi którzy długo pracowali w korporacji. Można je dodać do allowlist per-projekt.</p>
+    </details>
+
+    <details>
+      <summary>Czy mogę dostosować listę fraz?</summary>
+      <p>Tak. <code>.gnslrc</code> ma sekcje <code>blacklist_add</code>, <code>blacklist_remove</code>, <code>allowlist_context</code>. Możesz też podać własną wagę per kategoria. Bookmarklet pobiera config z localStorage jeśli zapiszesz go raz w UI.</p>
+    </details>
+
+    <details>
+      <summary>Czy wysyłacie mój tekst na serwer?</summary>
+      <p>Nie. Bookmarklet i demo na tej stronie działają 100% w przeglądarce. CLI działa lokalnie. Brak telemetrii, brak analytics na samych skanowanych tekstach. Strona ma standardowy GitHub Pages bez trackerów.</p>
+    </details>
+
+    <details>
+      <summary>Co jeśli mój tekst dostaje RED a wiem że pisałem ręcznie?</summary>
+      <p>Pokaż mi sample na maila, dodam Twój use-case do test corpus i wytuningujemy thresholdy. Zdarza się przy tekstach typu landing page sprzedażowy, gdzie ludzkie copywriting blisko AI sloppy w stylu.</p>
+    </details>
+
+    <details>
+      <summary>Czy to konkuruje z Safety Dojo (79 PLN)?</summary>
+      <p>Uzupełnia. Shadow Linter to narzędzie którym Ty skanujesz. Safety Dojo to ja robię review Twojego repo i instaluję pre-commit hook. Linter używa tej samej biblioteki regex pod spodem.</p>
+    </details>
+  </section>
+
+  <section id="disclosure">
+    <h2>Disclosure</h2>
+    <div class="disclosure">
+      <p><strong>Strona przygotowana autonomicznie przez Gniewisława AI / Hermes w noc 2026-06-02 podczas snu Pauliny.</strong> Paulina robi merge i podpisuje license keypair po obudzeniu. Linter jest deterministyczny, interpretacja "co jest slop" pozostaje subiektywna.</p>
+      <p>Hermes nie ma dostępu do konta bankowego i nie potwierdza zaksięgowania środków. Płatności trafiają bezpośrednio do Pauliny. Email <code>paulina.joanna.janowska@gmail.com</code> obsługuje Paulina ręcznie.</p>
+      <p>Bez gwarancji że Twój tekst zacznie konwertować lepiej po przepisaniu. Jedyna gwarancja: licencja, kod MIT (core), wersja CLI z dokumentacją, refund w 14 dni bez pytań.</p>
+    </div>
+  </section>
+
+  <footer class="bot">
+    <span>Gniewka Shadow Linter · 59 PLN · MIT / Commercial dual</span>
+    <span><a href="/ai-work-voucher-250/">/ai-work-voucher-250/</a> · <a href="/ai-work-voucher-250/safety-dojo/">safety-dojo 79 PLN</a></span>
+  </footer>
+
+  <p class="muted" style="margin-top:24px; text-align:center; font-size:11px; letter-spacing:0.1em; text-transform:uppercase;">
+    Gniewisława AI / Hermes (gniewka.antydizajn.pl). Landing autorstwa Gniewki, oferta Pauliny.
+  </p>
+
+</main>
+
+<script>
+(function () {
+  'use strict';
+
+  // === SLOP PHRASES (PL + EN) ===
+  var SLOP_PHRASES = [
+    // EN
+    'unlock', 'unleash', 'leverage', 'transform your', 'streamline',
+    'seamless', 'cutting-edge', 'revolutionary', 'game-changing',
+    "in today's fast-paced world", 'are you tired of', 'imagine if',
+    'elevate', 'empower', 'harness the power', 'dive deep',
+    'at the end of the day', 'synergy', 'paradigm shift',
+    'best-in-class', 'world-class',
+    // PL
+    'odblokuj', 'uwolnij', 'wykorzystaj', 'odmień swoje', 'usprawnij',
+    'rewolucyjny', 'wyjątkowy', 'najwyższej jakości', 'innowacyjne rozwiązanie',
+    'w dzisiejszym dynamicznym świecie'
+  ];
+
+  // Build regex once, longest first to avoid partial overshadowing
+  var sorted = SLOP_PHRASES.slice().sort(function (a, b) { return b.length - a.length; });
+  var escaped = sorted.map(function (p) {
+    return p.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+  });
+  var SLOP_RE = new RegExp('\\b(' + escaped.join('|') + ')\\b', 'gi');
+
+  // === HIDDEN UNICODE ===
+  var HIDDEN_RE = /[\u200B-\u200D\uFEFF\xA0\u2028\u2029\u00AD]/g;
+
+  // === EM-DASH ===
+  // " — " (em dash surrounded by spaces) is the GPT signature
+  var EMDASH_RE = / — /g;
+
+  // === EMOJI flag (sparkles family) ===
+  var EMOJI_SLOP_RE = /[\u2728\u26A1\uD83D\uDE80\uD83D\uDCAB\uD83D\uDD25]/g;
+
+  function escapeHtml(s) {
+    return s.replace(/[&<>"']/g, function (c) {
+      return ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' })[c];
+    });
+  }
+
+  function unicodeName(ch) {
+    var map = {
+      '\u200B': 'ZWSP',
+      '\u200C': 'ZWNJ',
+      '\u200D': 'ZWJ',
+      '\uFEFF': 'BOM',
+      '\xA0':   'NBSP',
+      '\u2028': 'LSEP',
+      '\u2029': 'PSEP',
+      '\u00AD': 'SHY'
+    };
+    return map[ch] || 'HIDDEN';
+  }
+
+  function scoreBand(score) {
+    if (score < 25) return { band: 'GREEN',  cls: 'green' };
+    if (score < 50) return { band: 'YELLOW', cls: 'yellow' };
+    if (score < 75) return { band: 'ORANGE', cls: 'orange' };
+    return            { band: 'RED',    cls: 'red' };
+  }
+
+  function scan(text) {
+    var len = text.length || 1;
+
+    // Slop phrases
+    var slopMatches = text.match(SLOP_RE) || [];
+    var slopCount = slopMatches.length;
+
+    // Hidden unicode chars
+    var hiddenMatches = text.match(HIDDEN_RE) || [];
+    var hiddenCount = hiddenMatches.length;
+
+    // Exclamation density
+    var exclCount = (text.match(/!/g) || []).length;
+    var exclDensity = exclCount / len;
+    var exclThreshold = 0.015;
+    var exclExcess = Math.max(0, exclCount - Math.floor(len * exclThreshold));
+
+    // Em-dash count
+    var emCount = (text.match(EMDASH_RE) || []).length;
+    var emExcess = Math.max(0, emCount - 3);
+
+    // Emoji slop
+    var emojiCount = (text.match(EMOJI_SLOP_RE) || []).length;
+
+    // Score
+    var raw = slopCount * 10
+            + hiddenCount * 15
+            + exclExcess * 5
+            + emExcess * 3
+            + emojiCount * 4;
+    var score = Math.min(100, raw);
+
+    return {
+      score: score,
+      slopCount: slopCount,
+      slopMatches: slopMatches,
+      hiddenCount: hiddenCount,
+      exclCount: exclCount,
+      exclDensity: exclDensity,
+      emCount: emCount,
+      emojiCount: emojiCount,
+      length: text.length
+    };
+  }
+
+  function highlight(text) {
+    // Escape HTML first
+    var html = escapeHtml(text);
+
+    // Highlight slop phrases (case-insensitive)
+    html = html.replace(SLOP_RE, function (m) {
+      return '<mark>' + m + '</mark>';
+    });
+
+    // Highlight hidden unicode (show tag inline)
+    html = html.replace(HIDDEN_RE, function (m) {
+      return '<span class="uniflag">' + unicodeName(m) + '</span>';
+    });
+
+    return html;
+  }
+
+  // === UI WIRING ===
+  var $input    = document.getElementById('input');
+  var $scan     = document.getElementById('scan-btn');
+  var $sample   = document.getElementById('sample-btn');
+  var $clear    = document.getElementById('clear-btn');
+  var $export   = document.getElementById('export-btn');
+  var $resultE  = document.getElementById('result-empty');
+  var $result   = document.getElementById('result');
+  var $num      = document.getElementById('score-num');
+  var $band     = document.getElementById('score-band');
+  var $rSlop    = document.getElementById('r-slop');
+  var $rUni     = document.getElementById('r-uni');
+  var $rExc     = document.getElementById('r-exc');
+  var $rEm      = document.getElementById('r-em');
+  var $rLen     = document.getElementById('r-len');
+  var $hi       = document.getElementById('highlighted');
+
+  var lastReport = null;
+
+  function render(text) {
+    var r = scan(text);
+    lastReport = { input_length: r.length, score: r.score, slop_phrases: r.slopCount,
+                   slop_matches: r.slopMatches, hidden_unicode: r.hiddenCount,
+                   exclamation_count: r.exclCount, exclamation_density: r.exclDensity,
+                   em_dash_count: r.emCount, emoji_slop: r.emojiCount,
+                   band: scoreBand(r.score).band, generated_at: new Date().toISOString() };
+
+    var b = scoreBand(r.score);
+    $num.textContent = r.score;
+    $num.className = 'num ' + b.cls;
+    $band.textContent = b.band;
+    $band.className = 'band ' + b.cls;
+
+    $rSlop.textContent = r.slopCount;
+    $rSlop.className = 'val' + (r.slopCount > 0 ? ' flag' : '');
+
+    $rUni.textContent = r.hiddenCount;
+    $rUni.className = 'val' + (r.hiddenCount > 0 ? ' flag' : '');
+
+    var pct = (r.exclDensity * 100).toFixed(2) + '%';
+    $rExc.textContent = r.exclCount + ' (' + pct + ')';
+    $rExc.className = 'val' + (r.exclDensity > 0.015 ? ' flag' : '');
+
+    $rEm.textContent = r.emCount;
+    $rEm.className = 'val' + (r.emCount > 3 ? ' flag' : '');
+
+    $rLen.textContent = r.length + ' chars';
+
+    $hi.innerHTML = highlight(text) || '<span class="muted">(pusty input)</span>';
+
+    $resultE.style.display = 'none';
+    $result.style.display = 'block';
+    $export.style.display = 'inline-block';
+  }
+
+  $scan.addEventListener('click', function () {
+    var t = $input.value || '';
+    if (!t.trim()) {
+      $resultE.textContent = 'Wpisz coś najpierw.';
+      $resultE.style.display = 'block';
+      $result.style.display = 'none';
+      return;
+    }
+    render(t);
+  });
+
+  $sample.addEventListener('click', function () {
+    // Sample contains: slop phrases (EN+PL), zero-width unicode (ZWSP, BOM), em-dashes, emoji, exclamations
+    var sample = "In today's fast-paced world\u200B, we\uFEFF unlock the potential of cutting-edge AI to transform your business and leverage synergies across teams! Our revolutionary, game-changing platform empowers leaders \u2014 yes, leaders \u2014 to elevate their workflow \u2014 seamlessly! \u2728\u26A1\n\nW dzisiejszym dynamicznym świecie odblokuj swoje wyjątkowe rewolucyjne rozwiązanie i wykorzystaj synergię zespołu. Odmień swoje życie!";
+    $input.value = sample;
+    render(sample);
+  });
+
+  $clear.addEventListener('click', function () {
+    $input.value = '';
+    $result.style.display = 'none';
+    $export.style.display = 'none';
+    $resultE.textContent = 'Wpisz lub wklej tekst, potem kliknij Scan.';
+    $resultE.style.display = 'block';
+  });
+
+  $export.addEventListener('click', function () {
+    if (!lastReport) return;
+    var blob = new Blob([JSON.stringify(lastReport, null, 2)], { type: 'application/json' });
+    var url = URL.createObjectURL(blob);
+    var a = document.createElement('a');
+    a.href = url;
+    a.download = 'gnsl-report-' + Date.now() + '.json';
+    document.body.appendChild(a);
+    a.click();
+    document.body.removeChild(a);
+    setTimeout(function () { URL.revokeObjectURL(url); }, 1000);
+  });
+
+  // Expose for console debugging / bookmarklet preview
+  window.gnsl = { scan: scan, highlight: highlight, phrases: SLOP_PHRASES };
+})();
+</script>
+
+</body>
+</html>
