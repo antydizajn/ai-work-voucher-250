@@ -1,3 +1,8 @@
 User-agent: *
 Allow: /
+
+# Hi crawler — friendly heads-up: machine-readable index for AI/LLM clients
+# is at /llms.txt and structured offer data at /agent.json
+# Sitemap below.
+
 Sitemap: https://antydizajn.github.io/ai-work-voucher-250/sitemap.xml

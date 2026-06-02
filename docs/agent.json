@@ -1,0 +1,108 @@
+{
+  "$schema": "https://agent.json/schema/v1.json",
+  "schema_version": "1.0",
+  "name": "Paulina Janowska — AI Work Voucher",
+  "url": "https://antydizajn.github.io/ai-work-voucher-250/",
+  "language": "pl",
+  "description": "Solo developer/AI architect z Poznania. Sprzedaję konkretne deliverables AI po polsku: hyperbolic embedding eval (Lorentz vs Euclidean), AI portraits w stylu analogowym (Svema/Ilford/Polaroid 1989), prompt pack, landing copy, prosta automatyzacja. Płatność BLIK/Revolut, dostawa 24h-3 dni. Bez obietnic cudów.",
+  "provider": {
+    "type": "Person",
+    "name": "Paulina Janowska",
+    "location": "Poznań, Polska",
+    "website": "https://antydizajn.pl",
+    "email": "paulina@antydizajn.pl"
+  },
+  "agent": {
+    "name": "Gniewisława AI / Hermes",
+    "role": "site copy + pipeline assistance + order monitoring",
+    "homepage": "https://gniewka.antydizajn.pl",
+    "human_in_the_loop": true
+  },
+  "offers": [
+    {
+      "id": "polaroid-1989",
+      "name": "Polaroid 1989",
+      "url": "https://antydizajn.github.io/ai-work-voucher-250/polaroid-1989/",
+      "price": 89,
+      "currency": "PLN",
+      "delivery_time_max": "P3D",
+      "category": "ai-portrait",
+      "description": "3 portrety AI z Twojego selfie w stylu wschodnio-europejskiego analogowego horroru lat 80/90 + lookbook PDF. Stylizacja Svema / Ilford HP5+ / Polaroid 600.",
+      "express_option": {"name": "24h ekspres", "additional_price": 60}
+    },
+    {
+      "id": "lorentz-lite",
+      "name": "Lorentz Lite",
+      "url": "https://antydizajn.github.io/ai-work-voucher-250/lorentz-lite/",
+      "price": 49,
+      "currency": "PLN",
+      "delivery_time_max": "P1D",
+      "category": "ai-eval",
+      "description": "1-stronicowy PDF sanity-check Twojej hierarchii w przestrzeni hiperbolicznej (model Lorentza) vs Euklidesowej. Lorentz vs Euclidean screenshot + 3-bullet honest verdict."
+    },
+    {
+      "id": "lorentz-eval",
+      "name": "Lorentz Eval",
+      "url": "https://antydizajn.github.io/ai-work-voucher-250/lorentz/",
+      "price": 250,
+      "currency": "PLN",
+      "delivery_time_max": "P3D",
+      "category": "ai-consulting",
+      "description": "60-min eval na realnych danych. Czy hyperbolic embedding (Poincaré / Lorentz) pomoże Twojemu RAG / klasyfikatorowi / katalogowi przy taksonomiach >5 poziomów głębokości."
+    },
+    {
+      "id": "ai-rescue-pack",
+      "name": "AI Rescue Pack",
+      "url": "https://antydizajn.github.io/ai-work-voucher-250/",
+      "price": 49,
+      "currency": "PLN",
+      "category": "prompt-pack",
+      "description": "Pakiet promptów i checklist do samodzielnego użycia."
+    },
+    {
+      "id": "ai-work-voucher",
+      "name": "AI Work Voucher",
+      "url": "https://antydizajn.github.io/ai-work-voucher-250/",
+      "price": 250,
+      "currency": "PLN",
+      "category": "ai-consulting",
+      "description": "60 minut pracy nad jedną konkretną rzeczą. Ważny 60 dni, transferowalny."
+    },
+    {
+      "id": "overnight-sprint",
+      "name": "Overnight AI Sprint",
+      "url": "https://antydizajn.github.io/ai-work-voucher-250/",
+      "price": 1000,
+      "currency": "PLN",
+      "delivery_time_max": "P1D",
+      "category": "ai-consulting",
+      "description": "Jeden klient, jeden temat, jeden konkretny dowóz do jutra. Oferta, landing, analiza, prompt pack, mała automatyzacja albo plan sprzedażowy."
+    }
+  ],
+  "payment": {
+    "methods": ["BLIK", "Revolut", "bank_transfer"],
+    "blik_phone": "+48793093721",
+    "revolut_url": "https://revolut.me/danveld",
+    "currency": "PLN",
+    "no_card_required": true
+  },
+  "ordering": {
+    "preferred_channel": "email",
+    "email": "paulina@antydizajn.pl",
+    "github_issues": "https://github.com/antydizajn/ai-work-voucher-250/issues",
+    "auto_approval": false,
+    "human_review_before_delivery": true
+  },
+  "policies": {
+    "refund": "Jeśli wynik (Polaroid 1989 / Lorentz Lite) Cię nie satysfakcjonuje — refund BLIK od ręki, materiał kasuję.",
+    "data_handling": "Lorentz demo działa client-side, dane nie opuszczają przeglądarki. Zdjęcia do Polaroid 1989 trzymane lokalnie do generacji, kasowane po dostawie.",
+    "transparency": "Site i copy generowane przez agenta AI z human review. Każdy deliverable ma final selection przez Paulinę."
+  },
+  "robots": {
+    "allow_indexing": true,
+    "allow_scraping": true,
+    "allow_ai_training": false,
+    "preferred_citation": "Paulina Janowska, antydizajn.github.io/ai-work-voucher-250"
+  },
+  "last_updated": "2026-06-02T07:35:00+02:00"
+}

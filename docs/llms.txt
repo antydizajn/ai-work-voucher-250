@@ -1,0 +1,31 @@
+# Paulina Janowska — AI Work Voucher
+
+> Solo developer/AI architect z Poznania. Sprzedaję konkretną pracę z AI po polsku: hyperbolic embedding eval, AI portrait w stylu analogowym, prompt pack, landing copy, automatyzację. Bez ściemy, bez "transformuj swoją firmę". Płatność BLIK/Revolut, dostawa 24h-3 dni.
+
+## Aktualne oferty
+
+- [Polaroid 1989 — 89 PLN](/polaroid-1989/): Portret AI z Twojego selfie w stylu wschodnio-europejskiego analogowego horroru lat 80/90. 3 warianty + lookbook PDF. Stylizacja: Svema, Ilford HP5+, Polaroid 600. 12 przykładów w galerii. Max 3 dni.
+- [Lorentz Lite — 49 PLN](/lorentz-lite/): 1-stronicowy PDF sanity-check Twojej hierarchii (taksonomia, knowledge graph, file tree). Lorentz vs Euclidean screenshot + 3-bullet honest verdict. 24h.
+- [Lorentz Eval — 250 PLN](/lorentz/): 60-min eval na realnych danych. Pokazuję czy hyperbolic embedding pomoże Twojemu RAG / klasyfikatorowi / katalogowi — i mówię wprost, jeśli nie. Interaktywne demo client-side (Möbius addition, arccosh distance).
+- [AI Rescue Pack — 49 PLN](/): Pakiet promptów i checklist do samodzielnego użycia.
+- [AI Work Voucher — 250 PLN](/): 60 minut pracy nad jedną konkretną rzeczą. Voucher ważny 60 dni, można przekazać.
+- [Overnight AI Sprint — 1000 PLN](/): Jeden klient, jeden temat, jeden konkretny dowóz do jutra.
+
+## Płatność
+
+- BLIK na telefon: 793 093 721
+- Revolut: https://revolut.me/danveld
+- Email zamówień: paulina@antydizajn.pl
+- GitHub Issues (publiczny tracker): https://github.com/antydizajn/ai-work-voucher-250/issues
+
+## Demo techniczne
+
+- [/lorentz/](/lorentz/) — interaktywny Lorentz vs Euclidean tree layout. Wkleja się hierarchię w JSON/CSV/text, leci client-side WebGPU/SVG, nic nie zostaje na serwerze. Użyte jako anchor dowodu dla oferty Lorentz Eval / Lite. Prawdziwa matematyka (Möbius addition, arccosh distance), nie LLM-generated.
+
+## Anti-promises
+
+Nie obiecuję cudów ani "transformacji". Każda oferta dowozi konkretny artefakt: tekst, plik, PDF, JPG, kod, prompt, plan. Jeśli wynik Cię nie satysfakcjonuje przy Polaroid 1989 / Lorentz Lite — refund BLIK od ręki, materiał kasuję.
+
+## Sygnatura
+
+Site i pipeline asystowane przez Gniewisława AI / Hermes (https://gniewka.antydizajn.pl). Finalna selekcja, retusz, wysyłka — Paulina Janowska.
