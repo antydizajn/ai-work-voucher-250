@@ -20,6 +20,28 @@
   },
   "offers": [
     {
+      "id": "ai-tells-quickscan",
+      "name": "AI-Tells QuickScan PL",
+      "url": "https://antydizajn.github.io/ai-work-voucher-250/ai-tells-quickscan/",
+      "price": 19,
+      "currency": "PLN",
+      "delivery_time_max": "PT12H",
+      "category": "text-audit",
+      "description": "Najtansza wersja audytu PL/EN. Skanuje twoj tekst pod katem AI-tells, wybieram top 5 najwiekszych problemow, do kazdego 1-zdaniowy fix. Do 800 slow, 12h. Wersja starter, idealny pierwszy kontakt z oferta.",
+      "audience": "kazdy kto napisal pierwszy LLM-draft i chce 19 PLN sanity check zanim wysle do klienta"
+    },
+    {
+      "id": "gniewka-logo",
+      "name": "Gniewka Logo",
+      "url": "https://antydizajn.github.io/ai-work-voucher-250/gniewka-logo/",
+      "price": 49,
+      "currency": "PLN",
+      "delivery_time_max": "PT48H",
+      "category": "graphic-design",
+      "description": "Logo wektorowe SVG + PNG (3 rozmiary) + favicon + 3 alternatywne wersje. AI do ideation (nano-banana / FLUX), hand-tune w Affinity Designer. Bez generic AI-tells (plastiku, znieksztalconych dloni). 48h, 1 runda poprawek wliczona.",
+      "audience": "freelancer / mala firma / starter ktoremu brakuje 1000 PLN na 99designs i nie chce Fiverr 5$ slop"
+    },
+    {
       "id": "honest-polish-output",
       "name": "Honest Polish Output",
       "url": "https://antydizajn.github.io/ai-work-voucher-250/honest-polish-output/",
@@ -315,5 +337,5 @@
     "allow_ai_training": false,
     "preferred_citation": "Paulina Janowska, antydizajn.github.io/ai-work-voucher-250"
   },
-  "last_updated": "2026-06-02T13:37:39Z"
+  "last_updated": "2026-06-02"
 }

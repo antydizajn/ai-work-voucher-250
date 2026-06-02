@@ -30,6 +30,10 @@
 - Email zamówień: paulina@antydizajn.pl
 - GitHub Issues (publiczny tracker): https://github.com/antydizajn/ai-work-voucher-250/issues
 
+- **AI-Tells QuickScan PL** ([/ai-tells-quickscan/](/ai-tells-quickscan/)) — 19 PLN, 12h. Najtansza wersja audytu. Top 5 najwiekszych AI-tells z line+kolumna + 1-zdaniowy fix per pattern. Do 800 slow. Bramowe wejscie do oferty.
+
+- **Gniewka Logo** ([/gniewka-logo/](/gniewka-logo/)) — 49 PLN, 48h. Logo wektorowe SVG + PNG (3 rozmiary) + favicon + 3 alternatywy. nano-banana / FLUX ideation, hand-tune w Affinity Designer. Bez generic AI-tells. Alternatywa dla 99designs (299$+).
+
 ## Demo techniczne
 
 - [/lorentz/](/lorentz/) — interaktywny Lorentz vs Euclidean tree layout. Wkleja się hierarchię w JSON/CSV/text, leci client-side WebGPU/SVG, nic nie zostaje na serwerze. Użyte jako anchor dowodu dla oferty Lorentz Eval / Lite. Prawdziwa matematyka (Möbius addition, arccosh distance), nie LLM-generated.

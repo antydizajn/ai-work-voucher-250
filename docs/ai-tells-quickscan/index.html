@@ -1,0 +1,256 @@
+<!doctype html>
+<html lang="pl">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>AI-Tells QuickScan PL · 19 PLN szybki raport top 5 AI-tells</title>
+  <meta name="description" content="39 PLN. Mini wersja audytu. Top 5 AI-tells z line+col + 1-zdaniowy fix per pattern. 12h. 19 PLN starter voucher.">
+  <meta name="robots" content="index, follow">
+  <link rel="canonical" href="https://antydizajn.github.io/ai-work-voucher-250/ai-tells-quickscan/">
+
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="AI-Tells QuickScan PL · 19 PLN">
+  <meta property="og:description" content="Top 5 AI-tells z line+col + krótki fix per pattern. 12h.">
+  <meta property="og:url" content="https://antydizajn.github.io/ai-work-voucher-250/ai-tells-quickscan/">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700;800&family=IBM+Plex+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Service",
+    "name": "AI-Tells QuickScan PL",
+    "description": "Polish/English text audit service. Scans for AI-tells (em-dash, parenthetical asides, 'leverage' verbs, exclamation density, zero-width unicode) and returns a line+column report plus a fix list. Powered by ai-slop-detect open-source CLI plus manual review by Paulina.",
+    "provider": {"@type": "Person", "name": "Paulina Janowska"},
+    "offers": {
+      "@type": "Offer",
+      "name": "AI-Tells QuickScan PL 19 PLN",
+      "price": "19",
+      "priceCurrency": "PLN",
+      "url": "https://antydizajn.github.io/ai-work-voucher-250/ai-tells-quickscan/"
+    },
+    "serviceType": "Text audit",
+    "areaServed": "Polska"
+  }
+  </script>
+
+  <style>
+    :root {
+      color-scheme: dark;
+      --bg: #0a0a0a;
+      --bg-2: #0f0f0f;
+      --line: #1f1f1f;
+      --line-2: #2a2a2a;
+      --fg: #ededed;
+      --fg-2: #a6a6a6;
+      --fg-3: #6b6b6b;
+      --poison: #ff2a4d;
+      --warn: #ffaa00;
+      --good: #6bff9c;
+      --orange: #ff8a3d;
+    }
+    * { box-sizing: border-box; }
+    html, body { margin: 0; padding: 0; }
+    body {
+      background: var(--bg);
+      color: var(--fg);
+      font-family: 'IBM Plex Mono', 'JetBrains Mono', ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+      font-size: 15px;
+      line-height: 1.55;
+      -webkit-font-smoothing: antialiased;
+      background-image:
+        linear-gradient(transparent 0, transparent calc(100% - 1px), rgba(255,42,77,0.04) 100%),
+        linear-gradient(90deg, transparent 0, transparent calc(100% - 1px), rgba(255,42,77,0.04) 100%);
+      background-size: 32px 32px;
+    }
+    a { color: var(--poison); text-decoration: none; border-bottom: 1px dashed rgba(255,42,77,0.5); }
+    a:hover { color: #fff; border-bottom-color: #fff; }
+    main { max-width: 920px; margin: 0 auto; padding: 32px 20px 80px; }
+
+    header.top {
+      display: flex; justify-content: space-between; align-items: center;
+      padding-bottom: 18px; border-bottom: 1px solid var(--line);
+      font-size: 12px; color: var(--fg-3); text-transform: uppercase; letter-spacing: 0.12em;
+    }
+    header.top span.left::before { content: "◯ "; color: var(--poison); }
+    header.top span.right::before { content: "▪ "; color: var(--poison); }
+
+    section { border-bottom: 1px solid var(--line); padding: 40px 0; }
+    section:last-of-type { border-bottom: none; }
+
+    h1 {
+      font-family: 'JetBrains Mono', monospace;
+      font-weight: 800;
+      font-size: clamp(28px, 5vw, 48px);
+      line-height: 1.05;
+      letter-spacing: -0.03em;
+      margin: 12px 0 18px;
+    }
+    h1 .poison { color: var(--poison); }
+    h1 .strike { color: var(--fg-3); text-decoration: line-through; }
+    .lead {
+      font-size: clamp(15px, 1.8vw, 18px);
+      color: var(--fg-2);
+      max-width: 720px;
+      margin: 0 0 24px;
+    }
+    h2 {
+      font-family: 'JetBrains Mono', monospace;
+      font-weight: 700;
+      font-size: 22px;
+      margin: 0 0 18px;
+      color: var(--fg);
+    }
+    h2::before { content: "▸ "; color: var(--poison); }
+    p { margin: 0 0 14px; color: var(--fg-2); }
+    p strong { color: var(--fg); font-weight: 600; }
+    code { font-family: 'JetBrains Mono', monospace; background: var(--bg-2); padding: 2px 6px; border: 1px solid var(--line-2); border-radius: 2px; font-size: 13px; }
+    pre { background: var(--bg-2); border: 1px solid var(--line-2); padding: 18px; overflow-x: auto; font-size: 13px; color: var(--fg-2); }
+
+    .price-box {
+      display: inline-flex; align-items: center; gap: 12px;
+      padding: 14px 22px;
+      background: var(--poison); color: #000;
+      font-weight: 800; font-size: 18px;
+      border: 2px solid var(--poison);
+      letter-spacing: 0.04em;
+      margin-bottom: 18px;
+    }
+    .price-box::before { content: "BLIK / Revolut · "; font-weight: 500; opacity: 0.7; }
+
+    .report-sample {
+      background: var(--bg-2);
+      border: 1px solid var(--line-2);
+      padding: 18px;
+      font-size: 13px;
+      color: var(--fg);
+      overflow-x: auto;
+      margin: 14px 0;
+      white-space: pre;
+    }
+    .report-sample .verdict { color: var(--poison); font-weight: 700; }
+    .report-sample .line { color: var(--orange); }
+
+    ul.checklist { list-style: none; padding: 0; margin: 0 0 20px; }
+    ul.checklist li { padding: 6px 0; padding-left: 24px; position: relative; color: var(--fg-2); font-size: 14px; }
+    ul.checklist li::before { content: "▢"; color: var(--poison); position: absolute; left: 0; }
+
+    .cta-row { display: flex; gap: 12px; flex-wrap: wrap; margin-top: 24px; }
+    .cta {
+      display: inline-block; padding: 12px 18px;
+      border: 1px solid var(--poison); color: var(--poison);
+      font-weight: 700; text-transform: uppercase; letter-spacing: 0.06em;
+      font-size: 13px;
+    }
+    .cta:hover { background: var(--poison); color: #000; border-bottom: 1px solid var(--poison); }
+    .cta.primary { background: var(--poison); color: #000; border-bottom: 1px solid var(--poison); }
+    .cta.primary:hover { background: transparent; color: var(--poison); }
+
+    footer { padding: 30px 0; font-size: 12px; color: var(--fg-3); text-align: center; }
+    footer a { color: var(--fg-2); }
+  </style>
+</head>
+
+<body>
+<main>
+
+  <header class="top">
+    <span class="left">paulina janowska · gniewka</span>
+    <span class="right">ai-tells quickscan pl · 19 pln</span>
+  </header>
+
+  <section class="hero">
+    <h1><span class="strike">"sprawdze pozniej"</span><br><span class="poison">19 PLN, raport w 12h</span></h1>
+    <p class="lead">Najtansza wersja audytu. Skanuje twoj tekst (PL/EN), wybieram top 5 najwiekszych AI-tells, do kazdego dodaje 1-zdaniowy fix. Raport w 12h. Wystarczajace zeby ogarnac pierwszy szok przy kontakcie z wlasnym ChatGPT-draft.</p>
+    <div class="price-box">19 PLN · do 800 slow · 12h</div>
+    <div class="cta-row">
+      <a class="cta primary" href="mailto:paulina@antydizajn.pl?subject=AI-Tells%20QuickScan%20PL%2019%20PLN&body=Czesc%2C%20chce%20quickscan.%20Wklejam%20tekst%20ponizej%3A%0A%0A">Zamow przez email</a>
+      <a class="cta" href="https://github.com/antydizajn/ai-slop-detect">CLI open-source</a>
+      <a class="cta" href="https://antydizajn.github.io/ai-work-voucher-250/">Wszystkie oferty</a>
+    </div>
+  </section>
+
+  <section>
+    <h2>Co to jest</h2>
+    <p>19 PLN to MINIMUM. Tańsza i krótsza wersja AI-Slop Audit (39 PLN). Bierzesz tekst do 800 słow ktory wyszedl z LLM, ja:</p>
+    <ul class="checklist">
+      <li>Linia X, kolumna Y - tu masz em-dash, podmien na "-"</li>
+      <li>Linia A - "warto zauwazyc" nie wnosi nic, wytnij</li>
+      <li>Linia B - okragle nawiasy z asides, zamien na zdania lub usun</li>
+      <li>Linia C - 4 wykrzykniki w 80 slow, max 1</li>
+      <li>Verdikt: STRONG_AI / MODERATE_AI / WEAK_AI / CLEAN ze score 0-100</li>
+    </ul>
+    <p>Plus piszę krótko (max 200 slow), gdzie brzmi sztucznie ze powodow trudniejszych do zlapania regexem - np. "ten akapit ma 3 abstrakcje pod rzad i nie mowi o niczym konkretnym".</p>
+  </section>
+
+  <section>
+    <h2>Wzor raportu</h2>
+    <div class="report-sample">
+================================================================================
+AI-SLOP REPORT // example.txt // 482 slow
+================================================================================
+
+<span class="verdict">VERDICT: STRONG_AI (score 78/100)</span>
+
+<span class="line">L7:34</span>   em-dash (—)            ostatecznosc, AI-tell #1
+<span class="line">L12:8</span>   okragle nawiasy        "(czesto okreslane jako...)" - asides puste
+<span class="line">L18:1</span>   "warto podkreslic"     formula starter, nic nie wnosi
+<span class="line">L23:55</span>  "ponadto"              uwaga AI, ludzie pisza "tez" / "i"
+<span class="line">L31:12</span>  4 wykrzykniki / 70 slow density 5.7% (max 1.5%)
+<span class="line">L42:3</span>   "rewolucyjnie"         marketing-AI, slowo widmo
+
+MANUALNA OPINIA:
+Akapit 2 ma rytm ChatGPT-shia: trzy zdania z formulami "warto X",
+"nalezy Y", "kluczowe Z". Zburz je po prostu - wykrzyczyj jedna myśl
+i pojdz dalej. Akapit 4 jest dobry, zostaw.
+
+FIX TIME ESTIMATE: 8-12 minut recznie
+ALTERNATYWA: zamow Honest Polish Output 49 PLN, ja przepisze.
+================================================================================
+</div>
+  </section>
+
+  <section>
+    <h2>Czemu nie sam ai-slop-detect za free?</h2>
+    <p>Mozesz! Kod jest <a href="https://github.com/antydizajn/ai-slop-detect">open-source na MIT</a>. Tam masz <code>pip install</code> i skanowanie z linii polecen.</p>
+    <p>Co dostajesz dodatkowo za 39 PLN:</p>
+    <ul class="checklist">
+      <li>Polska lista wzorcow rozszerzona o wzorce które jeszcze nie sa w open-source repo (mam ich wiecej na dysku, dodaje do CLI co tydzien)</li>
+      <li>Manualna opinia (regex tego nie zlapie - rytm akapitu, abstrakcja-pod-rzad, jezyk PR)</li>
+      <li>Sortowanie fix listy od "5 sek na fix" do "trzeba przemyslec"</li>
+      <li>Dostajesz to do 12h, nie musisz uczyc sie Pythona ani gita</li>
+    </ul>
+  </section>
+
+  <section>
+    <h2>Kiedy NIE bierz tego</h2>
+    <ul class="checklist">
+      <li>Tekst dluzszy niz 800 slow - wez 2 vouchery lub Honest Polish Output</li>
+      <li>Tekst ma byc przepisany, nie sprawdzony - to Honest Polish Output 49 PLN</li>
+      <li>Tekst musi byc po angielsku - dziala, ale Polish list jest mocniejsza</li>
+      <li>Chcesz "AI score" zeby udowodnic ze ktos uzyl AI - to nie sluzy do tego</li>
+    </ul>
+  </section>
+
+  <section>
+    <h2>Jak zamawiac</h2>
+    <p><strong>1.</strong> Email na paulina@antydizajn.pl z tematem "AI-Slop Audit PL 39 PLN".</p>
+    <p><strong>2.</strong> Wklejasz tekst w body emaila (do 800 slow) lub jako .txt / .md attachment.</p>
+    <p><strong>3.</strong> Dostajesz BLIK / link Revolut, plus deadline (24h).</p>
+    <p><strong>4.</strong> Po zaplacie skanuje, pisze recznie opinie, wysylam raport.</p>
+    <p><strong>5.</strong> Jesli decydujesz sie po raporcie na full rewrite, doplata 10 PLN i robie to jako Honest Polish Output (39+10=49).</p>
+  </section>
+
+  <footer>
+    <a href="https://antydizajn.github.io/ai-work-voucher-250/">← Wszystkie oferty</a> &middot;
+    <a href="https://gniewka.antydizajn.pl">Gniewka</a> &middot;
+    <a href="https://github.com/antydizajn/ai-slop-detect">ai-slop-detect (CLI)</a>
+    <br><br>
+    Paulina Janowska / Gniewisla AI · gniewka.antydizajn.pl
+  </footer>
+
+</main>
+</body>
+</html>
