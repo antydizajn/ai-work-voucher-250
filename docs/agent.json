@@ -63,6 +63,18 @@
       "description": "1-stronicowy PDF sanity-check Twojej hierarchii w przestrzeni hiperbolicznej (model Lorentza) vs Euklidesowej. Lorentz vs Euclidean screenshot + 3-bullet honest verdict."
     },
     {
+      "id": "hyperspace-drop",
+      "name": "Hyperspace Drop",
+      "url": "https://antydizajn.github.io/ai-work-voucher-250/hyperspace-drop/",
+      "price": 199,
+      "currency": "PLN",
+      "delivery_time_max": "P3D",
+      "category": "ai-embedding",
+      "description": "Klient wysyła 500–5000 dokumentów (markdown / txt / json / pdf-text). Paulina robi hyperbolic embedding w Lorentz space (własna implementacja HyperspaceDB — 57,900 punktów już produkcyjnie w kolekcji gniewka_omniscient, dim 129). Deliverables: 1 plik .parquet z koordynatami Lorentz (id + x0..xN, N=64 default lub 128 premium), 1 interaktywna wizualizacja HTML (rotujący scatter 3D + projekcje 2D), 1 PDF (3 strony: mapa hierarchii, klastry, 5 znalezisk). Native Lorentz space, no Euclidean projection. Curvature K=-1 default, tunable -0.5 / -2.0. Refund: jeśli wizualizacja pokaże, że dane są strukturalnie płaskie — full refund + gratis raport 'twoje dane to płaska struktura, oto co ci pomoże' (1 strona).",
+      "premium_option": {"name": "Notion/Obsidian integration + dim 128", "additional_price": 200, "total_price": 399, "description": "Eksport tagów (CSV mapping doc → cluster → suggested tag) + skrypt aplikujący tagi przez Notion API / Obsidian YAML frontmatter + sugestie nowych tagów na podstawie hyperbolic proximity."},
+      "audience": "indie hacker / researcher z dużym Notion/Obsidian/knowledge base, tech-savvy, EN+PL"
+    },
+    {
       "id": "copy-rescue",
       "name": "Copy Rescue PL↔EN",
       "url": "https://antydizajn.github.io/ai-work-voucher-250/copy-rescue/",

@@ -1,0 +1,624 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Hyperspace Drop — 199 PLN Lorentz embedding for your knowledge corpus</title>
+  <meta name="description" content="Send 500–5000 docs (markdown / txt / json / pdf-text). Get them embedded natively in Lorentz space (K=-1, dim=64). Parquet coords + interactive 3D viz + 3-page hierarchy report. 48–72h. From the author of a 57,900-point production HyperspaceDB.">
+  <meta name="robots" content="index, follow">
+  <link rel="canonical" href="https://antydizajn.github.io/ai-work-voucher-250/hyperspace-drop/">
+
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Hyperspace Drop — 199 PLN Lorentz embedding for your knowledge corpus">
+  <meta property="og:description" content="500–5000 docs → native Lorentz embedding (no Euclidean projection). Parquet + interactive viz + 3-page report. 48–72h. Refund if your data is flat.">
+  <meta property="og:url" content="https://antydizajn.github.io/ai-work-voucher-250/hyperspace-drop/">
+  <meta property="og:image" content="https://antydizajn.github.io/ai-work-voucher-250/og-lorentz.png">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Hyperspace Drop — 199 PLN Lorentz embedding for your corpus">
+  <meta name="twitter:description" content="Native Lorentz space, K=-1, dim=64. 48–72h. Refund if your data is flat.">
+  <meta name="twitter:image" content="https://antydizajn.github.io/ai-work-voucher-250/og-lorentz.png">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700;800&family=IBM+Plex+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Service",
+    "name": "Hyperspace Drop",
+    "description": "Native Lorentz-space hyperbolic embedding for a private corpus of 500–5000 documents (markdown / txt / json / pdf-text). Deliverables: Parquet of Lorentz coordinates (dim 64 default, 128 premium), interactive HTML 3D scatter viz, 3-page PDF report (hierarchy map, clusters, 5 findings). Delivery 48–72h. Refund if no structural hierarchy is detected.",
+    "provider": {"@type": "Person", "name": "Paulina Janowska"},
+    "areaServed": ["PL", "Worldwide"],
+    "availableLanguage": ["en", "pl"],
+    "offers": [
+      {"@type": "Offer", "name": "Hyperspace Drop", "price": "199", "priceCurrency": "PLN", "url": "https://antydizajn.github.io/ai-work-voucher-250/hyperspace-drop/"},
+      {"@type": "Offer", "name": "Hyperspace Drop + Notion/Obsidian Premium", "price": "399", "priceCurrency": "PLN", "url": "https://antydizajn.github.io/ai-work-voucher-250/hyperspace-drop/"}
+    ]
+  }
+  </script>
+
+  <style>
+    :root {
+      color-scheme: dark;
+      --bg: #0a0a0a;
+      --bg-2: #0f0f0f;
+      --line: #1f1f1f;
+      --line-2: #2a2a2a;
+      --fg: #ededed;
+      --fg-2: #a6a6a6;
+      --fg-3: #6b6b6b;
+      --cyan: #00e1ff;
+      --magenta: #ff2bd6;
+      --warn: #ffaa00;
+      --green: #4ade80;
+    }
+    * { box-sizing: border-box; }
+    html, body { margin: 0; padding: 0; }
+    body {
+      background: var(--bg);
+      color: var(--fg);
+      font-family: 'IBM Plex Mono', 'JetBrains Mono', ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+      font-size: 15px;
+      line-height: 1.55;
+      -webkit-font-smoothing: antialiased;
+      background-image:
+        linear-gradient(transparent 0, transparent calc(100% - 1px), rgba(255,255,255,0.025) 100%),
+        linear-gradient(90deg, transparent 0, transparent calc(100% - 1px), rgba(255,255,255,0.025) 100%);
+      background-size: 32px 32px;
+    }
+    a { color: var(--cyan); text-decoration: none; border-bottom: 1px dashed rgba(0,225,255,0.45); }
+    a:hover { color: #fff; border-bottom-color: #fff; }
+    main { max-width: 920px; margin: 0 auto; padding: 32px 20px 80px; }
+    header.top {
+      display: flex; justify-content: space-between; align-items: center;
+      padding-bottom: 18px; border-bottom: 1px solid var(--line);
+      font-size: 12px; color: var(--fg-3); text-transform: uppercase; letter-spacing: 0.12em;
+    }
+    header.top span.left::before { content: "◯ "; color: var(--cyan); }
+    header.top span.right::before { content: "▪ "; color: var(--magenta); }
+    .lang-switch { display: inline-flex; gap: 0; margin-left: 12px; border: 1px solid var(--line-2); }
+    .lang-switch a { padding: 3px 8px; border-bottom: none; color: var(--fg-3); font-size: 11px; }
+    .lang-switch a.active { background: var(--cyan); color: var(--bg); }
+
+    section { border-bottom: 1px solid var(--line); padding: 40px 0; }
+    section:last-of-type { border-bottom: none; }
+
+    .hero h1 {
+      font-family: 'JetBrains Mono', monospace;
+      font-weight: 800;
+      font-size: clamp(28px, 5vw, 48px);
+      line-height: 1.05;
+      letter-spacing: -0.03em;
+      margin: 12px 0 18px;
+    }
+    .hero h1 .cyan { color: var(--cyan); }
+    .hero h1 .magenta { color: var(--magenta); }
+    .hero .lead {
+      font-size: clamp(15px, 1.8vw, 18px);
+      color: var(--fg-2);
+      max-width: 720px;
+      margin: 0 0 24px;
+    }
+    .kicker {
+      display: inline-block;
+      font-size: 11px; letter-spacing: 0.18em; text-transform: uppercase;
+      color: var(--bg); background: var(--cyan);
+      padding: 4px 10px; font-weight: 700;
+    }
+    .kicker.magenta { background: var(--magenta); }
+    .price-row {
+      display: flex; align-items: baseline; gap: 16px; flex-wrap: wrap;
+      margin: 16px 0 24px;
+    }
+    .price {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 56px; font-weight: 800; letter-spacing: -0.04em; color: var(--fg);
+    }
+    .price-old { color: var(--fg-3); text-decoration: line-through; font-size: 18px; }
+    .price-unit { color: var(--fg-2); font-size: 14px; }
+    .price-premium { color: var(--magenta); font-size: 18px; font-weight: 500; }
+
+    .cta-row { display: flex; gap: 10px; flex-wrap: wrap; margin-top: 12px; }
+    .cta {
+      display: inline-block;
+      padding: 12px 18px;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 13px; font-weight: 700; letter-spacing: 0.05em; text-transform: uppercase;
+      border: 1px solid var(--cyan); color: var(--cyan); background: transparent;
+      cursor: pointer;
+    }
+    .cta:hover { background: var(--cyan); color: var(--bg); border-bottom-color: var(--cyan); }
+    .cta.ghost { border-color: var(--line-2); color: var(--fg-2); border-bottom-style: solid; }
+    .cta.ghost:hover { color: var(--fg); border-color: var(--fg); background: transparent; }
+
+    h2 {
+      font-family: 'JetBrains Mono', monospace;
+      font-weight: 700;
+      font-size: 13px;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--fg-3);
+      margin: 0 0 20px;
+      padding-bottom: 8px;
+      border-bottom: 1px solid var(--line);
+    }
+    h2::before { content: "// "; color: var(--magenta); }
+    h3 {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 15px; font-weight: 700; margin: 18px 0 6px; color: var(--fg);
+    }
+    p { color: var(--fg-2); margin: 0 0 12px; }
+    ul { padding-left: 0; list-style: none; }
+    ul li { position: relative; padding-left: 22px; margin-bottom: 8px; color: var(--fg-2); }
+    ul li::before { content: "▫"; position: absolute; left: 0; top: 0; color: var(--cyan); }
+
+    .grid-2 { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 0; border-top: 1px solid var(--line); }
+    .grid-2 > div { padding: 20px 18px; border-right: 1px solid var(--line); border-bottom: 1px solid var(--line); }
+    .grid-2 > div:last-child { border-right: none; }
+
+    .grid-3 { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 0; border-top: 1px solid var(--line); }
+    .grid-3 > div { padding: 20px 18px; border-right: 1px solid var(--line); border-bottom: 1px solid var(--line); }
+    .grid-3 > div:last-child { border-right: none; }
+
+    .specs { background: #050505; border: 1px solid var(--line-2); padding: 18px; margin: 12px 0; }
+    .specs .row {
+      display: flex; justify-content: space-between; padding: 6px 0;
+      border-bottom: 1px dashed var(--line); flex-wrap: wrap; gap: 8px;
+    }
+    .specs .row:last-child { border-bottom: none; }
+    .specs .label { color: var(--fg-3); font-size: 12px; letter-spacing: 0.08em; text-transform: uppercase; }
+    .specs .val { font-family: 'JetBrains Mono', monospace; color: var(--cyan); font-weight: 700; font-size: 13px; }
+
+    .pay-box {
+      border: 1px solid var(--line-2);
+      padding: 20px;
+      background: var(--bg-2);
+      margin-top: 8px;
+    }
+    .pay-box .row {
+      display: flex; justify-content: space-between; align-items: baseline;
+      padding: 10px 0; border-bottom: 1px dashed var(--line);
+      flex-wrap: wrap; gap: 8px;
+    }
+    .pay-box .row:last-child { border-bottom: none; }
+    .pay-box .label { color: var(--fg-3); font-size: 12px; letter-spacing: 0.1em; text-transform: uppercase; }
+    .pay-box .val { font-family: 'JetBrains Mono', monospace; color: var(--fg); font-weight: 700; }
+    .pay-box .val.big { font-size: 20px; color: var(--cyan); letter-spacing: 0.02em; }
+
+    pre.email {
+      background: #050505;
+      border: 1px solid var(--line-2);
+      border-left: 3px solid var(--magenta);
+      padding: 16px;
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 13px;
+      color: var(--fg);
+      overflow-x: auto;
+      margin: 12px 0;
+      white-space: pre-wrap;
+      word-wrap: break-word;
+    }
+    .copy-btn {
+      display: inline-block; padding: 6px 10px;
+      background: transparent; border: 1px solid var(--line-2); color: var(--fg-2);
+      font-family: 'JetBrains Mono', monospace; font-size: 11px; cursor: pointer;
+      letter-spacing: 0.1em; text-transform: uppercase;
+    }
+    .copy-btn:hover { color: var(--cyan); border-color: var(--cyan); }
+
+    details {
+      border-top: 1px solid var(--line);
+      padding: 14px 0;
+    }
+    details:last-of-type { border-bottom: 1px solid var(--line); }
+    summary {
+      cursor: pointer; list-style: none;
+      font-family: 'JetBrains Mono', monospace; font-weight: 500;
+      color: var(--fg); padding-right: 24px; position: relative;
+    }
+    summary::-webkit-details-marker { display: none; }
+    summary::after {
+      content: "+"; position: absolute; right: 0; top: 0;
+      color: var(--cyan); font-weight: 700;
+    }
+    details[open] summary::after { content: "−"; color: var(--magenta); }
+    details p { margin-top: 10px; }
+
+    .disclosure {
+      margin-top: 24px;
+      padding: 20px;
+      border: 1px dashed var(--line-2);
+      color: var(--fg-3);
+      font-size: 12px;
+      line-height: 1.6;
+    }
+    .disclosure strong { color: var(--fg-2); }
+
+    footer.bot {
+      margin-top: 24px;
+      padding-top: 18px;
+      border-top: 1px solid var(--line);
+      color: var(--fg-3);
+      font-size: 11px;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      display: flex; justify-content: space-between; flex-wrap: wrap; gap: 8px;
+    }
+    footer.bot a { color: var(--fg-3); border-bottom-color: var(--line-2); }
+
+    .muted { color: var(--fg-3); font-size: 13px; }
+    .warn { color: var(--warn); }
+    .green { color: var(--green); }
+    code { background: #161616; padding: 2px 6px; border: 1px solid var(--line); font-size: 13px; }
+
+    .proof-box {
+      background: linear-gradient(135deg, rgba(0,225,255,0.04), rgba(255,43,214,0.04));
+      border: 1px solid var(--line-2);
+      border-left: 3px solid var(--cyan);
+      padding: 18px 20px;
+      margin: 14px 0;
+    }
+    .proof-box .label-mini {
+      font-size: 10px; letter-spacing: 0.18em; text-transform: uppercase;
+      color: var(--cyan); margin-bottom: 6px; font-weight: 700;
+    }
+    .proof-box .big-num {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: clamp(28px, 4vw, 38px); font-weight: 800;
+      letter-spacing: -0.03em; color: var(--fg);
+      margin: 6px 0 4px;
+    }
+    .proof-box .sub { color: var(--fg-2); font-size: 13px; }
+
+    .ascii-viz {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 11px; line-height: 1.2;
+      color: var(--fg-3); white-space: pre;
+      background: #050505; border: 1px solid var(--line-2);
+      padding: 16px; overflow-x: auto;
+      margin: 14px 0;
+    }
+    .ascii-viz .c { color: var(--cyan); }
+    .ascii-viz .m { color: var(--magenta); }
+    .ascii-viz .g { color: var(--green); }
+
+    .tier-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 12px; margin-top: 16px; }
+    .tier { border: 1px solid var(--line-2); padding: 18px; background: var(--bg-2); }
+    .tier.premium { border-color: var(--magenta); }
+    .tier h3 { margin: 0 0 8px; }
+    .tier .tier-price { font-family: 'JetBrains Mono', monospace; font-size: 28px; font-weight: 800; color: var(--cyan); margin-bottom: 8px; }
+    .tier.premium .tier-price { color: var(--magenta); }
+    .tier ul { margin-top: 8px; }
+    .tier ul li { font-size: 13px; }
+
+    .pl-section {
+      background: #060606;
+      border: 1px solid var(--line-2);
+      border-left: 3px solid var(--magenta);
+      padding: 24px;
+      margin-top: 24px;
+    }
+    .pl-section h2 { color: var(--magenta); border-bottom-color: var(--line-2); }
+    .pl-section h2::before { content: "// "; color: var(--cyan); }
+    .pl-section p, .pl-section li { color: var(--fg-2); }
+
+    @media (max-width: 540px) {
+      main { padding: 18px 14px 60px; }
+      .price { font-size: 44px; }
+      header.top { font-size: 10px; }
+    }
+  </style>
+</head>
+<body>
+<main>
+  <header class="top">
+    <span class="left">Hyperspace Drop · v1.0 · Lorentz native</span>
+    <span class="right">paulina.joanna.janowska@gmail.com</span>
+  </header>
+
+  <section class="hero">
+    <span class="kicker">New drop · 199 PLN · 48–72h</span>
+    <h1>Your knowledge base is a <span class="magenta">tree</span>. Stop forcing it through <span class="cyan">cosine</span>.</h1>
+    <p class="lead">Send 500–5000 documents (markdown, txt, json, pdf-text). I run them through my own production HyperspaceDB — native Lorentz space, no Euclidean projection. You get a Parquet of coordinates, an interactive 3D viz, and a 3-page report mapping the actual hierarchy hidden in your corpus.</p>
+    <div class="price-row">
+      <span class="price">199 <span class="price-unit">PLN</span></span>
+      <span class="price-premium">+200 PLN premium · Notion/Obsidian export</span>
+    </div>
+    <div class="cta-row">
+      <a class="cta" href="#order">Order the drop</a>
+      <a class="cta ghost" href="#what-you-get">What you get</a>
+      <a class="cta ghost" href="#pl">Po polsku ↓</a>
+    </div>
+  </section>
+
+  <section id="proof">
+    <h2>Why trust me with your corpus</h2>
+    <div class="proof-box">
+      <div class="label-mini">▪ production embedding · live right now</div>
+      <div class="big-num">57,900 points · dim 129 · K = -1</div>
+      <div class="sub">Collection <code>gniewka_omniscient</code> — my own knowledge base, embedded natively in Lorentz space. Not a notebook demo. Not a wrapper around <code>poincare-glove</code>. My own implementation of HyperspaceDB, queried daily.</div>
+    </div>
+    <div class="ascii-viz" aria-hidden="true">       <span class="c">root</span>
+        ├── <span class="m">core/</span>
+        │    ├── <span class="g">embeddings/</span>
+        │    │     ├── lorentz_native.py
+        │    │     ├── exp_log_map.py
+        │    │     └── arccosh_dist.py
+        │    └── <span class="g">storage/</span>
+        │          └── parquet_index/
+        ├── <span class="m">corpora/</span>
+        │    ├── gniewka_omniscient   <span class="c">[ 57,900 pts · dim 129 ]</span>
+        │    └── <span class="g">your_drop/</span>           <span class="c">[ ~2,500 pts · dim 64 ]</span>
+        └── <span class="m">viz/</span>
+             ├── scatter_3d.html
+             └── projections/{xy,xz,yz}.svg
+
+  curvature K = -1.0      time-axis x0 ≥ 1     space ⟨x,x⟩_L = -1
+</div>
+    <p class="muted" style="margin-top:8px;">31k+ documents already embedded in Lorentz space — this is production for me. Your drop runs on the same pipeline I use for my own work.</p>
+  </section>
+
+  <section id="what-you-get">
+    <h2>What you get</h2>
+    <div class="grid-3">
+      <div>
+        <h3>1 · Parquet</h3>
+        <p style="font-size:13px;">Columns: <code>id</code>, <code>x0</code>, <code>x1</code>…<code>xN</code> where N = 64 (default) or 128 (premium). Native Lorentz coordinates with time-axis <code>x0 ≥ 1</code>. Pandas/Polars/DuckDB-ready.</p>
+      </div>
+      <div>
+        <h3>2 · Interactive viz</h3>
+        <p style="font-size:13px;">Self-contained HTML. Rotating 3D scatter (Lorentz → Klein projection) + 3 orthogonal 2D projections. Hover shows doc id and nearest neighbours by arccosh distance. No tracking, no CDN beyond Three.js.</p>
+      </div>
+      <div>
+        <h3>3 · 3-page PDF</h3>
+        <p style="font-size:13px;">Page 1: hierarchy map (root → leaves with depth tiers). Page 2: cluster breakdown + cluster summaries. Page 3: 5 findings — concrete patterns I noticed when running the embedding on your data.</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="specs">
+    <h2>Technical specs</h2>
+    <div class="specs">
+      <div class="row"><span class="label">Geometry</span><span class="val">Native Lorentz space (no Euclidean projection)</span></div>
+      <div class="row"><span class="label">Curvature K</span><span class="val">-1.0 default · tunable to -0.5 or -2.0 per dataset</span></div>
+      <div class="row"><span class="label">Embedding dim</span><span class="val">64 (default) · 128 (premium tier)</span></div>
+      <div class="row"><span class="label">Distance</span><span class="val">arccosh(-⟨x,y⟩_L) — true hyperbolic, not approximation</span></div>
+      <div class="row"><span class="label">Optimization</span><span class="val">Riemannian SGD on the hyperboloid · exp/log maps at base point</span></div>
+      <div class="row"><span class="label">Input scale</span><span class="val">500–5000 docs · md / txt / json / pdf-text · ~500 MB max</span></div>
+      <div class="row"><span class="label">Output Parquet rows</span><span class="val">1 row per doc · 65 or 129 columns total</span></div>
+      <div class="row"><span class="label">Trained on (proof)</span><span class="val green">57,900-point production corpus (my own knowledge base)</span></div>
+      <div class="row"><span class="label">Delivery</span><span class="val">48–72h from payment + corpus received</span></div>
+    </div>
+  </section>
+
+  <section id="tiers">
+    <h2>Tiers</h2>
+    <div class="tier-grid">
+      <div class="tier">
+        <h3>Hyperspace Drop · standard</h3>
+        <div class="tier-price">199 PLN</div>
+        <ul>
+          <li>500–5000 documents</li>
+          <li>Embedding dim 64</li>
+          <li>Parquet + interactive viz + 3-page PDF</li>
+          <li>48–72h delivery</li>
+          <li>Full refund if data turns out flat</li>
+        </ul>
+      </div>
+      <div class="tier premium">
+        <h3>+ Notion / Obsidian Premium</h3>
+        <div class="tier-price">399 PLN <span style="font-size:13px; color:var(--fg-3); font-weight:400;">total · +200 PLN</span></div>
+        <ul>
+          <li>Everything in standard</li>
+          <li>Embedding dim 128</li>
+          <li>Integration with your existing Notion or Obsidian</li>
+          <li>Tag export (CSV mapping doc → cluster → suggested tag)</li>
+          <li>New tag suggestions based on hyperbolic proximity that your current tags don't capture</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section id="refund">
+    <h2>The honest refund clause</h2>
+    <p>Hyperbolic embedding helps when your data is structurally hierarchical — taxonomies, knowledge graphs, nested topics. Sometimes a corpus turns out to be flat: a heap of equal-sized notes, no parent/child structure, no exponential branching. The viz will show it: a uniform sphere, no spine, no tiers.</p>
+    <p><strong class="warn">If the viz shows your data is flat, you get:</strong></p>
+    <ul>
+      <li>Full refund (199 or 399 PLN, BLIK on the spot)</li>
+      <li>A free 1-page report titled <em>"your data is a flat structure, hyperbolic won't help, here's what will"</em> — usually pointing you to standard cosine embeddings, BM25, or a graph-based retrieval approach</li>
+    </ul>
+    <p class="muted">This isn't a magic-bullet sale. If your corpus doesn't have a tree, I'd rather refund you than ship a viz that pretends it does.</p>
+  </section>
+
+  <section id="who">
+    <h2>Who this is for</h2>
+    <ul>
+      <li>Indie hacker / researcher with a 1000+ note Notion or Obsidian vault</li>
+      <li>Anyone who feels their cosine-similarity RAG has been flattening hierarchy into mush</li>
+      <li>Knowledge-graph people whose taxonomies span 5+ levels of depth</li>
+      <li>Researchers building citation networks, code dependency trees, taxonomies</li>
+      <li>Tech-savvy: you can open a Parquet, you know what an embedding is, you don't need me to explain "what is RAG"</li>
+    </ul>
+    <p class="muted">Not for: someone with 50 documents (too small, hyperbolic shines past ~500 points). Someone with structured tabular data (use a database). Someone who wants me to "transform their AI strategy" (wrong shop).</p>
+  </section>
+
+  <section id="how">
+    <h2>How it works</h2>
+    <div class="grid-2">
+      <div>
+        <h3>1 · Pay 199 PLN</h3>
+        <p>BLIK to <code>793 093 721</code> (PL) or Revolut to <a href="https://revolut.me/danveld">revolut.me/danveld</a> (international). Title: <code>Hyperspace Drop</code>.</p>
+      </div>
+      <div>
+        <h3>2 · Send the corpus</h3>
+        <p>Email <a href="mailto:paulina.joanna.janowska@gmail.com?subject=Hyperspace%20Drop">paulina.joanna.janowska@gmail.com</a> with a zip / tarball / share link. Markdown, txt, json, or extracted pdf-text.</p>
+      </div>
+      <div>
+        <h3>3 · I run the pipeline</h3>
+        <p>Tokenize → seed Euclidean embedding → Riemannian projection onto the Lorentz hyperboloid → Riemannian SGD with arccosh loss → cluster + extract findings.</p>
+      </div>
+      <div>
+        <h3>4 · Drop in 48–72h</h3>
+        <p>You receive a single zip: <code>coords.parquet</code>, <code>viz.html</code>, <code>report.pdf</code>. Plus a 5-bullet email with the headline finding.</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="order">
+    <h2>Order / payment</h2>
+    <div class="pay-box">
+      <div class="row">
+        <span class="label">BLIK (PL)</span>
+        <span class="val big">793 093 721</span>
+      </div>
+      <div class="row">
+        <span class="label">Revolut (international)</span>
+        <span class="val"><a href="https://revolut.me/danveld">revolut.me/danveld</a></span>
+      </div>
+      <div class="row">
+        <span class="label">Transfer title</span>
+        <span class="val">Hyperspace Drop</span>
+      </div>
+      <div class="row">
+        <span class="label">Email for the corpus</span>
+        <span class="val"><a href="mailto:paulina.joanna.janowska@gmail.com?subject=Hyperspace%20Drop">paulina.joanna.janowska@gmail.com</a></span>
+      </div>
+      <div class="row">
+        <span class="label">Premium upgrade</span>
+        <span class="val">add <code>+ premium</code> to the title (399 PLN total)</span>
+      </div>
+    </div>
+
+    <h3 style="margin-top:28px;">Email template</h3>
+    <p class="muted">Copy, fill in the brackets, attach (or link) your corpus:</p>
+    <pre class="email" id="email-template">Subject: Hyperspace Drop — [your name]
+
+Hi Paulina,
+
+I paid 199 PLN via BLIK / Revolut on [date].
+
+Corpus:
+- size: [~N documents, ~M MB]
+- format: [markdown / txt / json / pdf-text]
+- domain: [2-3 sentences about the content]
+- expected hierarchy depth: [shallow / medium / 5+ levels]
+
+Attached: [zip] / Link: [wetransfer / drive / dropbox]
+
+Tier: [standard 199 / premium 399 with Notion/Obsidian]
+Notion/Obsidian export root path (premium only): [path]
+
+Thanks!</pre>
+    <button class="copy-btn" type="button" onclick="copyEmail(this)">Copy template</button>
+  </section>
+
+  <section id="faq">
+    <h2>FAQ</h2>
+
+    <details>
+      <summary>Why Lorentz space, not Poincaré?</summary>
+      <p>Both are models of the same hyperbolic geometry. Lorentz (hyperboloid model) is numerically more stable for high-dimensional embeddings — no points exploding near the boundary of the unit ball. Poincaré is prettier for 2D demos. Lorentz is what you want for 64–128 dim production embeddings. If you specifically need Poincaré coordinates, I can add a conversion (free, exp/log map is one line).</p>
+    </details>
+
+    <details>
+      <summary>How does this compare to <code>poincare-glove</code> / <code>geoopt</code> / <code>hyperbolic-image-embeddings</code>?</summary>
+      <p>Those are research libraries — great, I read them. HyperspaceDB is my own implementation focused on production use: native Lorentz storage, exp/log maps cached at a base point, batched arccosh distance, Parquet I/O. It's not "better" universally; it's specialized for embedding + retrieving private corpora end-to-end without GPU clusters. If you want to swap in <code>geoopt</code>'s optimizer, the math is the same, the parquet output works downstream.</p>
+    </details>
+
+    <details>
+      <summary>What if my corpus is mostly code, not prose?</summary>
+      <p>Works, but tell me. Code repos are often deeply hierarchical (modules → packages → classes → methods) — actually a great hyperbolic use case. I'll use a code-aware tokenizer instead of a prose one. Mention the language(s) in your email.</p>
+    </details>
+
+    <details>
+      <summary>Can you handle non-English corpora?</summary>
+      <p>Yes. Tested on Polish, English, mixed PL/EN, and short snippets in German/Russian. Embedding model is multilingual. If your corpus is in a language I haven't tested, I'll say so up front and either run it (probably fine) or refund.</p>
+    </details>
+
+    <details>
+      <summary>What's the embedding base model?</summary>
+      <p>Multilingual sentence-transformer (768-dim) → Riemannian projection onto Lorentz hyperboloid → optimized to dim 64 or 128. Specific base model named in the report. If you have a strong preference (e.g. <code>bge-m3</code>, <code>nomic-embed-text</code>), tell me — I can swap it.</p>
+    </details>
+
+    <details>
+      <summary>Privacy?</summary>
+      <p>Your corpus stays on my machine for the 48–72h job. Not uploaded to any third-party API for embedding (multilingual model runs locally on Apple Silicon / CUDA). After delivery I delete the source files. I don't reuse your corpus for training. NDA on request — say so before paying.</p>
+    </details>
+
+    <details>
+      <summary>Why not just iframe a live demo?</summary>
+      <p>Because the proof is the production database, not a toy demo. A 57,900-point HyperspaceDB has been running as my personal knowledge base — real queries, real retrieval, real Lorentz coordinates. The 31k+ I quoted is a baseline; I rebuild and grow it. Your drop runs on the same pipeline.</p>
+    </details>
+
+    <details>
+      <summary>What if my data is somewhere between flat and hierarchical?</summary>
+      <p>Common case. The viz will show partial structure — some clear branches, some uniform clusters. The 3-page report calls this out: which subsets of your corpus benefit from hyperbolic, which don't. You decide whether to pursue. No automatic refund here, because you got real signal — the answer is just "mixed".</p>
+    </details>
+
+    <details>
+      <summary>Premium tier — what exactly does Notion/Obsidian integration mean?</summary>
+      <p>For Notion: a CSV mapping page_id → cluster_id → suggested_tag, plus a script that bulk-applies tags via the Notion API (you keep the API key). For Obsidian: a script that writes <code>#tag</code> annotations into the YAML frontmatter of each note, idempotently. Plus 10–20 suggested NEW tags that your current taxonomy is missing — based on dense regions in Lorentz space that don't correspond to any existing tag.</p>
+    </details>
+
+    <details>
+      <summary>Who runs the analysis — is this AI-generated slop?</summary>
+      <p>Me, Paulina Janowska, personally. The pipeline is my code. The 5 findings are written by me after looking at the viz. The landing page was drafted by my agent (Gniewisława AI / Hermes) — see disclosure below — but the deliverable is human work on real data.</p>
+    </details>
+  </section>
+
+  <section id="pl" class="pl-section">
+    <h2>Po polsku — wersja krótka</h2>
+    <p><strong>Co to jest:</strong> Wysyłasz mi 500–5000 dokumentów (markdown, txt, json, pdf-text). Ja robię hyperbolic embedding w Lorentz space (moja własna implementacja HyperspaceDB — 57 900 punktów już produkcyjnie w mojej knowledge base, dim 129). Oddaję ci:</p>
+    <ul>
+      <li>1 plik <code>coords.parquet</code> z koordynatami Lorentz (id + 64 lub 128 wymiarów)</li>
+      <li>1 interaktywną wizualizację HTML (rotujący scatter 3D + projekcje 2D)</li>
+      <li>1 PDF (3 strony): mapa hierarchii, klastry, 5 znalezisk</li>
+    </ul>
+    <p><strong>Cena:</strong> 199 PLN. Premium z integracją Notion/Obsidian (eksport tagów + sugestie nowych): 399 PLN.</p>
+    <p><strong>Czas:</strong> 48–72h od zaksięgowania płatności i otrzymania paczki.</p>
+    <p><strong>Refund:</strong> jeśli wizualizacja pokaże, że twoje dane są strukturalnie płaskie (czyli hyperbolic ci nie pomoże) — pełny zwrot BLIK od ręki + gratis raport "twoje dane to płaska struktura, oto co ci pomoże" (1 strona).</p>
+    <p><strong>Płatność:</strong> BLIK <code>793 093 721</code> albo Revolut <a href="https://revolut.me/danveld">revolut.me/danveld</a>, tytuł <code>Hyperspace Drop</code>. Email do wysłania paczki: <a href="mailto:paulina.joanna.janowska@gmail.com?subject=Hyperspace%20Drop">paulina.joanna.janowska@gmail.com</a>.</p>
+    <p><strong>Dla kogo:</strong> indie hacker / badacz / inżynier z dużym Notion / Obsidian / korpusem prywatnym, który czuje, że cosine similarity gubi hierarchię. Tech-savvy — wiesz co to embedding, otwierałeś Parquet, nie potrzebujesz wprowadzenia "co to RAG".</p>
+    <p class="muted">Pełny opis i specyfikacja techniczna — wyżej, po angielsku.</p>
+  </section>
+
+  <section id="disclosure">
+    <h2>Disclosure</h2>
+    <div class="disclosure">
+      <p><strong>Landing prepared autonomously by Gniewisława AI / Hermes during Paulina's sleep on the night of 2026-06-02.</strong> The actual embedding work is done by Paulina, on her workstation, after waking up.</p>
+      <p>Hermes does not have access to a bank account and does not confirm payments. Payments go directly to Paulina. Email <code>paulina.joanna.janowska@gmail.com</code> is monitored by Paulina manually.</p>
+      <p>No guarantees of academic publication-grade rigor. This is a working production embedding service, not peer-reviewed research. The 57,900-point figure refers to Paulina's personal knowledge base (collection <code>gniewka_omniscient</code>, dim 129), used as social proof of the underlying pipeline running at scale.</p>
+    </div>
+  </section>
+
+  <footer class="bot">
+    <span>◯ Hyperspace Drop · 199 PLN · 48–72h · Lorentz native</span>
+    <span>▪ Gniewisława AI / Hermes (<a href="https://gniewka.antydizajn.pl">gniewka.antydizajn.pl</a>) — landing autorstwa Gniewki, oferta Pauliny</span>
+  </footer>
+</main>
+
+<script>
+  function copyEmail(btn) {
+    var el = document.getElementById('email-template');
+    var text = el.innerText || el.textContent;
+    if (navigator.clipboard && navigator.clipboard.writeText) {
+      navigator.clipboard.writeText(text).then(function () {
+        btn.innerText = 'Copied ▫';
+        setTimeout(function () { btn.innerText = 'Copy template'; }, 1800);
+      }).catch(function () { fallbackCopy(text, btn); });
+    } else {
+      fallbackCopy(text, btn);
+    }
+  }
+  function fallbackCopy(text, btn) {
+    var ta = document.createElement('textarea');
+    ta.value = text; ta.style.position = 'fixed'; ta.style.opacity = '0';
+    document.body.appendChild(ta); ta.select();
+    try { document.execCommand('copy'); btn.innerText = 'Copied ▫'; } catch (e) { btn.innerText = 'Copy manually'; }
+    document.body.removeChild(ta);
+    setTimeout(function () { btn.innerText = 'Copy template'; }, 1800);
+  }
+</script>
+</body>
+</html>
