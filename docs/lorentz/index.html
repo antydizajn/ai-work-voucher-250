@@ -1,0 +1,849 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Why your taxonomy embeddings collapse in flat space — Lorentz vs Euclidean demo</title>
+<meta name="description" content="Interactive client-side demo: paste a hierarchy, see why Lorentz/hyperbolic geometry preserves tree structure where Euclidean/cosine flattens it. Built by Paulina Janowska, run in production on HyperspaceDB.">
+<link rel="canonical" href="https://antydizajn.github.io/ai-work-voucher-250/lorentz/">
+<meta property="og:title" content="Why your taxonomy embeddings collapse in flat space">
+<meta property="og:description" content="Paste 5-50 concepts, watch Lorentz vs Euclidean fight it out. No backend. Math is real.">
+<meta property="og:url" content="https://antydizajn.github.io/ai-work-voucher-250/lorentz/">
+<meta name="twitter:card" content="summary">
+<style>
+  :root {
+    color-scheme: dark;
+    --bg: #07070a;
+    --fg: #ebe7dc;
+    --dim: #8a8478;
+    --line: #2a2825;
+    --hot: #ff5722;
+    --cold: #4ad6ff;
+    --warn: #ffd74a;
+    --paper: #f4efe6;
+    --ink: #07070a;
+  }
+  * { box-sizing: border-box; }
+  html, body { margin: 0; padding: 0; background: var(--bg); color: var(--fg); }
+  body {
+    font-family: "JetBrains Mono", "IBM Plex Mono", ui-monospace, SFMono-Regular, Menlo, monospace;
+    font-size: 14px;
+    line-height: 1.55;
+    background-image:
+      linear-gradient(to right, rgba(255,255,255,.025) 1px, transparent 1px),
+      linear-gradient(to bottom, rgba(255,255,255,.025) 1px, transparent 1px);
+    background-size: 40px 40px;
+  }
+  main { max-width: 1180px; margin: 0 auto; padding: 28px 20px 80px; }
+  a { color: var(--cold); text-decoration: underline; text-underline-offset: 3px; }
+  a:hover { color: var(--fg); background: var(--cold); color: var(--ink); }
+
+  .topbar {
+    display: flex; align-items: center; justify-content: space-between;
+    border-bottom: 2px solid var(--fg); padding-bottom: 10px; margin-bottom: 28px;
+    flex-wrap: wrap; gap: 8px;
+  }
+  .topbar .brand { font-weight: 800; letter-spacing: .04em; text-transform: uppercase; }
+  .topbar .meta { color: var(--dim); font-size: 12px; }
+
+  h1 {
+    font-size: clamp(28px, 5vw, 56px);
+    line-height: .98;
+    letter-spacing: -.02em;
+    margin: 14px 0 8px;
+    font-weight: 900;
+    text-transform: uppercase;
+  }
+  h1 .accent { background: var(--warn); color: var(--ink); padding: 0 .15em; }
+  .sub {
+    font-size: clamp(15px, 1.6vw, 18px);
+    color: var(--dim);
+    margin: 0 0 24px;
+    max-width: 78ch;
+  }
+
+  .panel {
+    border: 2px solid var(--fg);
+    background: rgba(15,14,12,.55);
+    backdrop-filter: blur(6px);
+    -webkit-backdrop-filter: blur(6px);
+    padding: 18px;
+    margin-bottom: 18px;
+    box-shadow: 8px 8px 0 0 rgba(255,87,34,.0), 0 0 0 0 transparent;
+  }
+  .panel.brut { box-shadow: 8px 8px 0 0 var(--hot); }
+  .panel h2 {
+    margin: 0 0 12px;
+    font-size: 16px;
+    text-transform: uppercase;
+    letter-spacing: .06em;
+    border-bottom: 1px dashed var(--line);
+    padding-bottom: 8px;
+  }
+
+  .row { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+  @media (max-width: 760px) { .row { grid-template-columns: 1fr; } }
+
+  textarea {
+    width: 100%;
+    min-height: 170px;
+    background: #101013;
+    color: var(--fg);
+    border: 2px solid var(--line);
+    padding: 12px;
+    font-family: inherit;
+    font-size: 13px;
+    line-height: 1.5;
+    resize: vertical;
+  }
+  textarea:focus { outline: none; border-color: var(--warn); }
+
+  button, .btn {
+    display: inline-block;
+    border: 2px solid var(--fg);
+    background: var(--fg);
+    color: var(--ink);
+    font-family: inherit;
+    font-size: 13px;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: .04em;
+    padding: 10px 14px;
+    cursor: pointer;
+    text-decoration: none;
+    margin: 6px 6px 0 0;
+  }
+  button.ghost, .btn.ghost { background: transparent; color: var(--fg); }
+  button:hover, .btn:hover { background: var(--warn); color: var(--ink); border-color: var(--warn); }
+  button.primary { background: var(--hot); color: var(--ink); border-color: var(--hot); }
+  button.primary:hover { background: var(--warn); border-color: var(--warn); }
+
+  .examples { display: flex; flex-wrap: wrap; gap: 6px; margin: 10px 0 0; }
+  .examples button { font-size: 11px; padding: 6px 10px; margin: 0; }
+
+  .vizgrid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 14px;
+    margin-bottom: 18px;
+  }
+  @media (max-width: 760px) { .vizgrid { grid-template-columns: 1fr; } }
+
+  .vizbox {
+    border: 2px solid var(--fg);
+    background: #0a0a0d;
+    padding: 12px;
+    position: relative;
+  }
+  .vizbox header {
+    display: flex; align-items: baseline; justify-content: space-between;
+    margin-bottom: 8px; border-bottom: 1px dashed var(--line); padding-bottom: 6px;
+  }
+  .vizbox h3 { margin: 0; font-size: 13px; letter-spacing: .08em; text-transform: uppercase; }
+  .vizbox .tag { font-size: 11px; color: var(--dim); }
+  svg { display: block; width: 100%; height: auto; max-height: 60vh; background: #06060a; }
+
+  .metrics {
+    font-size: 12px; color: var(--dim);
+    display: flex; flex-wrap: wrap; gap: 14px;
+    margin-top: 8px;
+  }
+  .metrics b { color: var(--fg); font-weight: 700; }
+  .metrics .good { color: var(--cold); }
+  .metrics .bad { color: var(--hot); }
+
+  .math {
+    font-family: "Cambria Math", "STIX Two Math", "Latin Modern Math", "JetBrains Mono", monospace;
+    background: #101013;
+    border-left: 4px solid var(--warn);
+    padding: 14px 18px;
+    white-space: pre-wrap;
+    line-height: 1.7;
+    font-size: 14px;
+    color: var(--fg);
+  }
+  .math .label { color: var(--dim); }
+
+  ul, ol { padding-left: 22px; margin: 8px 0; }
+  li { margin: 4px 0; }
+
+  .when {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 14px;
+  }
+  @media (max-width: 760px) { .when { grid-template-columns: 1fr; } }
+  .when h2 { color: var(--fg); }
+  .yes { border-color: var(--cold); }
+  .no { border-color: var(--hot); }
+  .yes h2 { color: var(--cold); border-bottom-color: var(--cold); }
+  .no h2 { color: var(--hot); border-bottom-color: var(--hot); }
+
+  .cta {
+    background: var(--paper);
+    color: var(--ink);
+    border: 2px solid var(--paper);
+    padding: 24px;
+    margin: 22px 0;
+    box-shadow: 10px 10px 0 0 var(--hot);
+  }
+  .cta h2 {
+    margin: 0 0 10px; font-size: 22px;
+    text-transform: uppercase; letter-spacing: -.01em;
+    border: none; padding: 0;
+  }
+  .cta p { margin: 6px 0; }
+  .cta .price { font-size: 56px; font-weight: 900; line-height: 1; letter-spacing: -.04em; margin: 8px 0 12px; }
+  .cta a { color: var(--ink); }
+  .cta a:hover { background: var(--ink); color: var(--paper); }
+  .cta .order {
+    display: inline-block; background: var(--ink); color: var(--paper);
+    padding: 12px 18px; text-decoration: none; font-weight: 800;
+    text-transform: uppercase; letter-spacing: .04em; margin: 10px 8px 0 0;
+  }
+  .cta .order:hover { background: var(--hot); color: var(--ink); }
+
+  footer {
+    border-top: 2px solid var(--line);
+    margin-top: 40px; padding-top: 16px;
+    color: var(--dim); font-size: 12px;
+  }
+  footer .made { color: var(--fg); }
+  footer .agent { font-style: italic; color: var(--dim); }
+
+  .nodelabel { font-family: inherit; font-size: 10px; fill: var(--fg); pointer-events: none; }
+  .edge { stroke: var(--dim); stroke-width: 1; opacity: .55; }
+  .edge.collide { stroke: var(--hot); stroke-width: 1.6; opacity: .9; }
+  .nodecircle { fill: var(--cold); stroke: var(--ink); stroke-width: 1.5; cursor: pointer; }
+  .nodecircle.root { fill: var(--warn); }
+  .nodecircle.lit { fill: var(--hot); stroke: var(--fg); stroke-width: 2.5; }
+  .boundary { fill: none; stroke: var(--warn); stroke-width: 1.5; stroke-dasharray: 4 4; }
+  .axis { stroke: var(--line); stroke-width: 1; }
+
+  .pill { display: inline-block; padding: 2px 8px; border: 1px solid var(--line); margin-right: 6px; font-size: 11px; color: var(--dim); }
+  .pill.hot { border-color: var(--hot); color: var(--hot); }
+  .pill.cold { border-color: var(--cold); color: var(--cold); }
+
+  details { border: 1px dashed var(--line); padding: 8px 12px; margin: 8px 0; }
+  details summary { cursor: pointer; color: var(--dim); }
+  details[open] summary { color: var(--fg); }
+
+  code, kbd { background: #101013; border: 1px solid var(--line); padding: 1px 5px; font-size: 12px; }
+</style>
+</head>
+<body>
+<main>
+  <div class="topbar">
+    <div class="brand">antydizajn / lorentz-vs-euclid</div>
+    <div class="meta">production: 57,900 Lorentz points · dim 129 · HyperspaceDB</div>
+  </div>
+
+  <h1>Why your taxonomy embeddings <span class="accent">collapse</span> in flat space.</h1>
+  <p class="sub">Paste a hierarchy. The page embeds it twice — once on the Poincaré disk (Lorentz model, signature −+++) and once in plain Euclidean R². Same tree, same recursion, different geometry. Watch the flat one eat itself.</p>
+
+  <section class="panel brut">
+    <h2>1. Input — paste your hierarchy</h2>
+    <p style="color:var(--dim); margin-top:0;">Use indentation (2 spaces per level) <em>or</em> <code>&gt;</code> arrows for paths. One concept per line. 5–50 nodes works best.</p>
+    <textarea id="input" spellcheck="false">animal
+  mammal
+    dog
+      poodle
+      labrador
+    cat
+      persian
+      siamese
+    primate
+      human
+      chimp
+  bird
+    eagle
+    penguin
+  reptile
+    snake
+    lizard</textarea>
+    <div class="examples">
+      <button class="ghost" data-example="animals">animals</button>
+      <button class="ghost" data-example="science">science fields</button>
+      <button class="ghost" data-example="org">org chart</button>
+      <button class="ghost" data-example="paths">arrow paths</button>
+      <button class="ghost" data-example="deep">deep + sparse</button>
+      <button class="ghost" data-example="wide">wide + flat</button>
+    </div>
+    <div style="margin-top:14px;">
+      <button class="primary" id="run">Render both embeddings</button>
+      <span style="color:var(--dim); font-size:12px; margin-left: 10px;">Computed live in your browser. No backend. No tracking. Source: view-source.</span>
+    </div>
+  </section>
+
+  <section class="vizgrid">
+    <div class="vizbox">
+      <header>
+        <h3>Lorentz / Poincaré disk</h3>
+        <span class="tag">hyperbolic, exponential capacity</span>
+      </header>
+      <svg id="svg-h" viewBox="-1.15 -1.15 2.3 2.3" preserveAspectRatio="xMidYMid meet"></svg>
+      <div class="metrics" id="metrics-h"></div>
+    </div>
+    <div class="vizbox">
+      <header>
+        <h3>Euclidean R²</h3>
+        <span class="tag">flat, polynomial capacity</span>
+      </header>
+      <svg id="svg-e" viewBox="-1.15 -1.15 2.3 2.3" preserveAspectRatio="xMidYMid meet"></svg>
+      <div class="metrics" id="metrics-e"></div>
+    </div>
+  </section>
+
+  <section class="panel">
+    <h2>2. What you are looking at</h2>
+    <p>Both plots use the same algorithm: place the root, split the available angle among its children, step outward by a fixed distance, recurse. The only thing that changes is the geometry of "outward".</p>
+    <p>On the left, "outward" follows the Möbius gyrovector. Distance accumulates along a hyperbolic ruler, and the disk has room because area grows like <code>cosh(r)</code>. Tree depth maps almost cleanly to radial position; siblings keep their angular wedges.</p>
+    <p>On the right, "outward" is a straight line. Area grows like <code>r²</code>. Three levels in, the wedges run out. Subtrees overlap. Cousins land on top of grandparents. Cosine retrieval starts returning nonsense and you blame the encoder.</p>
+    <p>Click any node to highlight the ancestor path in both plots. Red edges in the Euclidean plot mark crossings — edges that intersect each other in the layout, a visual signature of structural collapse you can not get away from in flat space for branching trees.</p>
+  </section>
+
+  <section class="panel">
+    <h2>3. The math, short version</h2>
+    <div class="math"><span class="label">// Lorentz inner product, signature (−,+,+,+)</span>
+⟨x, y⟩<sub>L</sub> = −x₀·y₀ + x₁·y₁ + x₂·y₂ + … + xₙ·yₙ
+
+<span class="label">// Hyperboloid model (one sheet, x₀ &gt; 0)</span>
+ℍⁿ = { x ∈ ℝⁿ⁺¹ : ⟨x, x⟩<sub>L</sub> = −1, x₀ &gt; 0 }
+
+<span class="label">// Geodesic distance — one arccosh, no series, no approximation</span>
+d(x, y) = arccosh( −⟨x, y⟩<sub>L</sub> )
+
+<span class="label">// Projection to Poincaré disk (used for the plot above)</span>
+π(x₀, x₁, x₂) = ( x₁ / (x₀ + 1),  x₂ / (x₀ + 1) )
+
+<span class="label">// Step on the disk: Möbius addition + tanh exponential map</span>
+exp<sub>p</sub>(d, θ) = p ⊕ ( tanh(d/2) · e^{iθ} )</div>
+    <p style="margin-top:14px;">That is the whole geometry. Production code adds curvature constants, batched ops, and a numerically stable variant of arccosh, but the substance fits on a napkin.</p>
+  </section>
+
+  <section class="panel">
+    <h2>4. The honest version</h2>
+    <p>You drop a taxonomy into a vector DB and retrieval starts behaving weird. Cousins look closer than parent–child pairs. Top-K returns siblings of siblings before it returns the actual ancestor. You add a reranker, you add a graph filter, you weight some metadata, and at some point nobody on the team remembers why there are four heuristics on top of cosine.</p>
+    <p>This is what flat space does to trees. Euclidean and cosine spread points roughly uniformly across a sphere. Trees grow exponentially: every level multiplies the leaf count, and you only have polynomial room. So the leaves crowd, the hierarchy smears, and your numbers quietly degrade.</p>
+    <p>Hyperbolic space has exponential capacity built in. Pick a Lorentz model, push the tree out from the origin, distances stay honest. The math is short. The implementation cost is also short, if you have done it before. Most of the work is the eval, not the model.</p>
+    <p>I run this in production. HyperspaceDB, currently 57,900 Lorentz points in one collection at dimension 129. It works for me. It might work for you. The demo above is a toy — your data will behave differently. That is what the eval is for.</p>
+  </section>
+
+  <section class="when">
+    <div class="panel yes">
+      <h2>When Lorentz is worth the switch</h2>
+      <ul>
+        <li>Your data has a tree, a DAG with strong "is-a" edges, or a strict containment hierarchy.</li>
+        <li>You retrieve <em>across levels</em> — ancestors, descendants, "what category is this?", not just nearest neighbours of leaves.</li>
+        <li>Your top-K precision drops as you go deeper into the hierarchy.</li>
+        <li>You already tried bigger models, more dims, and a reranker, and the gains plateaued.</li>
+        <li>You can afford 30–60 minutes to look at empirical numbers before committing.</li>
+      </ul>
+    </div>
+    <div class="panel no">
+      <h2>When it is not worth it</h2>
+      <ul>
+        <li>Your data is genuinely flat. Product reviews, news headlines, chat messages — the shape is not a tree.</li>
+        <li>You only need lexical or sentence-level similarity at one level.</li>
+        <li>Your stack has zero appetite for a non-stdlib metric. Some teams will nope out of arccosh on principle.</li>
+        <li>You have not measured anything yet. Switch metric only after you can show the current one is the bottleneck.</li>
+        <li>You want a silver bullet. Lorentz is geometry, not a magic trick.</li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="cta">
+    <h2>Got hierarchical / taxonomic data and your retrieval feels off?</h2>
+    <div class="price">250 PLN</div>
+    <p>I will do a 60-minute eval on <em>your</em> data: Lorentz vs your current embedding, with empirical numbers — recall@k across levels, distortion of tree distances, where it breaks. You get a short report, the eval script, and an honest recommendation. If hyperbolic does not help on your data, I tell you that.</p>
+    <p><b>Email:</b> <a href="mailto:paulina@antydizajn.pl">paulina@antydizajn.pl</a></p>
+    <p><b>Pay:</b> Revolut <a href="https://revolut.me/danveld">revolut.me/danveld</a> · BLIK to <code>793 093 721</code> · title <code>Lorentz eval</code></p>
+    <p><b>Then:</b> open a brief on GitHub and paste a description of your data shape. Do not paste secrets — issues are public.</p>
+    <a class="order" href="https://github.com/antydizajn/ai-work-voucher-250/issues/new/choose">Open the brief</a>
+    <a class="order" href="https://antydizajn.github.io/ai-work-voucher-250/" style="background:transparent;color:var(--ink);border:2px solid var(--ink);">All voucher options</a>
+  </section>
+
+  <details>
+    <summary>Notes on the demo (read before you over-interpret)</summary>
+    <p>This page embeds your input via Sarkar-style recursive placement: each node receives an angular wedge from its parent, children are placed by Möbius addition (hyperbolic side) or vector addition (flat side). It is not training. There is no learning. No vectors are coming from a real LLM. The point of the demo is purely geometric: show that the same recursive tree-placement that fits cleanly on the disk crashes into itself in R².</p>
+    <p>For a real eval I use trained embeddings, project to a Lorentz manifold via either Riemannian SGD or a closed-form lift, and measure mean average precision at k against the original hierarchy.</p>
+    <p>The "collisions" metric counts sibling-pairs whose post-embedding distance is smaller than their distance to their own parent. In a faithful embedding this number should be zero or near-zero. In flat R² with deep trees it grows fast.</p>
+  </details>
+
+  <footer>
+    <p class="made">Made by Paulina Janowska / antydizajn — built on HyperspaceDB (57,900 Lorentz points in production, dim 129, collection <code>gniewka_omniscient</code>).</p>
+    <p class="agent">Page assembled by Gniewisława AI / Hermes (<a href="https://gniewka.antydizajn.pl">gniewka.antydizajn.pl</a>) on Paulina's instruction. Math, code, copy reviewed by Paulina before publication.</p>
+    <p><span class="pill cold">no tracking</span><span class="pill cold">no backend</span><span class="pill cold">view-source friendly</span><span class="pill hot">opinions are mine, geometry is everyone's</span></p>
+  </footer>
+</main>
+
+<script>
+"use strict";
+
+// ---------- examples ----------
+const EXAMPLES = {
+  animals: `animal
+  mammal
+    dog
+      poodle
+      labrador
+    cat
+      persian
+      siamese
+    primate
+      human
+      chimp
+  bird
+    eagle
+    penguin
+  reptile
+    snake
+    lizard`,
+  science: `science
+  natural
+    physics
+      mechanics
+      thermodynamics
+      quantum
+    chemistry
+      organic
+      inorganic
+    biology
+      botany
+      zoology
+  formal
+    mathematics
+      algebra
+      analysis
+      topology
+    logic
+    computer-science
+      theory
+      systems`,
+  org: `company
+  engineering
+    backend
+      auth
+      payments
+    frontend
+      web
+      mobile
+    infra
+      sre
+      data
+  product
+    design
+    research
+  ops
+    finance
+    legal
+    people`,
+  paths: `philosophy > epistemology > foundationalism
+philosophy > epistemology > coherentism
+philosophy > metaphysics > ontology
+philosophy > metaphysics > mereology
+philosophy > ethics > deontology
+philosophy > ethics > consequentialism
+philosophy > ethics > virtue-ethics`,
+  deep: `root
+  a
+    a1
+      a1x
+        a1x_deep
+          a1x_deeper
+            a1x_deepest
+  b
+    b1
+      b1x
+  c`,
+  wide: `cluster
+  n01
+  n02
+  n03
+  n04
+  n05
+  n06
+  n07
+  n08
+  n09
+  n10
+  n11
+  n12
+  n13
+  n14`
+};
+
+// ---------- parse ----------
+function parseInput(text) {
+  text = (text || "").replace(/\r/g, "");
+  const lines = text.split("\n").map(l => l.replace(/\s+$/,"")).filter(l => l.trim().length);
+  const root = { name: "·", children: [], parent: null, depth: -1 };
+  if (!lines.length) return root;
+
+  // arrow paths?
+  if (lines.every(l => l.includes(">"))) {
+    for (const line of lines) {
+      const parts = line.split(">").map(s => s.trim()).filter(Boolean);
+      let cur = root;
+      for (const p of parts) {
+        let child = cur.children.find(c => c.name === p);
+        if (!child) {
+          child = { name: p, children: [], parent: cur, depth: cur.depth + 1 };
+          cur.children.push(child);
+        }
+        cur = child;
+      }
+    }
+    // collapse single-root if exactly one
+    if (root.children.length === 1) {
+      const r = root.children[0];
+      r.parent = null; r.depth = 0;
+      reDepth(r, 0);
+      return r;
+    }
+    return root;
+  }
+
+  // indent-based
+  const stack = [root];
+  for (const line of lines) {
+    const m = line.match(/^(\s*)(\S.*)$/);
+    if (!m) continue;
+    const indent = m[1].length;
+    const name = m[2].replace(/^[-•·]\s*/, "").trim();
+    while (stack.length > 1 && stack[stack.length - 1].indent >= indent) stack.pop();
+    const parent = stack[stack.length - 1];
+    const node = { name, children: [], parent, depth: parent.depth + 1, indent };
+    parent.children.push(node);
+    stack.push(node);
+  }
+  if (root.children.length === 1) {
+    const r = root.children[0];
+    r.parent = null; r.depth = 0;
+    reDepth(r, 0);
+    return r;
+  }
+  reDepth(root, -1);
+  return root;
+}
+function reDepth(n, d) { n.depth = d; for (const c of n.children) reDepth(c, d + 1); }
+
+function flatten(root) {
+  const out = []; (function walk(n){ out.push(n); for (const c of n.children) walk(c); })(root); return out;
+}
+
+// ---------- Möbius addition (Poincaré disk) ----------
+// Treat (x,y) as complex number z = x + i y.
+// a ⊕ b = (a + b) / (1 + conj(a) * b)
+function mobiusAdd(a, b) {
+  const ax = a.x, ay = a.y, bx = b.x, by = b.y;
+  // conj(a) * b = (ax*bx + ay*by) + i(ax*by - ay*bx)
+  const cbx = ax * bx + ay * by;
+  const cby = ax * by - ay * bx;
+  // 1 + conj(a)*b
+  const dx = 1 + cbx, dy = cby;
+  // (a + b) / (dx + i dy)
+  const nx = ax + bx, ny = ay + by;
+  const denom = dx * dx + dy * dy;
+  if (denom === 0) return { x: ax, y: ay };
+  return {
+    x: (nx * dx + ny * dy) / denom,
+    y: (ny * dx - nx * dy) / denom
+  };
+}
+// Step on Poincaré disk from p in direction theta by hyperbolic distance d.
+// In tangent at origin: (tanh(d/2)*cos, tanh(d/2)*sin), then translate by p via Möbius add.
+function expHyp(p, d, theta) {
+  const r = Math.tanh(d / 2);
+  return mobiusAdd(p, { x: r * Math.cos(theta), y: r * Math.sin(theta) });
+}
+// Hyperbolic distance between two points on the Poincaré disk.
+function hypDist(a, b) {
+  const ax2 = a.x*a.x + a.y*a.y;
+  const bx2 = b.x*b.x + b.y*b.y;
+  const dx = a.x - b.x, dy = a.y - b.y;
+  const num = 2 * (dx*dx + dy*dy);
+  const den = (1 - ax2) * (1 - bx2);
+  if (den <= 0) return Infinity;
+  return Math.acosh(1 + num / den);
+}
+
+// ---------- Embeddings ----------
+// Hyperbolic: Sarkar-style. Root at origin. For each child, place at hyperbolic distance D
+// in the wedge inherited from parent.
+function embedHyp(root, opts) {
+  const D = opts.distance, shrink = opts.shrink;
+  function recurse(node, pos, parentDir, wedge, dist) {
+    node.h = pos;
+    const k = node.children.length;
+    if (!k) return;
+    const sub = wedge / k;
+    for (let i = 0; i < k; i++) {
+      // For root the parentDir is meaningless — distribute over full circle below.
+      const localAngle = (parentDir == null)
+        ? (i + 0.5) / k * 2 * Math.PI
+        : parentDir + (-wedge / 2 + sub * (i + 0.5));
+      const childPos = expHyp(pos, dist, localAngle);
+      const childWedge = (parentDir == null) ? sub * 1.6 : sub * 1.0;
+      recurse(node.children[i], childPos, localAngle, childWedge, dist * shrink + (1 - shrink) * dist);
+    }
+  }
+  recurse(root, { x: 0, y: 0 }, null, 2 * Math.PI, D);
+}
+// Euclidean: same recursion logic, but linear add. Constant step — children fan into infinite R²,
+// then we scale-to-fit afterwards. The result: deep subtrees get visually compressed,
+// wedges run out of angular room, and structure smears.
+function embedEuc(root, opts) {
+  const D = opts.distance;
+  function recurse(node, pos, parentDir, wedge, dist) {
+    node.e = pos;
+    const k = node.children.length;
+    if (!k) return;
+    const sub = wedge / k;
+    for (let i = 0; i < k; i++) {
+      const localAngle = (parentDir == null)
+        ? (i + 0.5) / k * 2 * Math.PI
+        : parentDir + (-wedge / 2 + sub * (i + 0.5));
+      const childPos = {
+        x: pos.x + dist * Math.cos(localAngle),
+        y: pos.y + dist * Math.sin(localAngle)
+      };
+      const childWedge = (parentDir == null) ? sub * 1.6 : sub * 1.0;
+      // Step stays constant — depth = radial distance. Mirrors hyperbolic step.
+      recurse(node.children[i], childPos, localAngle, childWedge, dist);
+    }
+  }
+  recurse(root, { x: 0, y: 0 }, null, 2 * Math.PI, D);
+}
+
+// ---------- Render ----------
+const SVG_NS = "http://www.w3.org/2000/svg";
+function svgEl(name, attrs = {}, parent) {
+  const el = document.createElementNS(SVG_NS, name);
+  for (const k in attrs) el.setAttribute(k, attrs[k]);
+  if (parent) parent.appendChild(el);
+  return el;
+}
+
+function renderHyp(root, allNodes, edgeIssues) {
+  const svg = document.getElementById("svg-h");
+  svg.innerHTML = "";
+  // boundary
+  svgEl("circle", { cx: 0, cy: 0, r: 1, class: "boundary" }, svg);
+  svgEl("line", { x1: -1, y1: 0, x2: 1, y2: 0, class: "axis" }, svg);
+  svgEl("line", { x1: 0, y1: -1, x2: 0, y2: 1, class: "axis" }, svg);
+  // edges
+  for (const n of allNodes) {
+    if (!n.parent) continue;
+    const p = n.parent.h, q = n.h;
+    svgEl("line", { x1: p.x, y1: -p.y, x2: q.x, y2: -q.y, class: "edge" }, svg);
+  }
+  // nodes
+  for (const n of allNodes) {
+    const c = svgEl("circle", {
+      cx: n.h.x, cy: -n.h.y, r: 0.022,
+      class: "nodecircle" + (n.parent ? "" : " root"),
+      "data-id": n._id
+    }, svg);
+    c.addEventListener("click", () => highlight(n));
+    const t = svgEl("text", {
+      x: n.h.x + 0.03, y: -n.h.y + 0.012,
+      class: "nodelabel", "font-size": 0.045
+    }, svg);
+    t.textContent = n.name;
+  }
+}
+
+function renderEuc(root, allNodes, edgeIssues) {
+  const svg = document.getElementById("svg-e");
+  svg.innerHTML = "";
+  // compute scale to fit roughly into [-1,1]
+  let maxR = 0.001;
+  for (const n of allNodes) maxR = Math.max(maxR, Math.hypot(n.e.x, n.e.y));
+  const s = 0.92 / maxR;
+  // grid
+  for (let i = -1; i <= 1; i += 0.5) {
+    svgEl("line", { x1: i, y1: -1, x2: i, y2: 1, class: "axis" }, svg);
+    svgEl("line", { x1: -1, y1: i, x2: 1, y2: i, class: "axis" }, svg);
+  }
+  // edges
+  for (const n of allNodes) {
+    if (!n.parent) continue;
+    const p = n.parent.e, q = n.e;
+    const collide = edgeIssues.has(n._id);
+    svgEl("line", {
+      x1: p.x * s, y1: -p.y * s, x2: q.x * s, y2: -q.y * s,
+      class: "edge" + (collide ? " collide" : "")
+    }, svg);
+  }
+  for (const n of allNodes) {
+    const c = svgEl("circle", {
+      cx: n.e.x * s, cy: -n.e.y * s, r: 0.022,
+      class: "nodecircle" + (n.parent ? "" : " root"),
+      "data-id": n._id
+    }, svg);
+    c.addEventListener("click", () => highlight(n));
+    const t = svgEl("text", {
+      x: n.e.x * s + 0.03, y: -n.e.y * s + 0.012,
+      class: "nodelabel", "font-size": 0.045
+    }, svg);
+    t.textContent = n.name;
+  }
+}
+
+function highlight(n) {
+  // collect ancestor ids
+  const path = new Set();
+  let cur = n;
+  while (cur) { path.add(cur._id); cur = cur.parent; }
+  for (const svgId of ["svg-h", "svg-e"]) {
+    const svg = document.getElementById(svgId);
+    svg.querySelectorAll(".nodecircle").forEach(el => {
+      const id = parseInt(el.getAttribute("data-id"), 10);
+      if (path.has(id)) el.classList.add("lit");
+      else el.classList.remove("lit");
+    });
+  }
+}
+
+// ---------- metrics ----------
+function eucDist(a, b) { return Math.hypot(a.x - b.x, a.y - b.y); }
+
+function computeMetrics(allNodes) {
+  // tree-graph distance (number of edges in the tree between two nodes)
+  function pathToRoot(n) { const a = []; let c = n; while (c) { a.push(c); c = c.parent; } return a; }
+  function treeDist(a, b) {
+    const sb = new Set(pathToRoot(b).map(x => x._id));
+    let d = 0, c = a;
+    while (!sb.has(c._id)) { d++; c = c.parent; if (!c) return Infinity; }
+    let e = 0, x = b;
+    while (x._id !== c._id) { e++; x = x.parent; if (!x) return Infinity; }
+    return d + e;
+  }
+
+  // Distortion: for every pair, the embedded distance / tree distance ratio.
+  // CV of that ratio is "how non-isometric is this embedding to the tree?"
+  // 0 = perfect, higher = worse. Sarkar shows hyperbolic can hit zero asymptotically; Euclidean cannot.
+  const ratioH = [], ratioE = [];
+  for (let i = 0; i < allNodes.length; i++) {
+    for (let j = i + 1; j < allNodes.length; j++) {
+      const a = allNodes[i], b = allNodes[j];
+      const T = treeDist(a, b);
+      if (!T || !isFinite(T)) continue;
+      ratioH.push(hypDist(a.h, b.h) / T);
+      ratioE.push(eucDist(a.e, b.e) / T);
+    }
+  }
+  function cv(arr) {
+    if (!arr.length) return 0;
+    const m = arr.reduce((s, x) => s + x, 0) / arr.length;
+    if (!m) return 0;
+    const v = arr.reduce((s, x) => s + (x - m) * (x - m), 0) / arr.length;
+    return Math.sqrt(v) / m;
+  }
+  const distortH = cv(ratioH);
+  const distortE = cv(ratioE);
+
+  // Edge-length CV (separately interesting; should be near zero on hyperbolic if all steps equal)
+  const hypEdges = [], eucEdges = [];
+  for (const n of allNodes) {
+    if (!n.parent) continue;
+    hypEdges.push(hypDist(n.h, n.parent.h));
+    eucEdges.push(eucDist(n.e, n.parent.e));
+  }
+
+  // Edge crossings. Visual collapse signal.
+  const edgesH = [], edgesE = [];
+  for (const n of allNodes) {
+    if (!n.parent) continue;
+    edgesH.push([n.h, n.parent.h, n._id]);
+    edgesE.push([n.e, n.parent.e, n._id]);
+  }
+  function ccw(a, b, c) { return (c.y - a.y) * (b.x - a.x) > (b.y - a.y) * (c.x - a.x); }
+  function intersect(p1, p2, p3, p4) {
+    return ccw(p1, p3, p4) !== ccw(p2, p3, p4) && ccw(p1, p2, p3) !== ccw(p1, p2, p4);
+  }
+  function shareEndpoint(a, b) {
+    return a[0] === b[0] || a[0] === b[1] || a[1] === b[0] || a[1] === b[1];
+  }
+  let xH = 0, xE = 0;
+  const issuesH = new Set(), issuesE = new Set();
+  for (let i = 0; i < edgesH.length; i++) {
+    for (let j = i + 1; j < edgesH.length; j++) {
+      if (shareEndpoint(edgesH[i], edgesH[j])) continue;
+      if (intersect(edgesH[i][0], edgesH[i][1], edgesH[j][0], edgesH[j][1])) {
+        xH++; issuesH.add(edgesH[i][2]); issuesH.add(edgesH[j][2]);
+      }
+      if (intersect(edgesE[i][0], edgesE[i][1], edgesE[j][0], edgesE[j][1])) {
+        xE++; issuesE.add(edgesE[i][2]); issuesE.add(edgesE[j][2]);
+      }
+    }
+  }
+
+  return {
+    distortH, distortE,
+    edgeCvH: cv(hypEdges), edgeCvE: cv(eucEdges),
+    crossingsH: xH, crossingsE: xE,
+    issuesH, issuesE,
+    edgeCount: edgesH.length
+  };
+}
+
+function fmtPct(n, d) { return d ? ((100 * n / d).toFixed(0) + "%") : "—"; }
+
+function renderMetrics(m) {
+  const h = document.getElementById("metrics-h");
+  const e = document.getElementById("metrics-e");
+  const distortBetter = m.distortH < m.distortE;
+  h.innerHTML = `
+    <span>edges: <b>${m.edgeCount}</b></span>
+    <span>distortion (CV of d/T): <b class="${distortBetter ? 'good' : ''}">${m.distortH.toFixed(3)}</b></span>
+    <span>edge-length CV: <b class="${m.edgeCvH < 0.05 ? 'good' : ''}">${m.edgeCvH.toFixed(3)}</b></span>
+    <span>edge crossings: <b class="${m.crossingsH === 0 ? 'good' : ''}">${m.crossingsH}</b></span>`;
+  e.innerHTML = `
+    <span>edges: <b>${m.edgeCount}</b></span>
+    <span>distortion (CV of d/T): <b class="${!distortBetter ? 'good' : 'bad'}">${m.distortE.toFixed(3)}</b></span>
+    <span>edge-length CV: <b class="${m.edgeCvE > 0.1 ? 'bad' : ''}">${m.edgeCvE.toFixed(3)}</b></span>
+    <span>edge crossings: <b class="${m.crossingsE > 0 ? 'bad' : ''}">${m.crossingsE}</b></span>`;
+}
+
+// ---------- driver ----------
+function run() {
+  const txt = document.getElementById("input").value;
+  const root = parseInput(txt);
+  const all = flatten(root);
+  if (all.length < 2) {
+    document.getElementById("svg-h").innerHTML = "";
+    document.getElementById("svg-e").innerHTML = "";
+    document.getElementById("metrics-h").innerHTML = "<span>need at least 2 nodes</span>";
+    document.getElementById("metrics-e").innerHTML = "";
+    return;
+  }
+  all.forEach((n, i) => n._id = i);
+  // pick step size from depth
+  let maxDepth = 0; for (const n of all) maxDepth = Math.max(maxDepth, n.depth);
+  const stepH = maxDepth >= 5 ? 1.2 : 1.6;
+  const stepE = 0.34;
+  embedHyp(root, { distance: stepH, shrink: 0.95 });
+  embedEuc(root, { distance: stepE });
+  const m = computeMetrics(all);
+  renderHyp(root, all, m.issuesH);
+  renderEuc(root, all, m.issuesE);
+  renderMetrics(m);
+}
+
+// ---------- bind ----------
+document.getElementById("run").addEventListener("click", run);
+document.querySelectorAll("[data-example]").forEach(b => {
+  b.addEventListener("click", () => {
+    const k = b.getAttribute("data-example");
+    if (EXAMPLES[k]) {
+      document.getElementById("input").value = EXAMPLES[k];
+      run();
+    }
+  });
+});
+window.addEventListener("DOMContentLoaded", run);
+</script>
+</body>
+</html>
