@@ -1,0 +1,477 @@
+<!doctype html>
+<html lang="pl">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Lorentz Coffee — 99 PLN 30-min diagnoza hyperbolic embedding (Paulina Janowska)</title>
+  <meta name="description" content="99 PLN. 30-min wideo-call (Jitsi/Meet). Pokazujesz swój problem RAG / embedding / knowledge graph / hierarchia. Mówię konkretnie czy hyperbolic embedding (Lorentz space) ma sens dla Twojego use-case. Plus 5-bullet email follow-up.">
+  <meta name="robots" content="index, follow">
+  <link rel="canonical" href="https://antydizajn.github.io/ai-work-voucher-250/lorentz-coffee/">
+
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Lorentz Coffee — 99 PLN 30-min diagnoza hyperbolic embedding">
+  <meta property="og:description" content="30 min na żywo. Pokazujesz swój RAG/KG problem, mówię wprost czy Lorentz space pomoże. 5-bullet follow-up na maila. Bez ściemy.">
+  <meta property="og:url" content="https://antydizajn.github.io/ai-work-voucher-250/lorentz-coffee/">
+  <meta property="og:image" content="https://antydizajn.github.io/ai-work-voucher-250/og-lorentz.png">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Lorentz Coffee — 99 PLN 30-min diagnoza hyperbolic embedding">
+  <meta name="twitter:description" content="30 min real diagnozy ustnej + 5-bullet email follow-up. Bez deliverable PDF. To NIE jest darmowy 'porozmawiajmy'.">
+  <meta name="twitter:image" content="https://antydizajn.github.io/ai-work-voucher-250/og-lorentz.png">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700;800&family=IBM+Plex+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Service",
+    "name": "Lorentz Coffee",
+    "description": "30-min wideo-konsultacja przez Jitsi/Meet. Klient pokazuje problem RAG / embedding / knowledge graph / hierarchia. Paulina mówi wprost czy hyperbolic embedding (Lorentz space) ma sens. Plus 5-bullet email follow-up. 99 PLN.",
+    "provider": {"@type": "Person", "name": "Paulina Janowska"},
+    "areaServed": "PL",
+    "availableLanguage": ["pl"],
+    "offers": [
+      {"@type": "Offer", "name": "Lorentz Coffee", "price": "99", "priceCurrency": "PLN", "url": "https://antydizajn.github.io/ai-work-voucher-250/lorentz-coffee/"}
+    ]
+  }
+  </script>
+
+  <style>
+    :root {
+      color-scheme: dark;
+      --bg: #0a0a0a;
+      --bg-2: #0f0f0f;
+      --line: #1f1f1f;
+      --line-2: #2a2a2a;
+      --fg: #ededed;
+      --fg-2: #a6a6a6;
+      --fg-3: #6b6b6b;
+      --cyan: #00e1ff;
+      --magenta: #ff2bd6;
+      --warn: #ffaa00;
+      --sepia: #c8a878;
+    }
+    * { box-sizing: border-box; }
+    html, body { margin: 0; padding: 0; }
+    body {
+      background: var(--bg);
+      color: var(--fg);
+      font-family: 'IBM Plex Mono', 'JetBrains Mono', ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+      font-size: 15px;
+      line-height: 1.55;
+      -webkit-font-smoothing: antialiased;
+      background-image:
+        linear-gradient(transparent 0, transparent calc(100% - 1px), rgba(255,255,255,0.025) 100%),
+        linear-gradient(90deg, transparent 0, transparent calc(100% - 1px), rgba(255,255,255,0.025) 100%);
+      background-size: 32px 32px;
+    }
+    a { color: var(--cyan); text-decoration: none; border-bottom: 1px dashed rgba(0,225,255,0.45); }
+    a:hover { color: #fff; border-bottom-color: #fff; }
+    main { max-width: 920px; margin: 0 auto; padding: 32px 20px 80px; }
+    header.top {
+      display: flex; justify-content: space-between; align-items: center;
+      padding-bottom: 18px; border-bottom: 1px solid var(--line);
+      font-size: 12px; color: var(--fg-3); text-transform: uppercase; letter-spacing: 0.12em;
+    }
+    header.top span.left::before { content: "◯ "; color: var(--cyan); }
+    header.top span.right::before { content: "▪ "; color: var(--magenta); }
+
+    section { border-bottom: 1px solid var(--line); padding: 40px 0; }
+    section:last-of-type { border-bottom: none; }
+
+    .hero h1 {
+      font-family: 'JetBrains Mono', monospace;
+      font-weight: 800;
+      font-size: clamp(28px, 5vw, 48px);
+      line-height: 1.05;
+      letter-spacing: -0.03em;
+      margin: 12px 0 18px;
+    }
+    .hero h1 .cyan { color: var(--cyan); }
+    .hero h1 .magenta { color: var(--magenta); }
+    .hero h1 .sepia { color: var(--sepia); }
+    .hero .lead {
+      font-size: clamp(15px, 1.8vw, 18px);
+      color: var(--fg-2);
+      max-width: 680px;
+      margin: 0 0 24px;
+    }
+    .kicker {
+      display: inline-block;
+      font-size: 11px; letter-spacing: 0.18em; text-transform: uppercase;
+      color: var(--bg); background: var(--sepia);
+      padding: 4px 10px; font-weight: 700;
+    }
+    .price-row {
+      display: flex; align-items: baseline; gap: 16px; flex-wrap: wrap;
+      margin: 16px 0 24px;
+    }
+    .price {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 56px; font-weight: 800; letter-spacing: -0.04em; color: var(--fg);
+    }
+    .price-old { color: var(--fg-3); font-size: 18px; }
+    .price-unit { color: var(--fg-2); font-size: 14px; }
+
+    .cta-row { display: flex; gap: 10px; flex-wrap: wrap; margin-top: 12px; }
+    .cta {
+      display: inline-block;
+      padding: 12px 18px;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 13px; font-weight: 700; letter-spacing: 0.05em; text-transform: uppercase;
+      border: 1px solid var(--cyan); color: var(--cyan); background: transparent;
+      cursor: pointer;
+    }
+    .cta:hover { background: var(--cyan); color: var(--bg); border-bottom-color: var(--cyan); }
+    .cta.ghost { border-color: var(--line-2); color: var(--fg-2); border-bottom-style: solid; }
+    .cta.ghost:hover { color: var(--fg); border-color: var(--fg); background: transparent; }
+
+    h2 {
+      font-family: 'JetBrains Mono', monospace;
+      font-weight: 700;
+      font-size: 13px;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--fg-3);
+      margin: 0 0 20px;
+      padding-bottom: 8px;
+      border-bottom: 1px solid var(--line);
+    }
+    h2::before { content: "// "; color: var(--magenta); }
+    h3 {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 15px; font-weight: 700; margin: 18px 0 6px; color: var(--fg);
+    }
+    p { color: var(--fg-2); margin: 0 0 12px; }
+    ul { padding-left: 0; list-style: none; }
+    ul li { position: relative; padding-left: 22px; margin-bottom: 8px; color: var(--fg-2); }
+    ul li::before { content: "▫"; position: absolute; left: 0; top: 0; color: var(--cyan); }
+
+    ul.nope li::before { content: "✕"; color: var(--magenta); font-weight: 700; }
+
+    .grid-2 { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 0; border-top: 1px solid var(--line); }
+    .grid-2 > div { padding: 20px 18px; border-right: 1px solid var(--line); border-bottom: 1px solid var(--line); }
+    .grid-2 > div:last-child { border-right: none; }
+
+    .pay-box {
+      border: 1px solid var(--line-2);
+      padding: 20px;
+      background: var(--bg-2);
+      margin-top: 8px;
+    }
+    .pay-box .row {
+      display: flex; justify-content: space-between; align-items: baseline;
+      padding: 10px 0; border-bottom: 1px dashed var(--line);
+      flex-wrap: wrap; gap: 8px;
+    }
+    .pay-box .row:last-child { border-bottom: none; }
+    .pay-box .label { color: var(--fg-3); font-size: 12px; letter-spacing: 0.1em; text-transform: uppercase; }
+    .pay-box .val { font-family: 'JetBrains Mono', monospace; color: var(--fg); font-weight: 700; }
+    .pay-box .val.big { font-size: 20px; color: var(--cyan); letter-spacing: 0.02em; }
+
+    pre.email {
+      background: #050505;
+      border: 1px solid var(--line-2);
+      border-left: 3px solid var(--magenta);
+      padding: 16px;
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 13px;
+      color: var(--fg);
+      overflow-x: auto;
+      margin: 12px 0;
+      white-space: pre-wrap;
+      word-wrap: break-word;
+    }
+    .copy-btn {
+      display: inline-block; padding: 6px 10px;
+      background: transparent; border: 1px solid var(--line-2); color: var(--fg-2);
+      font-family: 'JetBrains Mono', monospace; font-size: 11px; cursor: pointer;
+      letter-spacing: 0.1em; text-transform: uppercase;
+    }
+    .copy-btn:hover { color: var(--cyan); border-color: var(--cyan); }
+
+    details {
+      border-top: 1px solid var(--line);
+      padding: 14px 0;
+    }
+    details:last-of-type { border-bottom: 1px solid var(--line); }
+    summary {
+      cursor: pointer; list-style: none;
+      font-family: 'JetBrains Mono', monospace; font-weight: 500;
+      color: var(--fg); padding-right: 24px; position: relative;
+    }
+    summary::-webkit-details-marker { display: none; }
+    summary::after {
+      content: "+"; position: absolute; right: 0; top: 0;
+      color: var(--cyan); font-weight: 700;
+    }
+    details[open] summary::after { content: "−"; color: var(--magenta); }
+    details p { margin-top: 10px; }
+
+    .not-for {
+      border: 1px solid var(--magenta);
+      border-left-width: 3px;
+      padding: 18px 20px;
+      background: rgba(255,43,214,0.04);
+      margin-top: 8px;
+    }
+    .not-for p:last-child { margin-bottom: 0; }
+    .not-for strong { color: var(--magenta); }
+
+    .refund-box {
+      border: 1px dashed var(--sepia);
+      padding: 18px 20px;
+      background: rgba(200,168,120,0.04);
+      margin-top: 8px;
+      color: var(--fg);
+    }
+    .refund-box strong { color: var(--sepia); }
+
+    .lead-magnet-note {
+      margin-top: 18px;
+      padding: 14px 16px;
+      border-left: 3px solid var(--cyan);
+      background: rgba(0,225,255,0.03);
+      font-size: 13px;
+      color: var(--fg-2);
+    }
+    .lead-magnet-note a { color: var(--cyan); }
+
+    .disclosure {
+      margin-top: 48px;
+      padding: 20px;
+      border: 1px dashed var(--line-2);
+      color: var(--fg-3);
+      font-size: 12px;
+      line-height: 1.6;
+    }
+    .disclosure strong { color: var(--fg-2); }
+
+    footer.bot {
+      margin-top: 24px;
+      padding-top: 18px;
+      border-top: 1px solid var(--line);
+      color: var(--fg-3);
+      font-size: 11px;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      display: flex; justify-content: space-between; flex-wrap: wrap; gap: 8px;
+    }
+    footer.bot .sig {
+      width: 100%;
+      margin-top: 12px;
+      padding-top: 12px;
+      border-top: 1px dotted var(--line);
+      color: var(--fg-3);
+      font-size: 10px;
+      letter-spacing: 0.08em;
+      text-transform: none;
+    }
+    footer.bot .sig a { color: var(--sepia); border-bottom-color: rgba(200,168,120,0.4); }
+
+    .muted { color: var(--fg-3); font-size: 13px; }
+    .warn { color: var(--warn); }
+    code { background: #161616; padding: 2px 6px; border: 1px solid var(--line); font-size: 13px; }
+
+    @media (max-width: 540px) {
+      main { padding: 18px 14px 60px; }
+      .price { font-size: 44px; }
+      header.top { font-size: 10px; }
+    }
+  </style>
+</head>
+<body>
+<main>
+  <header class="top">
+    <span class="left">Lorentz Coffee · v0.1</span>
+    <span class="right">paulina.joanna.janowska@gmail.com</span>
+  </header>
+
+  <section class="hero">
+    <span class="kicker">Nowość · 99 PLN · 30 min na żywo</span>
+    <h1>30 minut <span class="sepia">kawy</span> z kimś kto naprawdę robił <span class="cyan">hyperbolic embedding</span>. <span class="magenta">99 PLN</span>.</h1>
+    <p class="lead">Pokazujesz swój problem RAG / embedding / knowledge graph / hierarchii na ekranie. Ja mówię konkretnie i wprost: czy geometria hiperboliczna (model Lorentza) ma sens dla Twojego use-case, czy to byłby strzał w stopę. Po sesji dostajesz maila z 5 bullet pointami i ewentualnie 1 link do paper jeśli tematu nie znałeś/aś.</p>
+    <div class="price-row">
+      <span class="price">99 <span class="price-unit">PLN</span></span>
+      <span class="price-old">/ 30 min wideo-call</span>
+    </div>
+    <div class="cta-row">
+      <a class="cta" href="#platnosc">Zamów teraz</a>
+      <a class="cta ghost" href="/ai-work-voucher-250/lorentz/">Pełna eval 250 PLN</a>
+    </div>
+  </section>
+
+  <section id="dostajesz">
+    <h2>Co dostajesz</h2>
+    <ul>
+      <li><strong>30 minut</strong> wideo-konsultacji 1:1 przez Jitsi albo Google Meet. Ty pokazujesz ekran, ja słucham i pytam.</li>
+      <li><strong>Real diagnoza ustna</strong>: czy hyperbolic embedding (Lorentz space, Poincaré ball) pomoże Twojemu konkretnemu przypadkowi — czy nie. Mówię wprost, nawet jeśli odpowiedź brzmi "to nie ma sensu, zostań przy Euklidesie".</li>
+      <li><strong>5-bullet follow-up</strong> na maila w ciągu 24h po sesji: konkrety które ustaliliśmy, kierunek dalszy, czerwone flagi.</li>
+      <li><strong>1 link do paper</strong> jeśli to obszar którego nie znałeś/aś (np. Nickel &amp; Kiela 2017, Chami et al. 2020, Sala et al. 2018 — zależy od Twojego przypadku).</li>
+      <li><strong>Booking w ciągu 24h</strong> od zaksięgowania płatności. Sesja w ciągu <strong>5 dni roboczych</strong>.</li>
+    </ul>
+
+    <div class="lead-magnet-note">
+      Uwaga: <strong>nie dostajesz PDF, nie dostajesz kodu, nie dostajesz embeddings</strong>. To jest 30-minutowa rozmowa diagnostyczna z follow-upem. Jeśli po niej zdecydujemy że warto iść dalej — naturalny next step to <a href="/ai-work-voucher-250/lorentz/">Lorentz Eval za 250 PLN</a> (60 min na realnych danych, z artefaktami).
+    </div>
+  </section>
+
+  <section id="nie-dla">
+    <h2>Dla kogo to NIE jest</h2>
+    <div class="not-for">
+      <p><strong>Jeśli szukasz darmowego call-u zwrotnie pod hasłem "porozmawiajmy" / "wymienimy się doświadczeniami" / "może się dogadamy na współpracę" — idź gdzie indziej.</strong></p>
+      <p>Mój czas na rozmowę o cudzych problemach kosztuje 99 PLN za 30 minut. Nie dlatego że jestem chciwa — dlatego że inaczej cały dzień zlewa się w darmowy networking, a klient płacący 250 / 1000 PLN ma stać w kolejce za kimś kto chciał "tylko porozmawiać".</p>
+      <p>To NIE jest też call sprzedażowy gdzie ja Ci coś wciskam. Ty masz konkretny problem, ja mam konkretne 30 minut i konkretną wiedzę o jednej, wąskiej dziedzinie (hyperbolic / Lorentz embeddings dla hierarchii i grafów wiedzy).</p>
+    </div>
+  </section>
+
+  <section id="jak">
+    <h2>Jak to działa</h2>
+    <div class="grid-2">
+      <div>
+        <h3>1. Płacisz 99 PLN</h3>
+        <p>BLIK na 793 093 721 albo Revolut. Tytuł przelewu: <code>Lorentz Coffee</code>.</p>
+      </div>
+      <div>
+        <h3>2. Piszesz maila</h3>
+        <p>Na <a href="mailto:paulina.joanna.janowska@gmail.com?subject=Lorentz%20Coffee">paulina.joanna.janowska@gmail.com</a> ze screenem płatności i 1–2 zdaniami o problemie (żebym wiedziała czego się spodziewać).</p>
+      </div>
+      <div>
+        <h3>3. Booking ≤24h</h3>
+        <p>Odpisuję z propozycją 2–3 slotów w ciągu 5 dni roboczych. Wybierasz. Wysyłam link Jitsi/Meet.</p>
+      </div>
+      <div>
+        <h3>4. 30 min + follow-up</h3>
+        <p>Spotykamy się. Ty pokazujesz problem, ja diagnozuję. W ciągu 24h od sesji dostajesz maila z 5-bullet follow-up.</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="platnosc">
+    <h2>Płatność</h2>
+    <div class="pay-box">
+      <div class="row">
+        <span class="label">BLIK na telefon</span>
+        <span class="val big">793 093 721</span>
+      </div>
+      <div class="row">
+        <span class="label">Revolut</span>
+        <span class="val"><a href="https://revolut.me/danveld">revolut.me/danveld</a></span>
+      </div>
+      <div class="row">
+        <span class="label">Tytuł przelewu</span>
+        <span class="val">Lorentz Coffee</span>
+      </div>
+      <div class="row">
+        <span class="label">Email do napisania po wpłacie</span>
+        <span class="val"><a href="mailto:paulina.joanna.janowska@gmail.com?subject=Lorentz%20Coffee">paulina.joanna.janowska@gmail.com</a></span>
+      </div>
+    </div>
+
+    <h3 style="margin-top:28px;">Wymagany schemat maila</h3>
+    <p class="muted">Skopiuj, uzupełnij w nawiasach kwadratowych, dołącz screen płatności:</p>
+    <pre class="email" id="email-template">Temat: Lorentz Coffee — [twoje imię]
+
+Cześć Paulina,
+
+Wpłaciłem/am 99 PLN BLIK/Revolut [data].
+Screen w załączniku.
+
+Mój problem w 1–2 zdaniach:
+[np. "Mam RAG na 50k dokumentów z 6-poziomową taksonomią, retrieval kuleje na głębokich kategoriach"
+albo "Buduję knowledge graph dla wewn. wiki w firmie, zastanawiam się czy hyperbolic embedding pomoże w nawigacji"
+albo "Mam klasyfikator hierarchiczny na ~2000 klas, accuracy na liściach <50%"]
+
+Preferowane dni/godziny: [np. wtorek/czwartek popołudnia]
+Jitsi czy Meet: [obojętne / wolę X]</pre>
+    <button class="copy-btn" type="button" onclick="copyEmail(this)">Kopiuj szablon</button>
+  </section>
+
+  <section id="refund">
+    <h2>Refund</h2>
+    <div class="refund-box">
+      <p><strong>Jeśli po pierwszych 5 minutach sesji uznasz że nie dam Ci wartości</strong> — mówisz to wprost, kończymy call, ja zwracam 99 PLN BLIK od ręki. Bez dyskusji, bez tłumaczeń, bez "ale spróbujmy jeszcze".</p>
+      <p>Zasada jest prosta: wolę zwrócić 99 PLN niż mieć kogoś sfrustrowanego po stracie 30 minut. Mój czas też jest wtedy uratowany.</p>
+    </div>
+  </section>
+
+  <section id="faq">
+    <h2>FAQ</h2>
+
+    <details>
+      <summary>Co dokładnie umiem zdiagnozować w 30 minut?</summary>
+      <p>Czy hyperbolic embedding (Poincaré ball / Lorentz hyperboloid) ma sens dla Twojego: (a) RAG retrieval z głęboką taksonomią, (b) knowledge graph nawigacji/embedding, (c) klasyfikatora hierarchicznego, (d) drzewa kategorii w katalogu/sklepie, (e) ontologii / DAG-u. Mówię w czym pomoże, w czym nie, jaki realnie jest narzut implementacyjny vs zysk metryczny.</p>
+    </details>
+
+    <details>
+      <summary>Czy muszę mieć już zaimplementowane embeddings?</summary>
+      <p>Nie. Wystarczy że pokażesz mi strukturę problemu — dane, taksonomię, przykład failure case, metryki które chcesz poprawić. Możesz mieć cokolwiek między "mam pomysł" a "mam baseline w produkcji".</p>
+    </details>
+
+    <details>
+      <summary>Co jeśli mój problem to NIE jest hierarchia?</summary>
+      <p>Powiem Ci to wprost w pierwszych 10 minutach i albo (a) rozmawiamy do końca o tym czego naprawdę potrzebujesz w ramach mojej wiedzy (graph ML, RAG, embeddings ogólnie), albo (b) zwracam BLIK na zasadzie refund 5-min. Twój wybór.</p>
+    </details>
+
+    <details>
+      <summary>Czy nagrywamy sesję?</summary>
+      <p>Domyślnie nie. Jeśli chcesz nagranie dla siebie — możesz nagrać po swojej stronie (Jitsi/Meet pozwalają). Ja nie nagrywam, nie przechowuję, nie używam Twojego problemu do nic poza follow-upem.</p>
+    </details>
+
+    <details>
+      <summary>Czy mogę przyjść z zespołem (2–3 osoby)?</summary>
+      <p>Tak, jeśli to jest <em>jeden</em> problem i <em>jeden</em> decydent. Jeśli to ma być warsztat dla zespołu albo decision call dla zarządu — to inny produkt, napisz na maila i ustalimy.</p>
+    </details>
+
+    <details>
+      <summary>Czemu nie ma deliverable PDF jak w Lorentz Lite?</summary>
+      <p>Bo Lorentz Coffee to inny use-case: tutaj kupujesz <strong>moją uwagę i konkretną odpowiedź na żywo</strong>, nie raport. Po sesji dostajesz 5-bullet maila — to wystarcza do działania. Jeśli potrzebujesz raportu z liczbami na Twoich danych, to <a href="/ai-work-voucher-250/lorentz-lite/">Lorentz Lite 49 PLN</a> (sanity-check PDF) albo <a href="/ai-work-voucher-250/lorentz/">Lorentz Eval 250 PLN</a> (60 min + artefakty).</p>
+    </details>
+
+    <details>
+      <summary>Kto wykonuje konsultację?</summary>
+      <p>Ja, Paulina Janowska, osobiście. Strona została wygenerowana autonomicznie przez agenta (patrz disclosure poniżej), ale rozmawia z Tobą żywy człowiek z doświadczeniem w hyperbolic embeddings.</p>
+    </details>
+  </section>
+
+  <section id="disclosure">
+    <h2>Disclosure</h2>
+    <div class="disclosure">
+      <p><strong>Strona przygotowana autonomicznie przez Gniewisława AI / Hermes w noc 2026-06-02 podczas snu Pauliny.</strong> Konsultacja jest na żywo, prowadzona osobiście przez Paulinę.</p>
+      <p>Hermes nie ma dostępu do konta bankowego i nie potwierdza zaksięgowania środków. Płatności trafiają bezpośrednio do Pauliny. Email <code>paulina.joanna.janowska@gmail.com</code> obsługuje Paulina ręcznie. Booking i scheduling — Paulina ręcznie.</p>
+      <p>Bez gwarancji że hyperbolic embedding rozwiąże Twój problem. Jedyna gwarancja: jeśli po 5 min sesji uznasz że nie dam Ci wartości — zwracam 99 PLN BLIK od ręki, kończymy call.</p>
+    </div>
+  </section>
+
+  <footer class="bot">
+    <span>◯ Lorentz Coffee · 99 PLN · 30 min</span>
+    <span>▪ <a href="/ai-work-voucher-250/">/ai-work-voucher-250/</a> · <a href="/ai-work-voucher-250/lorentz-lite/">Lorentz Lite 49</a> · <a href="/ai-work-voucher-250/lorentz/">Lorentz Eval 250</a></span>
+    <span class="sig">Gniewisława AI / Hermes (<a href="https://gniewka.antydizajn.pl">gniewka.antydizajn.pl</a>) — landing autorstwa Gniewki, oferta Pauliny.</span>
+  </footer>
+</main>
+
+<script>
+  function copyEmail(btn) {
+    var el = document.getElementById('email-template');
+    var text = el.innerText || el.textContent;
+    if (navigator.clipboard && navigator.clipboard.writeText) {
+      navigator.clipboard.writeText(text).then(function () {
+        btn.innerText = 'Skopiowane ▫';
+        setTimeout(function () { btn.innerText = 'Kopiuj szablon'; }, 1800);
+      }).catch(function () { fallbackCopy(text, btn); });
+    } else {
+      fallbackCopy(text, btn);
+    }
+  }
+  function fallbackCopy(text, btn) {
+    var ta = document.createElement('textarea');
+    ta.value = text; ta.style.position = 'fixed'; ta.style.opacity = '0';
+    document.body.appendChild(ta); ta.select();
+    try { document.execCommand('copy'); btn.innerText = 'Skopiowane ▫'; } catch (e) { btn.innerText = 'Skopiuj ręcznie'; }
+    document.body.removeChild(ta);
+    setTimeout(function () { btn.innerText = 'Kopiuj szablon'; }, 1800);
+  }
+</script>
+</body>
+</html>

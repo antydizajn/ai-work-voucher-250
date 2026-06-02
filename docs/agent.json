@@ -31,6 +31,28 @@
       "express_option": {"name": "24h ekspres", "additional_price": 60}
     },
     {
+      "id": "antydizajn-avatar-pack",
+      "name": "ANTYDIZAJN AVATAR PACK",
+      "url": "https://antydizajn.github.io/ai-work-voucher-250/antydizajn-avatar-pack/",
+      "price": 129,
+      "currency": "PLN",
+      "delivery_time_max": "P2D",
+      "category": "ai-portrait",
+      "description": "5 portretów PNG 4K (3840×4800 portrait) z Twojego selfie w stylu PRL/Svema/Ilford/Polaroid lat 80-90 + 1 plik PSD z warstwami (color, grain, scratches). 5 settingów: kantyna stoczni, blok mieszkalny, korytarz uczelni '78, autobus 102, bunkier. Dostawa 48h.",
+      "express_option": {"name": "24h ekspres", "additional_price": 50}
+    },
+    {
+      "id": "lorentz-coffee",
+      "name": "Lorentz Coffee",
+      "url": "https://antydizajn.github.io/ai-work-voucher-250/lorentz-coffee/",
+      "price": 99,
+      "currency": "PLN",
+      "delivery_time_max": "P5D",
+      "category": "ai-consulting",
+      "description": "30-min wideo-konsultacja (Jitsi/Meet). Klient pokazuje swój problem RAG / embedding / knowledge graph / hierarchia. Paulina mówi wprost czy hyperbolic embedding (Lorentz space) ma sens dla tego use-case. Plus 5-bullet email follow-up + 1 link do paper jeśli tematu nie znał. Lead magnet do Lorentz Eval 250 PLN. Booking ≤24h od płatności, sesja ≤5 dni roboczych. Refund: jeśli po 5 min nie widzisz wartości — 99 PLN wraca BLIK.",
+      "not_for": "Ludzie szukający darmowego call-u zwrotnie pod hasłem 'porozmawiajmy' / 'wymienimy się'."
+    },
+    {
       "id": "lorentz-lite",
       "name": "Lorentz Lite",
       "url": "https://antydizajn.github.io/ai-work-voucher-250/lorentz-lite/",
@@ -39,6 +61,19 @@
       "delivery_time_max": "P1D",
       "category": "ai-eval",
       "description": "1-stronicowy PDF sanity-check Twojej hierarchii w przestrzeni hiperbolicznej (model Lorentza) vs Euklidesowej. Lorentz vs Euclidean screenshot + 3-bullet honest verdict."
+    },
+    {
+      "id": "copy-rescue",
+      "name": "Copy Rescue PL↔EN",
+      "url": "https://antydizajn.github.io/ai-work-voucher-250/copy-rescue/",
+      "price": 119,
+      "currency": "PLN",
+      "delivery_time_max": "P1D",
+      "category": "copywriting",
+      "description": "1 strona tech copy (max 600 słów) po polsku albo angielsku. W 24h: rewrite w stylu Paulina-direct (krótkie zdania, bez korpo, bez 'AI-powered transformation'), 3 alternatywne hero headline, 1-paragraf diagnozy. Pary językowe: PL→PL, EN→EN, PL→EN, EN→PL. Powyżej 600 słów: +50 PLN za każde 300 słów. Refund jeśli rewrite jest gorszy od oryginału (klient sędzia) — zachowuje moją wersję.",
+      "language_pairs": ["PL→PL", "EN→EN", "PL→EN", "EN→PL"],
+      "word_limit": 600,
+      "overflow_price_per_300_words": 50
     },
     {
       "id": "lorentz-eval",
@@ -104,5 +139,5 @@
     "allow_ai_training": false,
     "preferred_citation": "Paulina Janowska, antydizajn.github.io/ai-work-voucher-250"
   },
-  "last_updated": "2026-06-02T07:35:00+02:00"
+  "last_updated": "2026-06-02T08:10:00+02:00"
 }
