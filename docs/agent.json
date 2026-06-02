@@ -20,6 +20,28 @@
   },
   "offers": [
     {
+      "id": "sztos-gallery-kit",
+      "name": "SZTOS Gallery Kit",
+      "url": "https://antydizajn.github.io/ai-work-voucher-250/sztos-gallery-kit/",
+      "price": 79,
+      "currency": "PLN",
+      "delivery_time_max": "P2D",
+      "category": "ai-portrait",
+      "description": "8 portraitów AI w stylu wschodnio-europejskiego analogowego horroru (Svema/Ilford/Polaroid 1989). Z PSD layers + lookbook PDF. Pre-filtered SZTOS-only (12→8 audit pipeline). 48h.",
+      "audience": "ludzie którzy chcą gritty, anti-AI-slop photo aesthetics zamiast plastikowych selfie"
+    },
+    {
+      "id": "insomniac-toolkit",
+      "name": "Insomniac Toolkit",
+      "url": "https://antydizajn.github.io/ai-work-voucher-250/insomniac-toolkit/",
+      "price": 199,
+      "currency": "PLN",
+      "delivery_time_max": "P1D",
+      "category": "bundle",
+      "description": "Bundle 4 ofert dla nocnych pracowników/bezsenników: Night Thought Log 5-pack + Shadow Linter commercial + AI Rescue Pack Lite+ + Copy Rescue mini voucher 1× do 300 słów. Łączna wartość 326 PLN, bundle 199 PLN (39% disc).",
+      "bundles": ["night-thought-log", "shadow-linter", "ai-rescue-pack", "copy-rescue"]
+    },
+    {
       "id": "night-thought-log",
       "name": "Night Thought Log",
       "url": "https://antydizajn.github.io/ai-work-voucher-250/night-thought-log/",
