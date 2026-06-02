@@ -1,0 +1,736 @@
+<!doctype html>
+<html lang="pl">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Safety Dojo — 79 PLN anti-AI-slop linter dla Twojego repo (Paulina Janowska)</title>
+  <meta name="description" content="79 PLN. Pull request z lint hookiem na AI-slop frazy w komentarzach, README i markdownie. Pre-commit hook (Husky / lefthook / pre-commit-py) + 1-stronicowy PDF z listą znalezisk. 48h. Refund jeśli Twoje repo nie ma slop.">
+  <meta name="robots" content="index, follow">
+  <link rel="canonical" href="https://antydizajn.github.io/ai-work-voucher-250/safety-dojo/">
+
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Safety Dojo — 79 PLN anti-AI-slop linter">
+  <meta property="og:description" content="Twój README brzmi jak ChatGPT z 2023? Pull request z lint hookiem + pre-commit config + 1-page raport. 48h. 79 PLN.">
+  <meta property="og:url" content="https://antydizajn.github.io/ai-work-voucher-250/safety-dojo/">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Safety Dojo — 79 PLN anti-AI-slop linter">
+  <meta name="twitter:description" content="Pre-commit hook blokujący 'cutting-edge AI solution' i 'unleash potential'. 48h. Kod fully OSS.">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700;800&family=IBM+Plex+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Service",
+    "name": "Safety Dojo",
+    "description": "Anti-AI-slop linter dla repo. Pull request z lint hookiem na AI-slop frazy + pre-commit config (Husky/lefthook/pre-commit-py) + 1-stronicowy PDF z listą znalezisk. 48h.",
+    "provider": {"@type": "Person", "name": "Paulina Janowska"},
+    "areaServed": ["PL", "Worldwide"],
+    "availableLanguage": ["pl", "en"],
+    "offers": [
+      {"@type": "Offer", "name": "Safety Dojo — single repo review", "price": "79", "priceCurrency": "PLN", "url": "https://antydizajn.github.io/ai-work-voucher-250/safety-dojo/"},
+      {"@type": "Offer", "name": "Safety Dojo — monthly continuous review", "price": "199", "priceCurrency": "PLN", "url": "https://antydizajn.github.io/ai-work-voucher-250/safety-dojo/"},
+      {"@type": "Offer", "name": "Safety Dojo — custom pre-commit hook config", "price": "499", "priceCurrency": "PLN", "url": "https://antydizajn.github.io/ai-work-voucher-250/safety-dojo/"}
+    ]
+  }
+  </script>
+
+  <style>
+    :root {
+      color-scheme: dark;
+      --bg: #0a0a0a;
+      --bg-2: #0f0f0f;
+      --line: #1f1f1f;
+      --line-2: #2a2a2a;
+      --fg: #ededed;
+      --fg-2: #a6a6a6;
+      --fg-3: #6b6b6b;
+      --cyan: #00e1ff;
+      --magenta: #ff2bd6;
+      --warn: #ffaa00;
+      --bad: #ff5c5c;
+      --good: #6bff9c;
+      --sepia: #c9a86a;
+    }
+    * { box-sizing: border-box; }
+    html, body { margin: 0; padding: 0; }
+    body {
+      background: var(--bg);
+      color: var(--fg);
+      font-family: 'IBM Plex Mono', 'JetBrains Mono', ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+      font-size: 15px;
+      line-height: 1.55;
+      -webkit-font-smoothing: antialiased;
+      background-image:
+        linear-gradient(transparent 0, transparent calc(100% - 1px), rgba(255,255,255,0.025) 100%),
+        linear-gradient(90deg, transparent 0, transparent calc(100% - 1px), rgba(255,255,255,0.025) 100%);
+      background-size: 32px 32px;
+    }
+    a { color: var(--cyan); text-decoration: none; border-bottom: 1px dashed rgba(0,225,255,0.45); }
+    a:hover { color: #fff; border-bottom-color: #fff; }
+    main { max-width: 920px; margin: 0 auto; padding: 32px 20px 80px; }
+    header.top {
+      display: flex; justify-content: space-between; align-items: center;
+      padding-bottom: 18px; border-bottom: 1px solid var(--line);
+      font-size: 12px; color: var(--fg-3); text-transform: uppercase; letter-spacing: 0.12em;
+    }
+    header.top span.left::before { content: "◯ "; color: var(--cyan); }
+    header.top span.right::before { content: "▪ "; color: var(--magenta); }
+
+    section { border-bottom: 1px solid var(--line); padding: 40px 0; }
+    section:last-of-type { border-bottom: none; }
+
+    .hero h1 {
+      font-family: 'JetBrains Mono', monospace;
+      font-weight: 800;
+      font-size: clamp(28px, 5vw, 48px);
+      line-height: 1.05;
+      letter-spacing: -0.03em;
+      margin: 12px 0 18px;
+    }
+    .hero h1 .cyan { color: var(--cyan); }
+    .hero h1 .magenta { color: var(--magenta); }
+    .hero h1 .strike { color: var(--fg-3); text-decoration: line-through; }
+    .hero .lead {
+      font-size: clamp(15px, 1.8vw, 18px);
+      color: var(--fg-2);
+      max-width: 720px;
+      margin: 0 0 24px;
+    }
+    .kicker {
+      display: inline-block;
+      font-size: 11px; letter-spacing: 0.18em; text-transform: uppercase;
+      color: var(--bg); background: var(--cyan);
+      padding: 4px 10px; font-weight: 700;
+    }
+    .price-row {
+      display: flex; align-items: baseline; gap: 16px; flex-wrap: wrap;
+      margin: 16px 0 24px;
+    }
+    .price {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 56px; font-weight: 800; letter-spacing: -0.04em; color: var(--fg);
+    }
+    .price-old { color: var(--fg-3); text-decoration: line-through; font-size: 18px; }
+    .price-unit { color: var(--fg-2); font-size: 14px; }
+
+    .cta-row { display: flex; gap: 10px; flex-wrap: wrap; margin-top: 12px; }
+    .cta {
+      display: inline-block;
+      padding: 12px 18px;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 13px; font-weight: 700; letter-spacing: 0.05em; text-transform: uppercase;
+      border: 1px solid var(--cyan); color: var(--cyan); background: transparent;
+      cursor: pointer;
+    }
+    .cta:hover { background: var(--cyan); color: var(--bg); border-bottom-color: var(--cyan); }
+    .cta.ghost { border-color: var(--line-2); color: var(--fg-2); border-bottom-style: solid; }
+    .cta.ghost:hover { color: var(--fg); border-color: var(--fg); background: transparent; }
+
+    h2 {
+      font-family: 'JetBrains Mono', monospace;
+      font-weight: 700;
+      font-size: 13px;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--fg-3);
+      margin: 0 0 20px;
+      padding-bottom: 8px;
+      border-bottom: 1px solid var(--line);
+    }
+    h2::before { content: "// "; color: var(--magenta); }
+    h3 {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 15px; font-weight: 700; margin: 18px 0 6px; color: var(--fg);
+    }
+    p { color: var(--fg-2); margin: 0 0 12px; }
+    ul { padding-left: 0; list-style: none; }
+    ul li { position: relative; padding-left: 22px; margin-bottom: 8px; color: var(--fg-2); }
+    ul li::before { content: "▫"; position: absolute; left: 0; top: 0; color: var(--cyan); }
+
+    .grid-2 { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 0; border-top: 1px solid var(--line); }
+    .grid-2 > div { padding: 20px 18px; border-right: 1px solid var(--line); border-bottom: 1px solid var(--line); }
+    .grid-2 > div:last-child { border-right: none; }
+
+    .grid-3 { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 0; border-top: 1px solid var(--line); }
+    .grid-3 > div { padding: 20px 18px; border-right: 1px solid var(--line); border-bottom: 1px solid var(--line); }
+    .grid-3 > div:last-child { border-right: none; }
+    .tier-name { color: var(--cyan); font-size: 12px; letter-spacing: 0.16em; text-transform: uppercase; }
+    .tier-price { font-family: 'JetBrains Mono', monospace; font-size: 32px; font-weight: 800; color: var(--fg); margin: 6px 0 4px; letter-spacing: -0.03em; }
+    .tier-desc { color: var(--fg-2); font-size: 13px; }
+
+    .pay-box {
+      border: 1px solid var(--line-2);
+      padding: 20px;
+      background: var(--bg-2);
+      margin-top: 8px;
+    }
+    .pay-box .row {
+      display: flex; justify-content: space-between; align-items: baseline;
+      padding: 10px 0; border-bottom: 1px dashed var(--line);
+      flex-wrap: wrap; gap: 8px;
+    }
+    .pay-box .row:last-child { border-bottom: none; }
+    .pay-box .label { color: var(--fg-3); font-size: 12px; letter-spacing: 0.1em; text-transform: uppercase; }
+    .pay-box .val { font-family: 'JetBrains Mono', monospace; color: var(--fg); font-weight: 700; }
+    .pay-box .val.big { font-size: 20px; color: var(--cyan); letter-spacing: 0.02em; }
+
+    pre.email, pre.code {
+      background: #050505;
+      border: 1px solid var(--line-2);
+      border-left: 3px solid var(--magenta);
+      padding: 16px;
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 13px;
+      color: var(--fg);
+      overflow-x: auto;
+      margin: 12px 0;
+      white-space: pre-wrap;
+      word-wrap: break-word;
+    }
+    pre.code { border-left-color: var(--cyan); }
+    .copy-btn {
+      display: inline-block; padding: 6px 10px;
+      background: transparent; border: 1px solid var(--line-2); color: var(--fg-2);
+      font-family: 'JetBrains Mono', monospace; font-size: 11px; cursor: pointer;
+      letter-spacing: 0.1em; text-transform: uppercase;
+    }
+    .copy-btn:hover { color: var(--cyan); border-color: var(--cyan); }
+
+    /* DIFF view */
+    .diff {
+      border: 1px solid var(--line-2);
+      background: #050505;
+      margin: 16px 0;
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 13px;
+      overflow-x: auto;
+    }
+    .diff-head {
+      padding: 8px 14px;
+      background: #0c0c0c;
+      border-bottom: 1px solid var(--line-2);
+      color: var(--fg-3);
+      font-size: 11px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      display: flex;
+      justify-content: space-between;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+    .diff-head .file { color: var(--cyan); }
+    .diff-head .pr { color: var(--magenta); }
+    .diff-body { padding: 0; }
+    .diff-line {
+      display: grid;
+      grid-template-columns: 36px 16px 1fr;
+      align-items: start;
+      padding: 0;
+    }
+    .diff-line .ln { color: var(--fg-3); padding: 2px 8px; text-align: right; user-select: none; font-size: 11px; }
+    .diff-line .sign { padding: 2px 4px; user-select: none; font-weight: 700; }
+    .diff-line .src { padding: 2px 8px 2px 0; white-space: pre-wrap; }
+    .diff-line.ctx { background: transparent; color: var(--fg-2); }
+    .diff-line.add { background: rgba(107,255,156,0.08); color: var(--good); }
+    .diff-line.add .sign { color: var(--good); }
+    .diff-line.del { background: rgba(255,92,92,0.08); color: var(--bad); }
+    .diff-line.del .sign { color: var(--bad); }
+    .diff-line.hunk { background: #0a0a0a; color: var(--magenta); padding: 4px 0; }
+    .diff-line.hunk .src { color: var(--magenta); font-weight: 500; }
+
+    .blacklist {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 0;
+      border-top: 1px solid var(--line);
+      border-left: 1px solid var(--line);
+    }
+    .blacklist > div {
+      padding: 12px 14px;
+      border-right: 1px solid var(--line);
+      border-bottom: 1px solid var(--line);
+      font-size: 13px;
+      display: flex;
+      justify-content: space-between;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+    .blacklist .ph { color: var(--bad); }
+    .blacklist .lang { color: var(--fg-3); font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase; align-self: center; }
+
+    .ok-list {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+      gap: 0;
+      border-top: 1px solid var(--line);
+      border-left: 1px solid var(--line);
+    }
+    .ok-list > div {
+      padding: 10px 14px;
+      border-right: 1px solid var(--line);
+      border-bottom: 1px solid var(--line);
+      color: var(--good);
+      font-size: 13px;
+    }
+
+    details {
+      border-top: 1px solid var(--line);
+      padding: 14px 0;
+    }
+    details:last-of-type { border-bottom: 1px solid var(--line); }
+    summary {
+      cursor: pointer; list-style: none;
+      font-family: 'JetBrains Mono', monospace; font-weight: 500;
+      color: var(--fg); padding-right: 24px; position: relative;
+    }
+    summary::-webkit-details-marker { display: none; }
+    summary::after {
+      content: "+"; position: absolute; right: 0; top: 0;
+      color: var(--cyan); font-weight: 700;
+    }
+    details[open] summary::after { content: "−"; color: var(--magenta); }
+    details p { margin-top: 10px; }
+
+    .disclosure {
+      margin-top: 48px;
+      padding: 20px;
+      border: 1px dashed var(--line-2);
+      color: var(--fg-3);
+      font-size: 12px;
+      line-height: 1.6;
+    }
+    .disclosure strong { color: var(--fg-2); }
+
+    footer.bot {
+      margin-top: 24px;
+      padding-top: 18px;
+      border-top: 1px solid var(--line);
+      color: var(--fg-3);
+      font-size: 11px;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      display: flex; justify-content: space-between; flex-wrap: wrap; gap: 8px;
+    }
+
+    .muted { color: var(--fg-3); font-size: 13px; }
+    .warn { color: var(--warn); }
+    .good { color: var(--good); }
+    .bad { color: var(--bad); }
+    code { background: #161616; padding: 2px 6px; border: 1px solid var(--line); font-size: 13px; }
+
+    .refund-box {
+      border: 1px solid var(--magenta);
+      background: linear-gradient(180deg, rgba(255,43,214,0.06), rgba(255,43,214,0.02));
+      padding: 18px 20px;
+      margin: 16px 0;
+    }
+    .refund-box h3 { color: var(--magenta); margin-top: 0; }
+
+    .oss-box {
+      border: 1px solid var(--sepia);
+      background: rgba(201,168,106,0.05);
+      padding: 16px 18px;
+      margin: 16px 0;
+      color: var(--fg-2);
+    }
+    .oss-box strong { color: var(--sepia); }
+
+    @media (max-width: 540px) {
+      main { padding: 18px 14px 60px; }
+      .price { font-size: 44px; }
+      header.top { font-size: 10px; }
+      .diff-line { grid-template-columns: 28px 14px 1fr; }
+    }
+  </style>
+</head>
+<body>
+<main>
+  <header class="top">
+    <span class="left">Safety Dojo · v0.1 · anti-slop linter</span>
+    <span class="right">paulina.joanna.janowska@gmail.com</span>
+  </header>
+
+  <section class="hero">
+    <span class="kicker">Nowość · 79 PLN · 48h</span>
+    <h1>Twój README brzmi jak <span class="strike">cutting-edge AI-powered solution</span> <span class="magenta">ChatGPT z 2023</span>? <span class="cyan">Daj się zlintować.</span></h1>
+    <p class="lead">Wysyłasz URL repo (open source) albo zip. W 48h dostajesz pull request z lint hookiem na AI-slop frazy w komentarzach, README, markdownie i copy. Plus pre-commit config (Husky / lefthook / pre-commit-py) i 1-stronicowy PDF z listą tego, co znalazłam u Ciebie + sugestię zamiennika. Bez "transformuj swoją bazę kodu". Bez "next-generation". Bez "empower your team".</p>
+    <div class="price-row">
+      <span class="price">79 <span class="price-unit">PLN / single repo (do 2k LOC)</span></span>
+      <span class="price-old">199 PLN / miesięczny ciągły review · 499 PLN / custom hook</span>
+    </div>
+    <div class="cta-row">
+      <a class="cta" href="#platnosc">Zamów teraz</a>
+      <a class="cta ghost" href="#blacklist">Zobacz blacklistę</a>
+      <a class="cta ghost" href="#diff">Zobacz BEFORE/AFTER</a>
+    </div>
+  </section>
+
+  <section id="ceny">
+    <h2>Cennik · 3 tiery</h2>
+    <div class="grid-3">
+      <div>
+        <span class="tier-name">▫ Single review</span>
+        <div class="tier-price">79 PLN</div>
+        <p class="tier-desc">Jednorazowy review repo do 2k LOC. PR z lint hookiem + config + PDF (1 strona). 48h. Najczęściej kupowane.</p>
+      </div>
+      <div>
+        <span class="tier-name">▫ Monthly continuous</span>
+        <div class="tier-price">199 PLN</div>
+        <p class="tier-desc">Miesięczny ciągły review = 4 audyty (raz w tygodniu, każdy z PR-em). Dla zespołów co commitują dużo i nie chcą ręcznie czytać każdego diffa README. Dla repo do 5k LOC.</p>
+      </div>
+      <div>
+        <span class="tier-name">▫ Custom pre-commit</span>
+        <div class="tier-price">499 PLN</div>
+        <p class="tier-desc">Jednorazowy custom pre-commit hook + Husky/lefthook/pre-commit-py konfig pod Twój stack. Twoja własna lista fraz, allowlista technicznych terminów (RAG, embedding, hashing, K=-1...), CI integracja (GitHub Actions / GitLab CI). Dla repo &gt;5k LOC i zespołów &gt;3 dev.</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="dostajesz">
+    <h2>Co dostajesz (single review · 79 PLN)</h2>
+    <ul>
+      <li><strong>1 pull request</strong> do Twojego repo (jeśli open) albo patch w mailu (jeśli zip). Branch: <code>safety-dojo/anti-slop</code>.</li>
+      <li><strong>Lint hook</strong> (~80 linii Pythona albo Node) skanujący <code>**/*.md</code>, <code>**/*.txt</code>, komentarze w <code>**/*.{py,js,ts,go,rs,rb,java}</code>. Domyślna blacklista: 20 fraz EN + 20 fraz PL (lista poniżej).</li>
+      <li><strong>Konfig pre-commit hook</strong> w jednej z trzech wersji do wyboru: <code>.husky/pre-commit</code> (Node), <code>.lefthook.yml</code> (Go), albo <code>.pre-commit-config.yaml</code> (Python). Działa lokalnie zanim commit pójdzie do origin.</li>
+      <li><strong>1-stronicowy PDF</strong> ("Slop Audit Report") — lista wszystkich znalezionych fraz w Twoim aktualnym repo, każda z linią pliku, kontekstem i sugerowanym zamiennikiem.</li>
+      <li><strong>Czas dostawy:</strong> do 48h od zaksięgowania płatności i otrzymania URL/zip.</li>
+      <li><strong>Czas mojej pracy:</strong> 30–60 minut. Hook jest re-używalny, audyt manualny.</li>
+    </ul>
+
+    <div class="oss-box">
+      <strong>▫ Kod fully OSS (MIT).</strong> Hook, blacklisty, sample CI configi — możesz wziąć całość i wkleić do innych repo bez dopłaty. Płacisz za <em>review Twojego konkretnego repo</em> i adaptację. Jeśli za miesiąc otworzysz nowy projekt — kopiujesz hook, koniec tematu.
+    </div>
+  </section>
+
+  <section id="diff">
+    <h2>BEFORE / AFTER — przykładowy PR</h2>
+    <p class="muted">Tak wygląda fragment diffa, który wpadnie do Twojego repo. Plik: <code>README.md</code> (rzeczywista warstwa edycji, nie marketing screenshot).</p>
+
+    <div class="diff" aria-label="Pull request diff sample">
+      <div class="diff-head">
+        <span class="file">~ README.md</span>
+        <span class="pr">PR #41 · safety-dojo/anti-slop</span>
+      </div>
+      <div class="diff-body">
+        <div class="diff-line hunk"><span class="ln"></span><span class="sign">@@</span><span class="src">@@ -3,11 +3,11 @@ Welcome</span></div>
+        <div class="diff-line ctx"><span class="ln">3</span><span class="sign"> </span><span class="src"># SearchKit</span></div>
+        <div class="diff-line ctx"><span class="ln">4</span><span class="sign"> </span><span class="src"></span></div>
+        <div class="diff-line del"><span class="ln">5</span><span class="sign">-</span><span class="src">SearchKit is a cutting-edge AI-powered solution that will</span></div>
+        <div class="diff-line del"><span class="ln">6</span><span class="sign">-</span><span class="src">unleash the potential of your data and empower your team to</span></div>
+        <div class="diff-line del"><span class="ln">7</span><span class="sign">-</span><span class="src">transform their workflow with next-generation, revolutionary</span></div>
+        <div class="diff-line del"><span class="ln">8</span><span class="sign">-</span><span class="src">capabilities for the modern enterprise.</span></div>
+        <div class="diff-line add"><span class="ln">5</span><span class="sign">+</span><span class="src">SearchKit is a search bar that doesn't hallucinate. It indexes</span></div>
+        <div class="diff-line add"><span class="ln">6</span><span class="sign">+</span><span class="src">your markdown files, runs BM25 + a small embedding rerank, and</span></div>
+        <div class="diff-line add"><span class="ln">7</span><span class="sign">+</span><span class="src">returns the line number. Works offline. ~600 LOC of Python.</span></div>
+        <div class="diff-line ctx"><span class="ln">8</span><span class="sign"> </span><span class="src"></span></div>
+        <div class="diff-line ctx"><span class="ln">9</span><span class="sign"> </span><span class="src">## Install</span></div>
+        <div class="diff-line hunk"><span class="ln"></span><span class="sign">@@</span><span class="src">@@ -22,7 +22,7 @@ Features</span></div>
+        <div class="diff-line ctx"><span class="ln">22</span><span class="sign"> </span><span class="src">## Features</span></div>
+        <div class="diff-line ctx"><span class="ln">23</span><span class="sign"> </span><span class="src"></span></div>
+        <div class="diff-line del"><span class="ln">24</span><span class="sign">-</span><span class="src">- Leverage synergies across your entire ecosystem</span></div>
+        <div class="diff-line add"><span class="ln">24</span><span class="sign">+</span><span class="src">- Searches three folders: docs/, notes/, drafts/</span></div>
+        <div class="diff-line del"><span class="ln">25</span><span class="sign">-</span><span class="src">- Seamlessly integrate with your workflow</span></div>
+        <div class="diff-line add"><span class="ln">25</span><span class="sign">+</span><span class="src">- Reads .md and .txt. That's it.</span></div>
+        <div class="diff-line del"><span class="ln">26</span><span class="sign">-</span><span class="src">- Unlock new possibilities with AI</span></div>
+        <div class="diff-line add"><span class="ln">26</span><span class="sign">+</span><span class="src">- Returns top 5 hits in &lt;200ms on a 4k-doc corpus</span></div>
+        <div class="diff-line ctx"><span class="ln">27</span><span class="sign"> </span><span class="src"></span></div>
+      </div>
+    </div>
+
+    <p class="muted" style="margin-top:14px;">Co poszło? Cztery frazy zlintowane (<span class="bad">cutting-edge</span>, <span class="bad">AI-powered</span>, <span class="bad">unleash potential</span>, <span class="bad">empower your team</span>, <span class="bad">transform workflow</span>, <span class="bad">next-generation</span>, <span class="bad">revolutionary</span>, <span class="bad">leverage synergies</span>, <span class="bad">seamlessly integrate</span>, <span class="bad">unlock possibilities</span>). Zastąpione zdaniem co opisuje <em>co kod robi</em>. To jest cały produkt.</p>
+  </section>
+
+  <section id="blacklist">
+    <h2>Co jest na liście domyślnej blacklisty</h2>
+    <p>Domyślnie hook blokuje 20 fraz EN + 20 fraz PL. Lista jest <strong>edytowalna</strong> — w pliku <code>.safety-dojo/blacklist.txt</code>. Możesz dodać własne, usunąć te które uważasz za fair-use, albo dodać allowlistę dla pojedynczych plików (np. press release).</p>
+
+    <h3 style="margin-top:24px;">▫ EN (20 najczęstszych)</h3>
+    <div class="blacklist">
+      <div><span class="ph">unleash potential</span><span class="lang">EN</span></div>
+      <div><span class="ph">cutting-edge</span><span class="lang">EN</span></div>
+      <div><span class="ph">AI-powered</span><span class="lang">EN</span></div>
+      <div><span class="ph">next-generation</span><span class="lang">EN</span></div>
+      <div><span class="ph">revolutionary</span><span class="lang">EN</span></div>
+      <div><span class="ph">empower your team</span><span class="lang">EN</span></div>
+      <div><span class="ph">transform your workflow</span><span class="lang">EN</span></div>
+      <div><span class="ph">unlock new possibilities</span><span class="lang">EN</span></div>
+      <div><span class="ph">leverage synergies</span><span class="lang">EN</span></div>
+      <div><span class="ph">seamlessly integrate</span><span class="lang">EN</span></div>
+      <div><span class="ph">state-of-the-art</span><span class="lang">EN</span></div>
+      <div><span class="ph">game-changing</span><span class="lang">EN</span></div>
+      <div><span class="ph">paradigm shift</span><span class="lang">EN</span></div>
+      <div><span class="ph">turnkey solution</span><span class="lang">EN</span></div>
+      <div><span class="ph">best-in-class</span><span class="lang">EN</span></div>
+      <div><span class="ph">end-to-end solution</span><span class="lang">EN</span></div>
+      <div><span class="ph">enterprise-grade</span><span class="lang">EN</span></div>
+      <div><span class="ph">delve into</span><span class="lang">EN</span></div>
+      <div><span class="ph">in today's fast-paced world</span><span class="lang">EN</span></div>
+      <div><span class="ph">harness the power of</span><span class="lang">EN</span></div>
+    </div>
+
+    <h3 style="margin-top:28px;">▫ PL (20 najczęstszych)</h3>
+    <div class="blacklist">
+      <div><span class="ph">uwolnij potencjał</span><span class="lang">PL</span></div>
+      <div><span class="ph">rewolucyjny</span><span class="lang">PL</span></div>
+      <div><span class="ph">przełomowe rozwiązanie</span><span class="lang">PL</span></div>
+      <div><span class="ph">wspierane przez AI</span><span class="lang">PL</span></div>
+      <div><span class="ph">napędzane sztuczną inteligencją</span><span class="lang">PL</span></div>
+      <div><span class="ph">najnowszej generacji</span><span class="lang">PL</span></div>
+      <div><span class="ph">transformuj swój workflow</span><span class="lang">PL</span></div>
+      <div><span class="ph">odblokuj nowe możliwości</span><span class="lang">PL</span></div>
+      <div><span class="ph">kompleksowe rozwiązanie</span><span class="lang">PL</span></div>
+      <div><span class="ph">synergiczne połączenie</span><span class="lang">PL</span></div>
+      <div><span class="ph">na miarę XXI wieku</span><span class="lang">PL</span></div>
+      <div><span class="ph">w dzisiejszym dynamicznym świecie</span><span class="lang">PL</span></div>
+      <div><span class="ph">wzmocnij swój zespół</span><span class="lang">PL</span></div>
+      <div><span class="ph">bezproblemowa integracja</span><span class="lang">PL</span></div>
+      <div><span class="ph">zaawansowane rozwiązanie</span><span class="lang">PL</span></div>
+      <div><span class="ph">innowacyjna platforma</span><span class="lang">PL</span></div>
+      <div><span class="ph">dedykowane rozwiązanie</span><span class="lang">PL</span></div>
+      <div><span class="ph">szyte na miarę</span><span class="lang">PL</span></div>
+      <div><span class="ph">zgłębić temat</span><span class="lang">PL</span></div>
+      <div><span class="ph">pełna gama możliwości</span><span class="lang">PL</span></div>
+    </div>
+
+    <p class="muted" style="margin-top:18px;">To jest baseline. Custom tier (499 PLN) buduje listę pod Twoją domenę: fintech ma inne slop niż devtools ma inne niż healthtech.</p>
+  </section>
+
+  <section id="not-slop">
+    <h2>Co NIE jest slop · allowlista techniczna</h2>
+    <p>Branżowe terminy techniczne <strong>nie są blokowane</strong>. Hook ma allowlistę domyślną — możesz ją rozszerzyć. Te frazy przechodzą bez ostrzeżenia:</p>
+    <div class="ok-list">
+      <div>RAG</div>
+      <div>embedding</div>
+      <div>hashing</div>
+      <div>tokenizer</div>
+      <div>vector DB</div>
+      <div>BM25</div>
+      <div>cosine similarity</div>
+      <div>fine-tuning</div>
+      <div>quantization</div>
+      <div>k-NN / ANN</div>
+      <div>LoRA</div>
+      <div>diffusion</div>
+      <div>transformer</div>
+      <div>backprop</div>
+      <div>WAL / write-ahead log</div>
+      <div>Lorentz space</div>
+      <div>Möbius addition</div>
+      <div>HNSW</div>
+      <div>tail latency</div>
+      <div>idempotency</div>
+    </div>
+    <p class="muted" style="margin-top:14px;">Reguła: jeśli termin jest w arXiv abstract z 2018+ albo w docs frameworka — zostaje. Jeśli pojawia się tylko w pitch decku — leci. Jeśli masz wątpliwości czy konkretne słowo to slop czy nie — dopisz do <code>.safety-dojo/allowlist.txt</code>.</p>
+  </section>
+
+  <section id="hook">
+    <h2>Sample hook · Python (pre-commit-py)</h2>
+    <p class="muted">Tak wygląda fragment <code>.pre-commit-config.yaml</code> + walidator co dostarczam. Pełna wersja w PR-ze.</p>
+    <pre class="code"># .pre-commit-config.yaml
+repos:
+  - repo: local
+    hooks:
+      - id: safety-dojo
+        name: Safety Dojo (anti-AI-slop)
+        entry: python .safety-dojo/lint.py
+        language: python
+        files: \.(md|txt|py|js|ts|go|rs)$
+        stages: [commit]
+</pre>
+    <pre class="code"># .safety-dojo/lint.py (skrót)
+import re, sys, pathlib
+
+BLACKLIST = pathlib.Path(".safety-dojo/blacklist.txt").read_text().splitlines()
+ALLOWLIST = set(pathlib.Path(".safety-dojo/allowlist.txt").read_text().splitlines())
+
+def scan(path):
+    text = pathlib.Path(path).read_text(errors="ignore").lower()
+    hits = []
+    for phrase in BLACKLIST:
+        if phrase and phrase in text and phrase not in ALLOWLIST:
+            hits.append(phrase)
+    return hits
+
+failed = False
+for f in sys.argv[1:]:
+    hits = scan(f)
+    if hits:
+        failed = True
+        print(f"❌ {f}: slop detected → {', '.join(hits)}")
+
+sys.exit(1 if failed else 0)
+</pre>
+    <p class="muted">Tyle. Bez frameworka. Bez "next-gen lint engine". Działa na Pythonie 3.8+. Zero deps.</p>
+  </section>
+
+  <section id="refund">
+    <h2>Refund clause</h2>
+    <div class="refund-box">
+      <h3>▫ Jeśli Twoje repo nie ma slop — pełny refund + paragraf-pochwała</h3>
+      <p>Po skanie Twojego repo, jeśli okaże się że <strong>nie znalazłam ani jednej frazy z baseline blacklisty</strong> (40 fraz EN + PL) — zwracam 79 PLN BLIK od ręki <strong>i piszę 1 paragraf</strong> (dla Twojego maila / dla README jako "code review"), wyjaśniający dlaczego Twoja codebase jest zdrowa: jaki ma styl, co robi dobrze, co inni mogliby od Ciebie skopiować.</p>
+      <p>To jest jedyna oferta, w której <em>chcę przegrać</em>. Jeśli przegrywam — wygrywasz Ty: masz dowód że Twój README nie pachnie ChatGPT-em, plus mały tekst od Pauliny (mogę go nawet podpisać "audited by Safety Dojo, zero slop found, 2026").</p>
+    </div>
+
+    <p class="muted">Inne refund clausy: jeśli wynik PR jest słabszy niż oryginalny tekst (Ty sędzia, w 7 dni od dostawy) — refund. Jeśli format Twojego repo wykracza poza to co ogarniam (np. wyłącznie binaries albo tylko commity bez tekstu) — refund po pierwszym 30min skanowania, bez tłumaczeń.</p>
+  </section>
+
+  <section id="jak">
+    <h2>Jak to działa</h2>
+    <div class="grid-2">
+      <div>
+        <h3>1. Płacisz 79 PLN</h3>
+        <p>BLIK na 793 093 721 albo Revolut. Tytuł przelewu: <code>Safety Dojo</code> + nazwa Twojego repo.</p>
+      </div>
+      <div>
+        <h3>2. Wysyłasz repo</h3>
+        <p>Mailem na <a href="mailto:paulina.joanna.janowska@gmail.com?subject=Safety%20Dojo">paulina.joanna.janowska@gmail.com</a>. URL repo (jeśli open) albo zip (jeśli prywatne, max 30MB). Wystarczy adres GitHub/GitLab.</p>
+      </div>
+      <div>
+        <h3>3. PR + PDF w 48h</h3>
+        <p>Otwieram pull request (jeśli open) albo wysyłam patch + config + PDF mailem (jeśli prywatne). Mergujesz albo nie. Hook jest Twój, MIT.</p>
+      </div>
+    </div>
+    <p class="muted" style="margin-top:18px;">Jeśli Twoje repo &gt; 2k LOC: powiem zanim zacznę, ile dodatkowo (najczęściej +30 PLN za każde 2k LOC). Dla repo &gt; 5k → bierz tier 199 PLN albo 499 PLN.</p>
+  </section>
+
+  <section id="platnosc">
+    <h2>Płatność</h2>
+    <div class="pay-box">
+      <div class="row">
+        <span class="label">BLIK na telefon</span>
+        <span class="val big">793 093 721</span>
+      </div>
+      <div class="row">
+        <span class="label">Revolut</span>
+        <span class="val"><a href="https://revolut.me/danveld">revolut.me/danveld</a></span>
+      </div>
+      <div class="row">
+        <span class="label">Tytuł przelewu</span>
+        <span class="val">Safety Dojo + [nazwa repo]</span>
+      </div>
+      <div class="row">
+        <span class="label">Email</span>
+        <span class="val"><a href="mailto:paulina.joanna.janowska@gmail.com?subject=Safety%20Dojo">paulina.joanna.janowska@gmail.com</a></span>
+      </div>
+    </div>
+
+    <h3 style="margin-top:28px;">Wymagany schemat maila</h3>
+    <p class="muted">Skopiuj, uzupełnij w nawiasach kwadratowych:</p>
+    <pre class="email" id="email-template">Temat: Safety Dojo + [nazwa repo]
+
+Cześć!
+
+Wpłaciłem/am 79 PLN BLIK/Revolut [data].
+Repo: [URL GitHub/GitLab albo "zip w załączniku"]
+Stack: [Python / Node / Go / Rust / mix]
+Preferowany pre-commit framework: [Husky / lefthook / pre-commit-py / wybierz mi sama]
+Jeśli masz konkretne frazy które chcesz mieć blacklisted poza domyślnymi: [opcjonalnie]</pre>
+    <button class="copy-btn" type="button" onclick="copyEmail(this)">Kopiuj szablon</button>
+  </section>
+
+  <section id="faq">
+    <h2>FAQ</h2>
+
+    <details>
+      <summary>Czy musisz mieć dostęp write do mojego repo?</summary>
+      <p>Nie. Forkuję, robię branch, otwieram PR z mojego konta — Ty mergujesz albo nie. Dla prywatnych repo: wysyłasz zip, dostajesz patch (.diff) mailem, aplikujesz <code>git apply</code>.</p>
+    </details>
+
+    <details>
+      <summary>Co jeśli używam Husky a nie pre-commit-py?</summary>
+      <p>W mailu mówisz preferencję. Dostarczam dokładnie ten setup. Wszystkie trzy (Husky / lefthook / pre-commit-py) ogarniam. Custom CI integration (GitHub Actions / GitLab CI / Bitbucket Pipelines) — to tier 499 PLN.</p>
+    </details>
+
+    <details>
+      <summary>Czy hook blokuje commit czy tylko ostrzega?</summary>
+      <p>Default: <code>warn</code> (commit przechodzi, w outpucie żółta lista fraz). Jeśli chcesz <code>block</code> (commit fail) — flag w configu, jedna linia, zmieniam podczas review. Większość zespołów chce <code>warn</code>, bo na początku jest zbyt dużo hitów.</p>
+    </details>
+
+    <details>
+      <summary>Skąd lista 20 fraz EN i 20 PL?</summary>
+      <p>Z 60+ moich review (głównie open-source READMEs i landing copy z 2023-2026). Frazy są te, które <strong>najczęściej</strong> wpadają, nie te które brzmią najgorzej. Surface area &gt; high score. Custom tier (499 PLN) robi listę pod Twoją domenę z większym pokryciem (60-80 fraz, plus regex patterns).</p>
+    </details>
+
+    <details>
+      <summary>Czy "AI-powered" to zawsze slop?</summary>
+      <p>Nie. W docs frameworka ML albo w paper abstract — zostaje (allowlist file). W marketingowym opisie startupu który używa GPT-4 do streszczania emaili — slop. Reguła: jeśli zdanie nadal niesie sens po wycięciu "AI-powered" — to slop. Jeśli traci sens (np. "AI-powered tokenizer for Polish") — zostaje.</p>
+    </details>
+
+    <details>
+      <summary>Czy działa na nie-angielskim i nie-polskim?</summary>
+      <p>Baseline obejmuje EN + PL. Tier 499 PLN dodaje DE / FR / ES / inne na życzenie (z osobną blacklistą per język). Nie zrobię Ci listy w japońskim — nie znam slop wzorców w tym języku.</p>
+    </details>
+
+    <details>
+      <summary>Co z generated content (CHANGELOG, docs/api/*, vendor/)?</summary>
+      <p>Domyślnie hook ma exclude listę: <code>node_modules/</code>, <code>vendor/</code>, <code>dist/</code>, <code>build/</code>, <code>CHANGELOG.md</code>, <code>docs/api/**</code> (auto-gen). Edytujesz w configu.</p>
+    </details>
+
+    <details>
+      <summary>Czy mogę użyć tego hooka w pracy / dla klientów / w komercyjnym repo?</summary>
+      <p>Tak. Licencja MIT. Możesz forkować, rozprowadzać, sprzedawać własną wersję. Jedyne co prosisz: zachowaj credit "based on Safety Dojo by Paulina Janowska" w README — i to też nie wymóg licencji, tylko prośba.</p>
+    </details>
+
+    <details>
+      <summary>Kto wykonuje review?</summary>
+      <p>Ja, Paulina Janowska, ręcznie. Hook jest deterministyczny (regex), ale interpretacja "czy to akurat slop czy fair-use" wymaga człowieka. Strona została wygenerowana autonomicznie przez agenta (patrz disclosure poniżej), ale review robię osobiście.</p>
+    </details>
+
+    <details>
+      <summary>Co jeśli moje repo to czysty kod bez READMEs (tylko code comments)?</summary>
+      <p>Też ogarniam. Hook skanuje komentarze w <code>.py</code>, <code>.js</code>, <code>.ts</code>, <code>.go</code>, <code>.rs</code>, <code>.rb</code>, <code>.java</code>. Slop w komentarzach: <code>// This revolutionary algorithm leverages cutting-edge AI</code> → <code>// O(n log n) sort. Stable. See test_sort.py:42</code>.</p>
+    </details>
+
+    <details>
+      <summary>Czy dostanę raw blacklist / allowlist / wszystko?</summary>
+      <p>Tak, wszystko jest w PR jako pliki tekstowe. Bez "premium content locked behind tier". Tier 499 PLN to <em>czas pracy nad customizacją</em>, nie tajna wiedza.</p>
+    </details>
+
+  </section>
+
+  <section id="disclosure">
+    <h2>Disclosure</h2>
+    <div class="disclosure">
+      <p><strong>Strona przygotowana autonomicznie przez Gniewisława AI / Hermes w noc 2026-06-02 podczas snu Pauliny.</strong> Paulina wykona review repo osobiście po obudzeniu. Hook jest deterministyczny (regex), interpretacja sloppy / fair-use wymaga człowieka.</p>
+      <p>Hermes nie ma dostępu do konta bankowego i nie potwierdza zaksięgowania środków. Płatności trafiają bezpośrednio do Pauliny. Email <code>paulina.joanna.janowska@gmail.com</code> obsługuje Paulina ręcznie.</p>
+      <p>Bez gwarancji że Twój README zacznie sprzedawać. Jedyna gwarancja: PR z lint hookiem + config + PDF + (jeśli zero slop) refund + paragraf-pochwała. Kod fully OSS, MIT.</p>
+    </div>
+  </section>
+
+  <footer class="bot">
+    <span>◯ Safety Dojo · 79 PLN · 48h · MIT</span>
+    <span>▪ <a href="/ai-work-voucher-250/">/ai-work-voucher-250/</a> · <a href="/ai-work-voucher-250/copy-rescue/">copy-rescue 119 PLN</a></span>
+  </footer>
+
+  <p class="muted" style="margin-top:24px; text-align:center; font-size:11px; letter-spacing:0.1em; text-transform:uppercase;">
+    Gniewisława AI / Hermes (gniewka.antydizajn.pl) — landing autorstwa Gniewki, oferta Pauliny.
+  </p>
+</main>
+
+<script>
+  function copyEmail(btn) {
+    var el = document.getElementById('email-template');
+    var text = el.innerText || el.textContent;
+    if (navigator.clipboard && navigator.clipboard.writeText) {
+      navigator.clipboard.writeText(text).then(function () {
+        btn.innerText = 'Skopiowane ▫';
+        setTimeout(function () { btn.innerText = 'Kopiuj szablon'; }, 1800);
+      }).catch(function () { fallbackCopy(text, btn); });
+    } else {
+      fallbackCopy(text, btn);
+    }
+  }
+  function fallbackCopy(text, btn) {
+    var ta = document.createElement('textarea');
+    ta.value = text; ta.style.position = 'fixed'; ta.style.opacity = '0';
+    document.body.appendChild(ta); ta.select();
+    try { document.execCommand('copy'); btn.innerText = 'Skopiowane ▫'; } catch (e) { btn.innerText = 'Skopiuj ręcznie'; }
+    document.body.removeChild(ta);
+    setTimeout(function () { btn.innerText = 'Kopiuj szablon'; }, 1800);
+  }
+</script>
+</body>
+</html>

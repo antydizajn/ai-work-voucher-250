@@ -4,6 +4,7 @@
 
 ## Aktualne oferty
 
+- [Safety Dojo — 79 PLN](/safety-dojo/): Anti-AI-slop linter dla repo (do 2k LOC). PR z lint hookiem na frazy 'cutting-edge', 'AI-powered', 'unleash potential', 'transform workflow' (20 fraz EN + 20 PL) + pre-commit config (Husky/lefthook/pre-commit-py) + 1-page PDF z listą znalezisk. 48h. Tiers: 199 PLN miesięczny continuous (4 audyty), 499 PLN custom hook. Hook fully OSS (MIT). Refund + 1 paragraf-pochwała jeśli zero slop. Branżowe terminy (RAG, embedding, hashing) na allowliście.
 - [Polaroid 1989 — 89 PLN](/polaroid-1989/): Portret AI z Twojego selfie w stylu wschodnio-europejskiego analogowego horroru lat 80/90. 3 warianty + lookbook PDF. Stylizacja: Svema, Ilford HP5+, Polaroid 600. 12 przykładów w galerii. Max 3 dni.
 - [ANTYDIZAJN AVATAR PACK — 129 PLN](/antydizajn-avatar-pack/): 5 portretów PNG 4K (3840×4800 portrait) w 5 settingach PRL (kantyna stoczni, blok, korytarz uczelni '78, autobus 102, bunkier) + 1 plik PSD z warstwami (color, grain, scratches). 48h. Ekspres 24h: +50 PLN.
 - [Lorentz Coffee — 99 PLN](/lorentz-coffee/): 30-min wideo-konsultacja (Jitsi/Meet). Pokazujesz swój problem RAG / embedding / knowledge graph / hierarchia, mówię wprost czy hyperbolic embedding (Lorentz space) ma sens dla Twojego use-case. Plus 5-bullet email follow-up + 1 link do paper jeśli tematu nie znałeś. Booking ≤24h, sesja ≤5 dni roboczych. Refund po 5 min jeśli bez wartości. NIE dla "porozmawiajmy" darmowych call-ów.

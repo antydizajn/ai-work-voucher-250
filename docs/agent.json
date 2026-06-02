@@ -20,6 +20,24 @@
   },
   "offers": [
     {
+      "id": "safety-dojo",
+      "name": "Safety Dojo",
+      "url": "https://antydizajn.github.io/ai-work-voucher-250/safety-dojo/",
+      "price": 79,
+      "currency": "PLN",
+      "delivery_time_max": "P2D",
+      "category": "code-review",
+      "description": "Anti-AI-slop linter dla repo (do 2k LOC). Pull request z lint hookiem na AI-slop frazy w komentarzach, README, markdownie i copy (baseline 20 fraz EN + 20 fraz PL: 'unleash potential', 'cutting-edge', 'AI-powered', 'empower your team', 'transform your workflow', 'next-generation' itp.) + pre-commit config (Husky / lefthook / pre-commit-py do wyboru) + 1-stronicowy PDF 'Slop Audit Report' z listą znalezisk i sugestiami zamienników. 48h. Hook fully OSS (MIT) — klient może wziąć do innych repo bez dopłaty. Branżowe terminy techniczne (RAG, embedding, hashing, BM25, transformer, fine-tuning) na allowliście domyślnej.",
+      "tiers": [
+        {"name": "Single repo review (≤2k LOC)", "price": 79, "currency": "PLN"},
+        {"name": "Monthly continuous review (4 audyty, ≤5k LOC)", "price": 199, "currency": "PLN"},
+        {"name": "Custom pre-commit hook + Husky/lefthook config (>5k LOC, custom blacklist)", "price": 499, "currency": "PLN"}
+      ],
+      "refund_clause": "Jeśli baseline 40-frazowa blacklista wykryje zero hitów w Twoim repo — pełny refund + 1 paragraf-pochwała wyjaśniający dlaczego Twoja codebase jest zdrowa (do użycia jako 'code review' albo na README).",
+      "license": "MIT (klient może użyć hooka w innych repo bez opłaty)",
+      "audience": "devs / engineering managerowie / tech leads którzy patrzą że ich docs/README/comments brzmią jak ChatGPT z 2023"
+    },
+    {
       "id": "polaroid-1989",
       "name": "Polaroid 1989",
       "url": "https://antydizajn.github.io/ai-work-voucher-250/polaroid-1989/",
