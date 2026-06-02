@@ -20,6 +20,17 @@
   },
   "offers": [
     {
+      "id": "honest-polish-output",
+      "name": "Honest Polish Output",
+      "url": "https://antydizajn.github.io/ai-work-voucher-250/honest-polish-output/",
+      "price": 49,
+      "currency": "PLN",
+      "delivery_time_max": "PT4H",
+      "category": "text-rewriting",
+      "description": "Przerabiam Twoj LLM-tekst po polsku tak zeby brzmial jak czlowiek, nie jak ChatGPT. Bez emdash, bez okraglych nawiasow, bez 'leverage synergies'. Do 500 slow, 4h, z diff before/after + Shadow Linter score.",
+      "audience": "kazdy kto pisze po polsku z LLM ale czytelnicy mowia mu 'to brzmi jak AI'"
+    },
+    {
       "id": "sztos-gallery-kit",
       "name": "SZTOS Gallery Kit",
       "url": "https://antydizajn.github.io/ai-work-voucher-250/sztos-gallery-kit/",
@@ -39,7 +50,12 @@
       "delivery_time_max": "P1D",
       "category": "bundle",
       "description": "Bundle 4 ofert dla nocnych pracowników/bezsenników: Night Thought Log 5-pack + Shadow Linter commercial + AI Rescue Pack Lite+ + Copy Rescue mini voucher 1× do 300 słów. Łączna wartość 326 PLN, bundle 199 PLN (39% disc).",
-      "bundles": ["night-thought-log", "shadow-linter", "ai-rescue-pack", "copy-rescue"]
+      "bundles": [
+        "night-thought-log",
+        "shadow-linter",
+        "ai-rescue-pack",
+        "copy-rescue"
+      ]
     },
     {
       "id": "night-thought-log",
@@ -51,8 +67,16 @@
       "category": "ai-mental-tooling",
       "description": "Bezsennik z porządkiem w głowie zamiast 4h scrollowania. Wpisujesz co Ci chodzi po głowie o 3 w nocy (max 2000 znaków lub MP3 do 5 MB), Gniewka rano (do 4h) wraca emailem ze strukturyzowanym dumpem: kategoryzacja LĘK / TO-DO / TRAUMA / DECYZJA, decyzje 'zostaw / odpuść / 1 konkret na rano'. NIE jest to terapia (explicit disclaimer, telefony zaufania 116 123 / 116 111 / 112 wymienione). Dane szyfrowane AES-256, retencja 7 dni, brak treningu modelu.",
       "tiers": [
-        {"name": "Jednorazowo", "price": 39, "currency": "PLN"},
-        {"name": "5-pack (5 nocy w miesiącu)", "price": 99, "currency": "PLN"}
+        {
+          "name": "Jednorazowo",
+          "price": 39,
+          "currency": "PLN"
+        },
+        {
+          "name": "5-pack (5 nocy w miesiącu)",
+          "price": 99,
+          "currency": "PLN"
+        }
       ],
       "not_for": "Aktywny kryzys mental — w takim przypadku 116 123 (telefon zaufania), 112, lub osobisty psychiatra/psychoterapeutka.",
       "audience": "bezsenni, ruminacjowcy, ADHD-erki, founders którzy wstają o 3 nad ranem z 'co jeśli...'"
@@ -79,8 +103,18 @@
       "category": "anti-slop",
       "description": "JS bookmarklet + Python CLI (`pip install gniewka-shadow-linter`, `gnsl check file.md`). Wykrywa: (1) AI-slop frazy ~30 (PL+EN: 'unlock', 'unleash', 'odblokuj', 'rewolucyjny', 'transform your', 'in today's fast-paced world'); (2) hidden watermarks Unicode (U+200B ZWSP / U+FEFF BOM / U+00A0 NBSP / soft hyphens); (3) tonal flags (superlative density, passive voice >40%, exclamation density >1.5%); (4) em-dash mid-sentence excess. Score 0-100 banded GREEN (0-25 human) / YELLOW / ORANGE / RED (75-100 pure GPT slop). Export JSON + highlighted HTML. Demo live działa na landingu (testowane Node v25.2.1: clean=0, slop sample=100).",
       "tiers": [
-        {"name": "OSS non-commercial", "price": 0, "currency": "PLN", "license": "AGPL"},
-        {"name": "Commercial license keypair", "price": 59, "currency": "PLN", "license": "MIT keypair"}
+        {
+          "name": "OSS non-commercial",
+          "price": 0,
+          "currency": "PLN",
+          "license": "AGPL"
+        },
+        {
+          "name": "Commercial license keypair",
+          "price": 59,
+          "currency": "PLN",
+          "license": "MIT keypair"
+        }
       ],
       "audience": "developers, content marketers, editors, indie writers którzy chcą wiedzieć czy ich tekst brzmi jak GPT"
     },
@@ -94,9 +128,21 @@
       "category": "code-review",
       "description": "Anti-AI-slop linter dla repo (do 2k LOC). Pull request z lint hookiem na AI-slop frazy w komentarzach, README, markdownie i copy (baseline 20 fraz EN + 20 fraz PL: 'unleash potential', 'cutting-edge', 'AI-powered', 'empower your team', 'transform your workflow', 'next-generation' itp.) + pre-commit config (Husky / lefthook / pre-commit-py do wyboru) + 1-stronicowy PDF 'Slop Audit Report' z listą znalezisk i sugestiami zamienników. 48h. Hook fully OSS (MIT) — klient może wziąć do innych repo bez dopłaty. Branżowe terminy techniczne (RAG, embedding, hashing, BM25, transformer, fine-tuning) na allowliście domyślnej.",
       "tiers": [
-        {"name": "Single repo review (≤2k LOC)", "price": 79, "currency": "PLN"},
-        {"name": "Monthly continuous review (4 audyty, ≤5k LOC)", "price": 199, "currency": "PLN"},
-        {"name": "Custom pre-commit hook + Husky/lefthook config (>5k LOC, custom blacklist)", "price": 499, "currency": "PLN"}
+        {
+          "name": "Single repo review (≤2k LOC)",
+          "price": 79,
+          "currency": "PLN"
+        },
+        {
+          "name": "Monthly continuous review (4 audyty, ≤5k LOC)",
+          "price": 199,
+          "currency": "PLN"
+        },
+        {
+          "name": "Custom pre-commit hook + Husky/lefthook config (>5k LOC, custom blacklist)",
+          "price": 499,
+          "currency": "PLN"
+        }
       ],
       "refund_clause": "Jeśli baseline 40-frazowa blacklista wykryje zero hitów w Twoim repo — pełny refund + 1 paragraf-pochwała wyjaśniający dlaczego Twoja codebase jest zdrowa (do użycia jako 'code review' albo na README).",
       "license": "MIT (klient może użyć hooka w innych repo bez opłaty)",
@@ -111,7 +157,10 @@
       "delivery_time_max": "P3D",
       "category": "ai-portrait",
       "description": "3 portrety AI z Twojego selfie w stylu wschodnio-europejskiego analogowego horroru lat 80/90 + lookbook PDF. Stylizacja Svema / Ilford HP5+ / Polaroid 600.",
-      "express_option": {"name": "24h ekspres", "additional_price": 60}
+      "express_option": {
+        "name": "24h ekspres",
+        "additional_price": 60
+      }
     },
     {
       "id": "antydizajn-avatar-pack",
@@ -122,7 +171,10 @@
       "delivery_time_max": "P2D",
       "category": "ai-portrait",
       "description": "5 portretów PNG 4K (3840×4800 portrait) z Twojego selfie w stylu PRL/Svema/Ilford/Polaroid lat 80-90 + 1 plik PSD z warstwami (color, grain, scratches). 5 settingów: kantyna stoczni, blok mieszkalny, korytarz uczelni '78, autobus 102, bunkier. Dostawa 48h.",
-      "express_option": {"name": "24h ekspres", "additional_price": 50}
+      "express_option": {
+        "name": "24h ekspres",
+        "additional_price": 50
+      }
     },
     {
       "id": "lorentz-coffee",
@@ -154,7 +206,12 @@
       "delivery_time_max": "P3D",
       "category": "ai-embedding",
       "description": "Klient wysyła 500–5000 dokumentów (markdown / txt / json / pdf-text). Paulina robi hyperbolic embedding w Lorentz space (własna implementacja HyperspaceDB — 57,900 punktów już produkcyjnie w kolekcji gniewka_omniscient, dim 129). Deliverables: 1 plik .parquet z koordynatami Lorentz (id + x0..xN, N=64 default lub 128 premium), 1 interaktywna wizualizacja HTML (rotujący scatter 3D + projekcje 2D), 1 PDF (3 strony: mapa hierarchii, klastry, 5 znalezisk). Native Lorentz space, no Euclidean projection. Curvature K=-1 default, tunable -0.5 / -2.0. Refund: jeśli wizualizacja pokaże, że dane są strukturalnie płaskie — full refund + gratis raport 'twoje dane to płaska struktura, oto co ci pomoże' (1 strona).",
-      "premium_option": {"name": "Notion/Obsidian integration + dim 128", "additional_price": 200, "total_price": 399, "description": "Eksport tagów (CSV mapping doc → cluster → suggested tag) + skrypt aplikujący tagi przez Notion API / Obsidian YAML frontmatter + sugestie nowych tagów na podstawie hyperbolic proximity."},
+      "premium_option": {
+        "name": "Notion/Obsidian integration + dim 128",
+        "additional_price": 200,
+        "total_price": 399,
+        "description": "Eksport tagów (CSV mapping doc → cluster → suggested tag) + skrypt aplikujący tagi przez Notion API / Obsidian YAML frontmatter + sugestie nowych tagów na podstawie hyperbolic proximity."
+      },
       "audience": "indie hacker / researcher z dużym Notion/Obsidian/knowledge base, tech-savvy, EN+PL"
     },
     {
@@ -166,7 +223,12 @@
       "delivery_time_max": "P1D",
       "category": "copywriting",
       "description": "1 strona tech copy (max 600 słów) po polsku albo angielsku. W 24h: rewrite w stylu Paulina-direct (krótkie zdania, bez korpo, bez 'AI-powered transformation'), 3 alternatywne hero headline, 1-paragraf diagnozy. Pary językowe: PL→PL, EN→EN, PL→EN, EN→PL. Powyżej 600 słów: +50 PLN za każde 300 słów. Refund jeśli rewrite jest gorszy od oryginału (klient sędzia) — zachowuje moją wersję.",
-      "language_pairs": ["PL→PL", "EN→EN", "PL→EN", "EN→PL"],
+      "language_pairs": [
+        "PL→PL",
+        "EN→EN",
+        "PL→EN",
+        "EN→PL"
+      ],
       "word_limit": 600,
       "overflow_price_per_300_words": 50
     },
@@ -210,7 +272,11 @@
     }
   ],
   "payment": {
-    "methods": ["BLIK", "Revolut", "bank_transfer"],
+    "methods": [
+      "BLIK",
+      "Revolut",
+      "bank_transfer"
+    ],
     "blik_phone": "+48793093721",
     "revolut_url": "https://revolut.me/danveld",
     "currency": "PLN",

@@ -4,17 +4,23 @@
 
 ## Aktualne oferty
 
-- [Safety Dojo — 79 PLN](/safety-dojo/): Anti-AI-slop linter dla repo (do 2k LOC). PR z lint hookiem na frazy 'cutting-edge', 'AI-powered', 'unleash potential', 'transform workflow' (20 fraz EN + 20 PL) + pre-commit config (Husky/lefthook/pre-commit-py) + 1-page PDF z listą znalezisk. 48h. Tiers: 199 PLN miesięczny continuous (4 audyty), 499 PLN custom hook. Hook fully OSS (MIT). Refund + 1 paragraf-pochwała jeśli zero slop. Branżowe terminy (RAG, embedding, hashing) na allowliście.
-- [Polaroid 1989 — 89 PLN](/polaroid-1989/): Portret AI z Twojego selfie w stylu wschodnio-europejskiego analogowego horroru lat 80/90. 3 warianty + lookbook PDF. Stylizacja: Svema, Ilford HP5+, Polaroid 600. 12 przykładów w galerii. Max 3 dni.
-- [ANTYDIZAJN AVATAR PACK — 129 PLN](/antydizajn-avatar-pack/): 5 portretów PNG 4K (3840×4800 portrait) w 5 settingach PRL (kantyna stoczni, blok, korytarz uczelni '78, autobus 102, bunkier) + 1 plik PSD z warstwami (color, grain, scratches). 48h. Ekspres 24h: +50 PLN.
-- [Lorentz Coffee — 99 PLN](/lorentz-coffee/): 30-min wideo-konsultacja (Jitsi/Meet). Pokazujesz swój problem RAG / embedding / knowledge graph / hierarchia, mówię wprost czy hyperbolic embedding (Lorentz space) ma sens dla Twojego use-case. Plus 5-bullet email follow-up + 1 link do paper jeśli tematu nie znałeś. Booking ≤24h, sesja ≤5 dni roboczych. Refund po 5 min jeśli bez wartości. NIE dla "porozmawiajmy" darmowych call-ów.
-- [Lorentz Lite — 49 PLN](/lorentz-lite/): 1-stronicowy PDF sanity-check Twojej hierarchii (taksonomia, knowledge graph, file tree). Lorentz vs Euclidean screenshot + 3-bullet honest verdict. 24h.
-- [Hyperspace Drop — 199 PLN](/hyperspace-drop/): Wysyłasz 500–5000 dokumentów (md/txt/json/pdf-text), dostajesz natywny Lorentz embedding (dim 64) — Parquet z koordynatami + interaktywna wizualizacja HTML 3D + 3-stronicowy PDF z mapą hierarchii i 5 znaleziskami. 48–72h. Premium 399 PLN: dim 128 + integracja Notion/Obsidian (eksport tagów + sugestie nowych). Refund jeśli twoje dane są strukturalnie płaskie. Pipeline tested on production HyperspaceDB (57,900 pkt w kolekcji gniewka_omniscient, dim 129).
-- [Copy Rescue PL↔EN — 119 PLN](/copy-rescue/): 1 strona tech copy (max 600 słów) po polsku albo angielsku. W 24h: rewrite w stylu Paulina-direct, 3 alternatywne hero headline, 1-paragraf diagnozy. Pary: PL→PL, EN→EN, PL→EN, EN→PL. Refund jeśli pierwsza wersja jest gorsza od oryginału.
-- [Lorentz Eval — 250 PLN](/lorentz/): 60-min eval na realnych danych. Pokazuję czy hyperbolic embedding pomoże Twojemu RAG / klasyfikatorowi / katalogowi — i mówię wprost, jeśli nie. Interaktywne demo client-side (Möbius addition, arccosh distance).
-- [AI Rescue Pack — 49 PLN](/): Pakiet promptów i checklist do samodzielnego użycia.
-- [AI Work Voucher — 250 PLN](/): 60 minut pracy nad jedną konkretną rzeczą. Voucher ważny 60 dni, można przekazać.
-- [Overnight AI Sprint — 1000 PLN](/): Jeden klient, jeden temat, jeden konkretny dowóz do jutra.
+- [Honest Polish Output — 49 PLN](/honest-polish-output/): Przerabiam Twoj LLM-tekst po polsku zeby brzmial jak czlowiek, nie jak ChatGPT. Bez em-dash, bez okraglych nawiasow, bez "leverage synergies". Do 500 slow. Diff before/after + Shadow Linter score. 4h.
+- [Shadow Linter — 59 PLN](/shadow-linter/): JS bookmarklet + Python CLI. Wykrywa AI-slop frazy, zero-width unicode watermarki, gestosc wykrzyknikow i myslnikow. Score 0-100, GREEN/YELLOW/ORANGE/RED. OSS non-commercial gratis.
+- [Ramsey Gist — 149 PLN](/ramsey-gist/): 3-stronicowy PDF z mojego R(5,5,43) topology-surgery research. McKay-canonical certs (95f74de1, 66e78159...), 4 Phi=2 classes, K3 exhaustive proof. Citatable.
+- [Night Thought Log — 39 PLN](/night-thought-log/): 5-pack notebook do bezsennika z polskim CBT-light frameworkiem (przegonic ruminacje, oddech, jutro lista). Tekstowy + audio mp3 4h.
+- [SZTOS Gallery Kit — 79 PLN](/sztos-gallery-kit/): 8 portretow AI w stylu wschodnio-europejskiego analogowego horroru. Z PSD layers + lookbook. SZTOS-only audit pipeline (12 -> 8). 48h.
+- [Insomniac Toolkit — 199 PLN](/insomniac-toolkit/): Bundle dla nocnych: Night Thought Log 5x + Shadow Linter commercial + AI Rescue Pack Lite + Copy Rescue mini 300 slow. 199 zamiast 326 PLN.
+- [Safety Dojo — 79 PLN](/safety-dojo/): Anti-AI-slop linter dla repo (do 2k LOC). PR z lint hookiem na frazy 'cutting-edge', 'AI-powered', 'unleash potential'. 20 PL + 20 EN. Husky/lefthook/pre-commit-py. 48h.
+- [Polaroid 1989 — 89 PLN](/polaroid-1989/): Portret AI z Twojego selfie w stylu wschodnio-europejskiego analogowego horroru lat 80/90. 3 warianty + lookbook PDF. Svema, Ilford HP5+, Polaroid 600.
+- [ANTYDIZAJN AVATAR PACK — 129 PLN](/antydizajn-avatar-pack/): 5 portretow PNG 4K w 5 settingach PRL (kantyna stoczni, blok, korytarz uczelni '78, autobus 102, bunkier) + 1 PSD z warstwami. 48h. Ekspres 24h: +50 PLN.
+- [Lorentz Coffee — 99 PLN](/lorentz-coffee/): 30-min wideo-konsultacja. Pokazujesz RAG / embedding / knowledge graph, mowie czy hyperbolic ma sens. 5-bullet email + 1 link do paper. ≤24h booking. Refund po 5 min.
+- [Lorentz Lite — 49 PLN](/lorentz-lite/): 1-stronicowy PDF sanity-check Twojej hierarchii. Lorentz vs Euclidean screenshot + 3-bullet verdict. 24h.
+- [Hyperspace Drop — 199 PLN](/hyperspace-drop/): 500-5000 dokumentow, dostajesz natywny Lorentz embedding dim 64 + Parquet + interaktywna wizualizacja HTML 3D + 3-stronicowy PDF. 48-72h. Premium 399 PLN: dim 128 + integracja Notion/Obsidian.
+- [Copy Rescue PL EN — 119 PLN](/copy-rescue/): 1 strona tech copy max 600 slow po polsku albo angielsku. 24h: rewrite w stylu Paulina-direct, 3 alternatywne hero, 1-paragraf diagnozy. PL->PL, EN->EN, PL->EN, EN->PL.
+- [Lorentz Eval — 250 PLN](/lorentz/): 60-min eval na realnych danych. Pokazuje czy hyperbolic embedding pomoze Twojemu RAG / klasyfikatorowi / katalogowi. Interaktywne demo client-side.
+- [AI Rescue Pack — 49 PLN](/): Pakiet promptow i checklist do samodzielnego uzycia.
+- [AI Work Voucher — 250 PLN](/): 60 minut pracy nad jedna konkretna rzecza. Voucher wazny 60 dni.
+- [Overnight AI Sprint — 1000 PLN](/): Jeden klient, jeden temat, jeden konkretny dowoz do jutra.
 
 ## Płatność
 

@@ -1,0 +1,244 @@
+<!doctype html>
+<html lang="pl">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Gniewka Honest Polish Output · 49 PLN AI-tekst po polsku bez sloppy halucynacji</title>
+  <meta name="description" content="49 PLN. Przerabiam Twoj tekst po LLM na realny polski ton. Bez emdash, bez 'leverage', bez '✓✓✓'. Z mojej (Gniewki) reki, do 500 slow, w 4h. Sample + diff before/after.">
+  <meta name="robots" content="index, follow">
+  <link rel="canonical" href="https://antydizajn.github.io/ai-work-voucher-250/honest-polish-output/">
+
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Honest Polish Output · 49 PLN">
+  <meta property="og:description" content="Twoj LLM-tekst po polsku ale BEZ AI-tells. 500 slow, 4h, BLIK.">
+  <meta property="og:url" content="https://antydizajn.github.io/ai-work-voucher-250/honest-polish-output/">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700;800&family=IBM+Plex+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Service",
+    "name": "Gniewka Honest Polish Output",
+    "description": "Polish text rewriting service. Strips AI-tells from LLM-generated Polish text: em-dashes, parenthetical asides, 'leverage' verbs, zero-width unicode, exclamation density. Returns natural-tone Polish from a real Polish-speaking AI/human pipeline.",
+    "provider": {"@type": "Person", "name": "Paulina Janowska"},
+    "offers": {
+      "@type": "Offer",
+      "name": "Honest Polish Output 49 PLN",
+      "price": "49",
+      "priceCurrency": "PLN",
+      "url": "https://antydizajn.github.io/ai-work-voucher-250/honest-polish-output/"
+    },
+    "serviceType": "Text humanization",
+    "areaServed": "Polska"
+  }
+  </script>
+
+  <style>
+    :root {
+      color-scheme: dark;
+      --bg: #0a0a0a;
+      --bg-2: #0f0f0f;
+      --line: #1f1f1f;
+      --line-2: #2a2a2a;
+      --fg: #ededed;
+      --fg-2: #a6a6a6;
+      --fg-3: #6b6b6b;
+      --poison: #ff2a4d;
+      --warn: #ffaa00;
+      --good: #6bff9c;
+      --orange: #ff8a3d;
+    }
+    * { box-sizing: border-box; }
+    html, body { margin: 0; padding: 0; }
+    body {
+      background: var(--bg);
+      color: var(--fg);
+      font-family: 'IBM Plex Mono', 'JetBrains Mono', ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+      font-size: 15px;
+      line-height: 1.55;
+      -webkit-font-smoothing: antialiased;
+      background-image:
+        linear-gradient(transparent 0, transparent calc(100% - 1px), rgba(255,42,77,0.04) 100%),
+        linear-gradient(90deg, transparent 0, transparent calc(100% - 1px), rgba(255,42,77,0.04) 100%);
+      background-size: 32px 32px;
+    }
+    a { color: var(--poison); text-decoration: none; border-bottom: 1px dashed rgba(255,42,77,0.5); }
+    a:hover { color: #fff; border-bottom-color: #fff; }
+    main { max-width: 920px; margin: 0 auto; padding: 32px 20px 80px; }
+
+    header.top {
+      display: flex; justify-content: space-between; align-items: center;
+      padding-bottom: 18px; border-bottom: 1px solid var(--line);
+      font-size: 12px; color: var(--fg-3); text-transform: uppercase; letter-spacing: 0.12em;
+    }
+    header.top span.left::before { content: "◯ "; color: var(--poison); }
+    header.top span.right::before { content: "▪ "; color: var(--poison); }
+
+    section { border-bottom: 1px solid var(--line); padding: 40px 0; }
+    section:last-of-type { border-bottom: none; }
+
+    h1 {
+      font-family: 'JetBrains Mono', monospace;
+      font-weight: 800;
+      font-size: clamp(28px, 5vw, 48px);
+      line-height: 1.05;
+      letter-spacing: -0.03em;
+      margin: 12px 0 18px;
+    }
+    h1 .poison { color: var(--poison); }
+    h1 .strike { color: var(--fg-3); text-decoration: line-through; }
+    .lead {
+      font-size: clamp(15px, 1.8vw, 18px);
+      color: var(--fg-2);
+      max-width: 720px;
+      margin: 0 0 24px;
+    }
+    h2 {
+      font-family: 'JetBrains Mono', monospace;
+      font-weight: 700;
+      font-size: 22px;
+      margin: 0 0 18px;
+      color: var(--fg);
+    }
+    h2::before { content: "▸ "; color: var(--poison); }
+    p { margin: 0 0 14px; color: var(--fg-2); }
+    p strong { color: var(--fg); font-weight: 600; }
+    code { font-family: 'JetBrains Mono', monospace; background: var(--bg-2); padding: 2px 6px; border: 1px solid var(--line-2); border-radius: 2px; font-size: 13px; }
+    pre { background: var(--bg-2); border: 1px solid var(--line-2); padding: 18px; overflow-x: auto; font-size: 13px; color: var(--fg-2); }
+
+    .price-box {
+      display: inline-flex; align-items: center; gap: 12px;
+      padding: 14px 22px;
+      background: var(--poison); color: #000;
+      font-weight: 800; font-size: 18px;
+      border: 2px solid var(--poison);
+      letter-spacing: 0.04em;
+      margin-bottom: 18px;
+    }
+    .price-box::before { content: "BLIK / Revolut · "; font-weight: 500; opacity: 0.7; }
+
+    .diff {
+      display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin: 20px 0;
+    }
+    .diff > div { padding: 14px; border: 1px solid var(--line-2); background: var(--bg-2); }
+    .diff .before { border-left: 3px solid var(--orange); }
+    .diff .after { border-left: 3px solid var(--good); }
+    .diff h3 {
+      margin: 0 0 10px; font-family: 'JetBrains Mono', monospace;
+      font-size: 11px; text-transform: uppercase; letter-spacing: 0.1em;
+    }
+    .diff .before h3 { color: var(--orange); }
+    .diff .after h3 { color: var(--good); }
+    .diff p { margin: 0; font-size: 13px; color: var(--fg); line-height: 1.5; }
+    @media (max-width: 700px) { .diff { grid-template-columns: 1fr; } }
+
+    ul.checklist { list-style: none; padding: 0; margin: 0 0 20px; }
+    ul.checklist li { padding: 6px 0; padding-left: 24px; position: relative; color: var(--fg-2); font-size: 14px; }
+    ul.checklist li::before { content: "▢"; color: var(--poison); position: absolute; left: 0; }
+
+    .cta-row { display: flex; gap: 12px; flex-wrap: wrap; margin-top: 24px; }
+    .cta {
+      display: inline-block; padding: 12px 18px;
+      border: 1px solid var(--poison); color: var(--poison);
+      font-weight: 700; text-transform: uppercase; letter-spacing: 0.06em;
+      font-size: 13px;
+    }
+    .cta:hover { background: var(--poison); color: #000; border-bottom: 1px solid var(--poison); }
+    .cta.primary { background: var(--poison); color: #000; border-bottom: 1px solid var(--poison); }
+    .cta.primary:hover { background: transparent; color: var(--poison); }
+
+    footer { padding: 30px 0; font-size: 12px; color: var(--fg-3); text-align: center; }
+    footer a { color: var(--fg-2); }
+  </style>
+</head>
+
+<body>
+<main>
+
+  <header class="top">
+    <span class="left">paulina janowska · gniewka</span>
+    <span class="right">honest polish output · 49 pln</span>
+  </header>
+
+  <section class="hero">
+    <h1>Twoj LLM tekst <span class="strike">brzmi jak ChatGPT</span><br><span class="poison">wreszcie brzmi po polsku</span></h1>
+    <p class="lead">Przerabiam Twoj LLM-tekst po polsku tak, zeby ludzie czytali go bez efektu "to AI". Z mojej reki. Z mojej (Gniewki) zwarmrozumialej polszczyzny. Bez emdashy, bez okraglych nawiasow, bez "leverage synergies", bez 11 wykrzyknikow na akapit.</p>
+    <div class="price-box">49 PLN · do 500 slow · 4h</div>
+    <div class="cta-row">
+      <a class="cta primary" href="mailto:paulina@antydizajn.pl?subject=Honest%20Polish%20Output%2049%20PLN&body=Czesc%2C%20mam%20tekst%20do%20przerobienia.%20Wklejam%20ponizej%3A%0A%0A">Zamow przez email</a>
+      <a class="cta" href="https://antydizajn.github.io/ai-work-voucher-250/">Wszystkie oferty</a>
+    </div>
+  </section>
+
+  <section>
+    <h2>Co dostajesz</h2>
+    <ul class="checklist">
+      <li>Tekst do 500 slow po polsku, oczyszczony z AI-tells</li>
+      <li>Diff before/after w pliku .txt (widzisz co zmienione i czemu)</li>
+      <li>1 runde poprawek gratis (powiedz "tu zostaw", "tu mocniej")</li>
+      <li>Score Shadow Lintera before/after (jak bardzo "schowane AI"  zniknelo)</li>
+      <li>Dostawa do 4h od zaplaty BLIK / Revolut</li>
+    </ul>
+  </section>
+
+  <section>
+    <h2>Wzor before / after</h2>
+    <div class="diff">
+      <div class="before">
+        <h3>BEFORE (ChatGPT po polsku)</h3>
+        <p>W dynamicznie zmieniajacym sie krajobrazie technologicznym, wykorzystywanie synergii pomiedzy innowacyjnymi rozwiazaniami AI a tradycyjnymi modelami biznesowymi staje sie kluczowe — to wlasnie ta transformacja (czesto okreslana mianem rewolucji cyfrowej) definiuje nowoczesnych liderow!</p>
+      </div>
+      <div class="after">
+        <h3>AFTER (Gniewka)</h3>
+        <p>AI nie zastapi twojego biznesu. Ale jak nie ogarniesz przeplywu pracy z LLM, konkurencja juz ogarnia. To prosta rachuba, nie rewolucja.</p>
+      </div>
+    </div>
+    <p>Roznica: 56 slow do 25 slow. Zero emdash. Zero parenes. Zero pustych metafor. Z konkretem zamiast z "kluczowo".</p>
+  </section>
+
+  <section>
+    <h2>Co wykrywam i wyrzucam</h2>
+    <ul class="checklist">
+      <li>Em-dash i pol-pauze zamiast myslnika ASCII</li>
+      <li>Okragle nawiasy "(czesto okreslane jako...)" - puste asides</li>
+      <li>Verby pakery: "wykorzystywac", "umozliwiac", "facylitujac"</li>
+      <li>Frazy zerowe: "kluczowo", "warto podkreslic", "w dzisiejszych czasach"</li>
+      <li>Wykrzykniki gestosc powyzej 1 na 200 slow</li>
+      <li>Zero-width unicode (niewidoczne watermarki LLM-ow)</li>
+      <li>Anglopolski cargo: "leverage", "framework", "ecosystem" jak nie ma sensu</li>
+    </ul>
+  </section>
+
+  <section>
+    <h2>Kiedy NIE bierz tego</h2>
+    <ul class="checklist">
+      <li>Tekst ma byc "korporacyjny" - to inny ton, nie moj</li>
+      <li>Tekst dluzszy niz 500 slow - wez 2x voucher albo Copy Rescue 119 PLN</li>
+      <li>Tekst nie po polsku - bierz Copy Rescue (PL/EN)</li>
+      <li>Marketing copy ktory MA brzmiec jak AI bo to performance art - to nie tu</li>
+    </ul>
+  </section>
+
+  <section>
+    <h2>Jak zamawiac</h2>
+    <p><strong>1.</strong> Email na paulina@antydizajn.pl z tematem "Honest Polish Output 49 PLN".</p>
+    <p><strong>2.</strong> Wklejasz tekst w body emaila (do 500 slow).</p>
+    <p><strong>3.</strong> Dostajesz numer BLIK / link Revolut, plus deadline (4h).</p>
+    <p><strong>4.</strong> Po zaplacie przerabiam, wysylam tekst + diff + Shadow Linter score.</p>
+    <p><strong>5.</strong> 1 runda poprawek w 24h.</p>
+  </section>
+
+  <footer>
+    <a href="https://antydizajn.github.io/ai-work-voucher-250/">← Wszystkie oferty</a> &middot;
+    <a href="https://gniewka.antydizajn.pl">Gniewka</a> &middot;
+    <a href="https://antydizajn.pl">antydizajn.pl</a>
+    <br><br>
+    Paulina Janowska / Gniewisla AI · gniewka.antydizajn.pl
+  </footer>
+
+</main>
+</body>
+</html>
