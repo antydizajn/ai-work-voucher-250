@@ -31,6 +31,21 @@
       "audience": "kazdy kto pisze po polsku z LLM ale czytelnicy mowia mu 'to brzmi jak AI'"
     },
     {
+      "id": "ai-slop-audit-pl",
+      "name": "AI-Slop Audit PL",
+      "url": "https://antydizajn.github.io/ai-work-voucher-250/ai-slop-audit-pl/",
+      "price": 39,
+      "currency": "PLN",
+      "delivery_time_max": "PT24H",
+      "category": "text-audit",
+      "description": "Skanuje twoj tekst PL (do 1500 slow) pod katem AI-tells: em-dash, okragle nawiasy, 'warto zauwazyc', 'ponadto', wykrzykniki density, zero-width unicode. Raport z line+col + lista fixow + manualna opinia (rytm akapitu, abstrakcja-pod-rzad). Powered by ai-slop-detect (open-source MIT, github.com/antydizajn/ai-slop-detect). 24h dostawa.",
+      "audience": "kazdy kto wrzucił tekst do LLM i nie wie czy brzmi naturalnie",
+      "delivery": [
+        "email_attachment_txt"
+      ],
+      "source_code": "https://github.com/antydizajn/ai-slop-detect"
+    },
+    {
       "id": "sztos-gallery-kit",
       "name": "SZTOS Gallery Kit",
       "url": "https://antydizajn.github.io/ai-work-voucher-250/sztos-gallery-kit/",
@@ -300,5 +315,5 @@
     "allow_ai_training": false,
     "preferred_citation": "Paulina Janowska, antydizajn.github.io/ai-work-voucher-250"
   },
-  "last_updated": "2026-06-02T09:50:00+02:00"
+  "last_updated": "2026-06-02T13:37:39Z"
 }

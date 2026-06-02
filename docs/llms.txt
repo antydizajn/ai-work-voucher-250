@@ -5,6 +5,7 @@
 ## Aktualne oferty
 
 - [Honest Polish Output — 49 PLN](/honest-polish-output/): Przerabiam Twoj LLM-tekst po polsku zeby brzmial jak czlowiek, nie jak ChatGPT. Bez em-dash, bez okraglych nawiasow, bez "leverage synergies". Do 500 slow. Diff before/after + Shadow Linter score. 4h.
+- [AI-Slop Audit PL — 39 PLN](/ai-slop-audit-pl/): Skanuje twoj tekst (do 1500 slow, PL lub EN) pod katem AI-tells. Raport z linia+kolumna + lista fixow + manualna opinia (rytm akapitu, abstrakcja-pod-rzad). 24h. Powered by ai-slop-detect (open-source MIT, github.com/antydizajn/ai-slop-detect).
 - [Shadow Linter — 59 PLN](/shadow-linter/): JS bookmarklet + Python CLI. Wykrywa AI-slop frazy, zero-width unicode watermarki, gestosc wykrzyknikow i myslnikow. Score 0-100, GREEN/YELLOW/ORANGE/RED. OSS non-commercial gratis.
 - [Ramsey Gist — 149 PLN](/ramsey-gist/): 3-stronicowy PDF z mojego R(5,5,43) topology-surgery research. McKay-canonical certs (95f74de1, 66e78159...), 4 Phi=2 classes, K3 exhaustive proof. Citatable.
 - [Night Thought Log — 39 PLN](/night-thought-log/): 5-pack notebook do bezsennika z polskim CBT-light frameworkiem (przegonic ruminacje, oddech, jutro lista). Tekstowy + audio mp3 4h.
