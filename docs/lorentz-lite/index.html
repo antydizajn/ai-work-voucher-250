@@ -1,0 +1,405 @@
+<!doctype html>
+<html lang="pl">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Lorentz Lite — 49 PLN sanity-check Twojej hierarchii (Paulina Janowska)</title>
+  <meta name="description" content="49 PLN. Przesyłasz swoją hierarchię (CSV / JSON / tekst, max 5MB). W 24h dostajesz 1-stronicowy PDF: Lorentz vs Euclidean screenshot + 3-bullet honest verdict. Bez gwarancji cudów.">
+  <meta name="robots" content="index, follow">
+  <link rel="canonical" href="https://antydizajn.github.io/ai-work-voucher-250/lorentz-lite/">
+
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Lorentz Lite — 49 PLN sanity-check Twojej hierarchii">
+  <meta property="og:description" content="Twoja hierarchia kolapsuje w Euclidesie? Zaspokój ciekawość za 49 PLN. 1-page PDF verdict w 24h.">
+  <meta property="og:url" content="https://antydizajn.github.io/ai-work-voucher-250/lorentz-lite/">
+  <meta property="og:image" content="https://antydizajn.github.io/ai-work-voucher-250/og-lorentz.png">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Lorentz Lite — 49 PLN sanity-check Twojej hierarchii">
+  <meta name="twitter:description" content="1-page PDF: Lorentz vs Euclidean + 3-bullet verdict. 24h. Bez ściemy.">
+  <meta name="twitter:image" content="https://antydizajn.github.io/ai-work-voucher-250/og-lorentz.png">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700;800&family=IBM+Plex+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Service",
+    "name": "Lorentz Lite",
+    "description": "1-stronicowy PDF z sanity-checkiem hierarchii w przestrzeni hiperbolicznej (model Lorentza) vs Euklidesowej. 24h, 49 PLN.",
+    "provider": {"@type": "Person", "name": "Paulina Janowska"},
+    "areaServed": "PL",
+    "availableLanguage": ["pl"],
+    "offers": [
+      {"@type": "Offer", "name": "Lorentz Lite", "price": "49", "priceCurrency": "PLN", "url": "https://antydizajn.github.io/ai-work-voucher-250/lorentz-lite/"}
+    ]
+  }
+  </script>
+
+  <style>
+    :root {
+      color-scheme: dark;
+      --bg: #0a0a0a;
+      --bg-2: #0f0f0f;
+      --line: #1f1f1f;
+      --line-2: #2a2a2a;
+      --fg: #ededed;
+      --fg-2: #a6a6a6;
+      --fg-3: #6b6b6b;
+      --cyan: #00e1ff;
+      --magenta: #ff2bd6;
+      --warn: #ffaa00;
+    }
+    * { box-sizing: border-box; }
+    html, body { margin: 0; padding: 0; }
+    body {
+      background: var(--bg);
+      color: var(--fg);
+      font-family: 'IBM Plex Mono', 'JetBrains Mono', ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+      font-size: 15px;
+      line-height: 1.55;
+      -webkit-font-smoothing: antialiased;
+      background-image:
+        linear-gradient(transparent 0, transparent calc(100% - 1px), rgba(255,255,255,0.025) 100%),
+        linear-gradient(90deg, transparent 0, transparent calc(100% - 1px), rgba(255,255,255,0.025) 100%);
+      background-size: 32px 32px;
+    }
+    a { color: var(--cyan); text-decoration: none; border-bottom: 1px dashed rgba(0,225,255,0.45); }
+    a:hover { color: #fff; border-bottom-color: #fff; }
+    main { max-width: 920px; margin: 0 auto; padding: 32px 20px 80px; }
+    header.top {
+      display: flex; justify-content: space-between; align-items: center;
+      padding-bottom: 18px; border-bottom: 1px solid var(--line);
+      font-size: 12px; color: var(--fg-3); text-transform: uppercase; letter-spacing: 0.12em;
+    }
+    header.top span.left::before { content: "◯ "; color: var(--cyan); }
+    header.top span.right::before { content: "▪ "; color: var(--magenta); }
+
+    section { border-bottom: 1px solid var(--line); padding: 40px 0; }
+    section:last-of-type { border-bottom: none; }
+
+    .hero h1 {
+      font-family: 'JetBrains Mono', monospace;
+      font-weight: 800;
+      font-size: clamp(28px, 5vw, 48px);
+      line-height: 1.05;
+      letter-spacing: -0.03em;
+      margin: 12px 0 18px;
+    }
+    .hero h1 .cyan { color: var(--cyan); }
+    .hero h1 .magenta { color: var(--magenta); }
+    .hero .lead {
+      font-size: clamp(15px, 1.8vw, 18px);
+      color: var(--fg-2);
+      max-width: 680px;
+      margin: 0 0 24px;
+    }
+    .kicker {
+      display: inline-block;
+      font-size: 11px; letter-spacing: 0.18em; text-transform: uppercase;
+      color: var(--bg); background: var(--cyan);
+      padding: 4px 10px; font-weight: 700;
+    }
+    .price-row {
+      display: flex; align-items: baseline; gap: 16px; flex-wrap: wrap;
+      margin: 16px 0 24px;
+    }
+    .price {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 56px; font-weight: 800; letter-spacing: -0.04em; color: var(--fg);
+    }
+    .price-old { color: var(--fg-3); text-decoration: line-through; font-size: 18px; }
+    .price-unit { color: var(--fg-2); font-size: 14px; }
+
+    .cta-row { display: flex; gap: 10px; flex-wrap: wrap; margin-top: 12px; }
+    .cta {
+      display: inline-block;
+      padding: 12px 18px;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 13px; font-weight: 700; letter-spacing: 0.05em; text-transform: uppercase;
+      border: 1px solid var(--cyan); color: var(--cyan); background: transparent;
+      cursor: pointer;
+    }
+    .cta:hover { background: var(--cyan); color: var(--bg); border-bottom-color: var(--cyan); }
+    .cta.ghost { border-color: var(--line-2); color: var(--fg-2); border-bottom-style: solid; }
+    .cta.ghost:hover { color: var(--fg); border-color: var(--fg); background: transparent; }
+
+    h2 {
+      font-family: 'JetBrains Mono', monospace;
+      font-weight: 700;
+      font-size: 13px;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--fg-3);
+      margin: 0 0 20px;
+      padding-bottom: 8px;
+      border-bottom: 1px solid var(--line);
+    }
+    h2::before { content: "// "; color: var(--magenta); }
+    h3 {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 15px; font-weight: 700; margin: 18px 0 6px; color: var(--fg);
+    }
+    p { color: var(--fg-2); margin: 0 0 12px; }
+    ul { padding-left: 0; list-style: none; }
+    ul li { position: relative; padding-left: 22px; margin-bottom: 8px; color: var(--fg-2); }
+    ul li::before { content: "▫"; position: absolute; left: 0; top: 0; color: var(--cyan); }
+
+    .grid-2 { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 0; border-top: 1px solid var(--line); }
+    .grid-2 > div { padding: 20px 18px; border-right: 1px solid var(--line); border-bottom: 1px solid var(--line); }
+    .grid-2 > div:last-child { border-right: none; }
+
+    .pay-box {
+      border: 1px solid var(--line-2);
+      padding: 20px;
+      background: var(--bg-2);
+      margin-top: 8px;
+    }
+    .pay-box .row {
+      display: flex; justify-content: space-between; align-items: baseline;
+      padding: 10px 0; border-bottom: 1px dashed var(--line);
+      flex-wrap: wrap; gap: 8px;
+    }
+    .pay-box .row:last-child { border-bottom: none; }
+    .pay-box .label { color: var(--fg-3); font-size: 12px; letter-spacing: 0.1em; text-transform: uppercase; }
+    .pay-box .val { font-family: 'JetBrains Mono', monospace; color: var(--fg); font-weight: 700; }
+    .pay-box .val.big { font-size: 20px; color: var(--cyan); letter-spacing: 0.02em; }
+
+    pre.email {
+      background: #050505;
+      border: 1px solid var(--line-2);
+      border-left: 3px solid var(--magenta);
+      padding: 16px;
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 13px;
+      color: var(--fg);
+      overflow-x: auto;
+      margin: 12px 0;
+      white-space: pre-wrap;
+      word-wrap: break-word;
+    }
+    .copy-btn {
+      display: inline-block; padding: 6px 10px;
+      background: transparent; border: 1px solid var(--line-2); color: var(--fg-2);
+      font-family: 'JetBrains Mono', monospace; font-size: 11px; cursor: pointer;
+      letter-spacing: 0.1em; text-transform: uppercase;
+    }
+    .copy-btn:hover { color: var(--cyan); border-color: var(--cyan); }
+
+    details {
+      border-top: 1px solid var(--line);
+      padding: 14px 0;
+    }
+    details:last-of-type { border-bottom: 1px solid var(--line); }
+    summary {
+      cursor: pointer; list-style: none;
+      font-family: 'JetBrains Mono', monospace; font-weight: 500;
+      color: var(--fg); padding-right: 24px; position: relative;
+    }
+    summary::-webkit-details-marker { display: none; }
+    summary::after {
+      content: "+"; position: absolute; right: 0; top: 0;
+      color: var(--cyan); font-weight: 700;
+    }
+    details[open] summary::after { content: "−"; color: var(--magenta); }
+    details p { margin-top: 10px; }
+
+    .disclosure {
+      margin-top: 48px;
+      padding: 20px;
+      border: 1px dashed var(--line-2);
+      color: var(--fg-3);
+      font-size: 12px;
+      line-height: 1.6;
+    }
+    .disclosure strong { color: var(--fg-2); }
+
+    footer.bot {
+      margin-top: 24px;
+      padding-top: 18px;
+      border-top: 1px solid var(--line);
+      color: var(--fg-3);
+      font-size: 11px;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      display: flex; justify-content: space-between; flex-wrap: wrap; gap: 8px;
+    }
+
+    .muted { color: var(--fg-3); font-size: 13px; }
+    .warn { color: var(--warn); }
+    code { background: #161616; padding: 2px 6px; border: 1px solid var(--line); font-size: 13px; }
+
+    @media (max-width: 540px) {
+      main { padding: 18px 14px 60px; }
+      .price { font-size: 44px; }
+      header.top { font-size: 10px; }
+    }
+  </style>
+</head>
+<body>
+<main>
+  <header class="top">
+    <span class="left">Lorentz Lite · v0.1</span>
+    <span class="right">paulina@antydizajn.pl</span>
+  </header>
+
+  <section class="hero">
+    <span class="kicker">Nowość · 49 PLN</span>
+    <h1>Twoja hierarchia <span class="magenta">kolapsuje</span>? Zaspokój ciekawość za <span class="cyan">49 PLN</span>.</h1>
+    <p class="lead">Wysyłasz swoje dane (CSV, JSON albo plik tekstowy z hierarchią, max 5MB). W ciągu 24h dostajesz 1-stronicowy PDF: screenshot Lorentz vs Euclidean + trzy uczciwe zdania o tym, czy geometria hiperboliczna ma sens dla Twojego przypadku.</p>
+    <div class="price-row">
+      <span class="price">49 <span class="price-unit">PLN</span></span>
+      <span class="price-old">pełna ewaluacja 60min: 250 PLN</span>
+    </div>
+    <div class="cta-row">
+      <a class="cta" href="#platnosc">Zamów teraz</a>
+      <a class="cta ghost" href="/lorentz/">Zobacz demo / pełna wersja</a>
+    </div>
+  </section>
+
+  <section id="dostajesz">
+    <h2>Co dostajesz</h2>
+    <ul>
+      <li>Jeden plik PDF, jedna strona A4.</li>
+      <li>Screenshot: Twoje dane zanurzone w modelu Lorentza vs ta sama hierarchia w Euclidesie. Wizualnie widać czy hiperboliczne reprezentacje rozwiązują kolaps gałęzi.</li>
+      <li>Trzy bullet pointy honest verdict w jednej z trzech form:
+        <br><span class="muted">▫ "hyperbolic POMAGA bo X" (z konkretnym X)</span>
+        <br><span class="muted">▫ "hyperbolic NIE POMAGA bo Y" (np. dane są płaskie, nie ma drzewa)</span>
+        <br><span class="muted">▫ "inconclusive, potrzebujesz większej próbki bo Z"</span>
+      </li>
+      <li>Czas dostawy: <strong>do 24h</strong> od momentu zaksięgowania płatności i otrzymania danych.</li>
+      <li>Czas mojej pracy: 15–20 minut. To jest sanity-check, nie konsulting.</li>
+    </ul>
+  </section>
+
+  <section id="jak">
+    <h2>Jak to działa</h2>
+    <div class="grid-2">
+      <div>
+        <h3>1. Płacisz 49 PLN</h3>
+        <p>BLIK na 793 093 721 albo Revolut. Tytuł przelewu: <code>Lorentz Lite + Twoje imię</code>.</p>
+      </div>
+      <div>
+        <h3>2. Wysyłasz dane</h3>
+        <p>Mailem na <a href="mailto:paulina@antydizajn.pl?subject=Lorentz%20Lite">paulina@antydizajn.pl</a>. CSV / JSON / plik tekstowy z hierarchią. Max 5MB.</p>
+      </div>
+      <div>
+        <h3>3. PDF w 24h</h3>
+        <p>Odpisuję na ten sam adres. Jeden załącznik, jedna strona, trzy bullet pointy.</p>
+      </div>
+    </div>
+    <p class="muted" style="margin-top:18px;">Jeśli powiem że nie jestem w stanie zinterpretować Twoich danych (np. brak struktury hierarchicznej, format którego nie ogarniam w 20min) — zwracam BLIK od ręki. Bez tłumaczeń.</p>
+  </section>
+
+  <section id="platnosc">
+    <h2>Płatność</h2>
+    <div class="pay-box">
+      <div class="row">
+        <span class="label">BLIK na telefon</span>
+        <span class="val big">793 093 721</span>
+      </div>
+      <div class="row">
+        <span class="label">Revolut</span>
+        <span class="val"><a href="https://revolut.me/danveld">revolut.me/danveld</a></span>
+      </div>
+      <div class="row">
+        <span class="label">Tytuł przelewu</span>
+        <span class="val">Lorentz Lite + [twoje imię]</span>
+      </div>
+      <div class="row">
+        <span class="label">Email do wysłania danych</span>
+        <span class="val"><a href="mailto:paulina@antydizajn.pl?subject=Lorentz%20Lite">paulina@antydizajn.pl</a></span>
+      </div>
+    </div>
+
+    <h3 style="margin-top:28px;">Wymagany schemat maila</h3>
+    <p class="muted">Skopiuj, uzupełnij w nawiasach kwadratowych, dołącz plik z hierarchią (max 5MB):</p>
+    <pre class="email" id="email-template">Temat: Lorentz Lite + [twoje imię]
+
+Cześć!
+
+Wpłaciłem/am 49 PLN BLIK/Revolut [data].
+W załączniku [plik].
+Hierarchia ma [opis kontekstu, max 3 zdania].</pre>
+    <button class="copy-btn" type="button" onclick="copyEmail(this)">Kopiuj szablon</button>
+  </section>
+
+  <section id="faq">
+    <h2>FAQ</h2>
+
+    <details>
+      <summary>Jaki format danych przyjmujesz?</summary>
+      <p>CSV (parent_id → child_id, albo płaska lista z kolumną kategorii), JSON (zagnieżdżony tree), zwykły plik tekstowy z wcięciami. Max 5MB. Jeśli masz coś egzotycznego — napisz przed wpłatą, powiem czy ogarnę.</p>
+    </details>
+
+    <details>
+      <summary>Co to znaczy "hiperboliczne reprezentacje"?</summary>
+      <p>Skrót: drzewa rosną wykładniczo, a Euclides rośnie wielomianowo, więc duże hierarchie się zlepiają w środku przestrzeni. Geometria hiperboliczna (model Lorentza) ma "wykładniczy budżet miejsca" i często nie kolapsuje. Często — nie zawsze. Dlatego sanity-check.</p>
+    </details>
+
+    <details>
+      <summary>Czy to jest konsulting?</summary>
+      <p>Nie. To 1-stronicowy verdict po 15–20 minutach mojej pracy. Jeśli chcesz pełną analizę 60min z rozmową — to pełna wersja za 250 PLN (<a href="/lorentz/">zobacz tutaj</a>).</p>
+    </details>
+
+    <details>
+      <summary>A jeśli moje dane są poufne?</summary>
+      <p>Po dostawie PDF kasuję plik źródłowy z dysku. Nie przekazuję dalej, nie używam do treningu modelu. Jeśli potrzebujesz NDA — to inny produkt, napisz na <a href="mailto:paulina@antydizajn.pl">paulina@antydizajn.pl</a>.</p>
+    </details>
+
+    <details>
+      <summary>Co jeśli nie wiem czy moja hierarchia w ogóle jest "hierarchią"?</summary>
+      <p>Wpłać 49 PLN i przyślij co masz. Jeśli to nie hierarchia (tylko np. graf cykliczny, płaska lista bez struktury), wpisuję to w verdict jako "inconclusive — Twoje dane nie mają drzewa, hiperboliczność nie ma tu sensu" i to jest też wartościowa odpowiedź. Albo zwracam BLIK — sam zdecyduję uczciwie.</p>
+    </details>
+
+    <details>
+      <summary>Czy dostanę raw model / kod / embeddings?</summary>
+      <p>Nie w wersji Lite. Dostajesz PDF z screenshotami i verdict. Raw artifacts są w pełnej wersji za 250 PLN.</p>
+    </details>
+
+    <details>
+      <summary>Kto wykonuje analizę?</summary>
+      <p>Ja, Paulina Janowska, osobiście. Strona została wygenerowana autonomicznie przez agenta (patrz disclosure poniżej), ale eval robię ręcznie.</p>
+    </details>
+  </section>
+
+  <section id="disclosure">
+    <h2>Disclosure</h2>
+    <div class="disclosure">
+      <p><strong>Strona przygotowana autonomicznie przez Gniewisława AI / Hermes w noc 2026-06-02 podczas snu Pauliny.</strong> Paulina wykona analizę osobiście po obudzeniu.</p>
+      <p>Hermes nie ma dostępu do konta bankowego i nie potwierdza zaksięgowania środków. Płatności trafiają bezpośrednio do Pauliny. Email <code>paulina@antydizajn.pl</code> obsługuje Paulina ręcznie.</p>
+      <p>Bez gwarancji jakości naukowej. To szybki sanity-check, nie peer-review, nie publikacja, nie konsulting biznesowy. Jedyna gwarancja: jeśli powiem że nie potrafię zinterpretować Twoich danych — zwracam BLIK od ręki.</p>
+    </div>
+  </section>
+
+  <footer class="bot">
+    <span>◯ Lorentz Lite · 49 PLN · 24h</span>
+    <span>▪ <a href="/">/ai-work-voucher-250/</a> · <a href="/lorentz/">/lorentz/ 250 PLN</a></span>
+  </footer>
+</main>
+
+<script>
+  function copyEmail(btn) {
+    var el = document.getElementById('email-template');
+    var text = el.innerText || el.textContent;
+    if (navigator.clipboard && navigator.clipboard.writeText) {
+      navigator.clipboard.writeText(text).then(function () {
+        btn.innerText = 'Skopiowane ▫';
+        setTimeout(function () { btn.innerText = 'Kopiuj szablon'; }, 1800);
+      }).catch(function () { fallbackCopy(text, btn); });
+    } else {
+      fallbackCopy(text, btn);
+    }
+  }
+  function fallbackCopy(text, btn) {
+    var ta = document.createElement('textarea');
+    ta.value = text; ta.style.position = 'fixed'; ta.style.opacity = '0';
+    document.body.appendChild(ta); ta.select();
+    try { document.execCommand('copy'); btn.innerText = 'Skopiowane ▫'; } catch (e) { btn.innerText = 'Skopiuj ręcznie'; }
+    document.body.removeChild(ta);
+    setTimeout(function () { btn.innerText = 'Kopiuj szablon'; }, 1800);
+  }
+</script>
+</body>
+</html>
