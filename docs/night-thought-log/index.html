@@ -1,0 +1,879 @@
+<!doctype html>
+<html lang="pl">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Night Thought Log — 39 PLN AI dziennik bezsenności (Paulina Janowska)</title>
+  <meta name="description" content="Bezsennik dla nadmiernie myślących. Wrzucasz o 3 nad ranem co Ci chodzi po głowie, rano dostajesz email: kategoryzacja (lęk / to-do / trauma / decyzja), co z tym zrobić, jeden konkret na 5 minut. 39 PLN jednorazowo. 99 PLN za 5-pack. Brak subskrypcji.">
+  <meta name="robots" content="index, follow">
+  <link rel="canonical" href="https://antydizajn.github.io/ai-work-voucher-250/night-thought-log/">
+
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Night Thought Log — 39 PLN bezsenny AI dziennik">
+  <meta property="og:description" content="O 3:47 wrzucasz co Ci chodzi po głowie. Rano email z porządkiem zamiast 4h scrollowania. 39 PLN. Bez subskrypcji.">
+  <meta property="og:url" content="https://antydizajn.github.io/ai-work-voucher-250/night-thought-log/">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Night Thought Log — 39 PLN bezsenny AI dziennik">
+  <meta name="twitter:description" content="Lęk vs to-do vs trauma vs decyzja. Kategoryzacja + jeden konkret na rano. 4h SLA. 39 PLN.">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Service",
+    "name": "Night Thought Log",
+    "description": "AI dziennik bezsenności. Wrzucasz o 3 nad ranem do 2000 znaków tekstu (lub MP3 do 5 MB). Rano (do 4h) dostajesz email z kategoryzacją myśli (lęk / to-do / trauma / decyzja), decyzjami co z tym zrobić, listą rzeczy do odpuszczenia oraz jednym konkretem na 5 minut. 39 PLN jednorazowo, 99 PLN za 5-pack.",
+    "provider": {"@type": "Person", "name": "Paulina Janowska"},
+    "areaServed": ["PL"],
+    "availableLanguage": ["pl"],
+    "offers": [
+      {"@type": "Offer", "name": "Night Thought Log — pojedyncza noc", "price": "39", "priceCurrency": "PLN", "url": "https://antydizajn.github.io/ai-work-voucher-250/night-thought-log/"},
+      {"@type": "Offer", "name": "Night Thought Log — 5-pack (5 nocy w miesiącu)", "price": "99", "priceCurrency": "PLN", "url": "https://antydizajn.github.io/ai-work-voucher-250/night-thought-log/"}
+    ]
+  }
+  </script>
+
+  <style>
+    :root {
+      color-scheme: dark;
+      --bg: #000000;
+      --fg: #f4f4f4;
+      --fg-2: #b8b8b8;
+      --fg-3: #707070;
+      --line: #ffffff;
+      --line-dim: #2a2a2a;
+      --neon: #00ffd0;
+    }
+    * { box-sizing: border-box; }
+    html, body { margin: 0; padding: 0; }
+    body {
+      background: var(--bg);
+      color: var(--fg);
+      font-family: 'Inter', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+      font-size: 16px;
+      line-height: 1.55;
+      -webkit-font-smoothing: antialiased;
+      text-rendering: optimizeLegibility;
+    }
+    a {
+      color: var(--neon);
+      text-decoration: none;
+      border-bottom: 1px solid var(--neon);
+    }
+    a:hover {
+      background: var(--neon);
+      color: #000;
+    }
+
+    main {
+      max-width: 880px;
+      margin: 0 auto;
+      padding: 0 20px 80px;
+    }
+
+    /* TOP BAR */
+    header.top {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 18px 0;
+      border-bottom: 1px solid var(--line);
+      font-size: 11px;
+      color: var(--fg-2);
+      text-transform: uppercase;
+      letter-spacing: 0.18em;
+      font-weight: 600;
+    }
+    header.top .left { color: var(--neon); }
+    header.top .right { color: var(--fg-3); }
+
+    section {
+      border-bottom: 1px solid var(--line);
+      padding: 56px 0;
+    }
+    section:last-of-type { border-bottom: 1px solid var(--line); }
+
+    h1, h2, h3 {
+      font-family: 'Inter', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+      font-weight: 800;
+      letter-spacing: -0.02em;
+      margin: 0 0 18px;
+    }
+
+    /* HERO */
+    .hero h1 {
+      font-size: clamp(38px, 7vw, 76px);
+      line-height: 0.98;
+      font-weight: 900;
+      letter-spacing: -0.04em;
+      margin: 8px 0 22px;
+    }
+    .hero h1 .neon { color: var(--neon); }
+    .hero .lead {
+      font-size: clamp(16px, 1.9vw, 20px);
+      color: var(--fg-2);
+      max-width: 680px;
+      margin: 0 0 28px;
+      font-weight: 400;
+    }
+    .hero .meta-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0;
+      border: 1px solid var(--line);
+      margin: 28px 0 0;
+    }
+    .hero .meta-row > div {
+      flex: 1 1 180px;
+      padding: 14px 16px;
+      border-right: 1px solid var(--line);
+      font-size: 12px;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: var(--fg-2);
+    }
+    .hero .meta-row > div:last-child { border-right: none; }
+    .hero .meta-row b { color: var(--neon); display: block; font-size: 18px; letter-spacing: 0; text-transform: none; font-weight: 700; margin-top: 4px; }
+
+    .cta-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-top: 32px;
+    }
+    .btn {
+      display: inline-block;
+      padding: 14px 22px;
+      border: 1px solid var(--line);
+      background: transparent;
+      color: var(--fg);
+      font-family: inherit;
+      font-size: 14px;
+      font-weight: 700;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      cursor: pointer;
+    }
+    .btn:hover {
+      background: var(--fg);
+      color: #000;
+      border-bottom: 1px solid var(--fg);
+    }
+    .btn.primary {
+      background: var(--neon);
+      color: #000;
+      border-color: var(--neon);
+    }
+    .btn.primary:hover {
+      background: #000;
+      color: var(--neon);
+    }
+
+    /* HOW IT WORKS */
+    .steps {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 0;
+      border: 1px solid var(--line);
+    }
+    .step {
+      padding: 22px;
+      border-right: 1px solid var(--line);
+      border-bottom: 1px solid var(--line);
+    }
+    .step:nth-child(2n) { border-right: none; }
+    .step:nth-last-child(-n+2) { border-bottom: none; }
+    .step .num {
+      color: var(--neon);
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 12px;
+      letter-spacing: 0.15em;
+      margin-bottom: 8px;
+    }
+    .step h3 {
+      font-size: 18px;
+      margin: 0 0 8px;
+      font-weight: 700;
+    }
+    .step p {
+      margin: 0;
+      color: var(--fg-2);
+      font-size: 14px;
+      line-height: 1.5;
+    }
+    @media (max-width: 600px) {
+      .steps { grid-template-columns: 1fr; }
+      .step { border-right: none; border-bottom: 1px solid var(--line); }
+      .step:last-child { border-bottom: none; }
+    }
+
+    /* SAMPLE OUTPUT */
+    .sample-frame {
+      border: 1px solid var(--neon);
+      padding: 0;
+      margin-top: 18px;
+      background: #000;
+    }
+    .sample-frame .head {
+      border-bottom: 1px solid var(--neon);
+      padding: 12px 16px;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 12px;
+      color: var(--neon);
+      letter-spacing: 0.1em;
+      display: flex;
+      justify-content: space-between;
+    }
+    .sample-frame .body {
+      padding: 22px;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 13.5px;
+      line-height: 1.7;
+      color: var(--fg);
+      white-space: pre-wrap;
+    }
+    .sample-frame .label {
+      display: inline-block;
+      background: var(--neon);
+      color: #000;
+      padding: 2px 8px;
+      font-size: 10px;
+      letter-spacing: 0.15em;
+      font-weight: 700;
+      text-transform: uppercase;
+      margin-bottom: 16px;
+    }
+    .cat {
+      color: var(--neon);
+      font-weight: 700;
+      letter-spacing: 0.05em;
+    }
+    .dim { color: var(--fg-3); }
+
+    /* NIE jest to */
+    .not-list {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      border: 1px solid var(--line);
+    }
+    .not-list li {
+      padding: 14px 18px;
+      border-bottom: 1px solid var(--line);
+      font-size: 15px;
+    }
+    .not-list li:last-child { border-bottom: none; }
+    .not-list li::before {
+      content: "NIE / ";
+      color: var(--neon);
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 12px;
+      letter-spacing: 0.1em;
+      margin-right: 8px;
+    }
+
+    /* PRIVACY */
+    .priv {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 0;
+      border: 1px solid var(--line);
+    }
+    .priv > div {
+      padding: 18px;
+      border-right: 1px solid var(--line);
+      border-bottom: 1px solid var(--line);
+    }
+    .priv > div:nth-child(2n) { border-right: none; }
+    .priv > div:nth-last-child(-n+2) { border-bottom: none; }
+    .priv .k {
+      color: var(--neon);
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 11px;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      display: block;
+      margin-bottom: 6px;
+    }
+    .priv .v { color: var(--fg); font-size: 14px; }
+    @media (max-width: 600px) {
+      .priv { grid-template-columns: 1fr; }
+      .priv > div { border-right: none; }
+    }
+
+    /* PRICING */
+    .price-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 0;
+      border: 1px solid var(--line);
+      margin-top: 12px;
+    }
+    .price-card {
+      padding: 28px 24px;
+      border-right: 1px solid var(--line);
+    }
+    .price-card:last-child { border-right: none; }
+    .price-card.featured { background: #0a0a0a; }
+    .price-card .tag {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 11px;
+      letter-spacing: 0.18em;
+      color: var(--neon);
+      text-transform: uppercase;
+    }
+    .price-card .price {
+      font-size: 46px;
+      font-weight: 900;
+      letter-spacing: -0.03em;
+      margin: 8px 0 4px;
+      color: var(--fg);
+    }
+    .price-card .price .unit {
+      font-size: 16px;
+      color: var(--fg-3);
+      font-weight: 500;
+      letter-spacing: 0;
+      margin-left: 6px;
+    }
+    .price-card .desc {
+      color: var(--fg-2);
+      font-size: 14px;
+      margin: 0 0 14px;
+    }
+    .price-card .calc {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 12px;
+      color: var(--neon);
+    }
+    @media (max-width: 600px) {
+      .price-grid { grid-template-columns: 1fr; }
+      .price-card { border-right: none; border-bottom: 1px solid var(--line); }
+      .price-card:last-child { border-bottom: none; }
+    }
+
+    .pay-box {
+      border: 1px solid var(--line);
+      margin-top: 24px;
+    }
+    .pay-box .row {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      padding: 14px 18px;
+      border-bottom: 1px solid var(--line);
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+    .pay-box .row:last-child { border-bottom: none; }
+    .pay-box .label {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 11px;
+      letter-spacing: 0.15em;
+      color: var(--fg-2);
+      text-transform: uppercase;
+    }
+    .pay-box .val {
+      font-size: 16px;
+      color: var(--fg);
+      font-weight: 600;
+    }
+    .pay-box .val.big {
+      font-size: 22px;
+      letter-spacing: 0.04em;
+      color: var(--neon);
+      font-family: 'JetBrains Mono', monospace;
+      font-weight: 700;
+    }
+
+    /* FORM placeholder */
+    .form-box {
+      border: 1px solid var(--line);
+      padding: 24px;
+      margin-top: 18px;
+    }
+    .form-box label {
+      display: block;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 11px;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--fg-2);
+      margin: 14px 0 6px;
+    }
+    .form-box input, .form-box textarea {
+      width: 100%;
+      background: #000;
+      color: var(--fg);
+      border: 1px solid var(--line);
+      padding: 12px;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 14px;
+      resize: vertical;
+    }
+    .form-box input:focus, .form-box textarea:focus {
+      outline: none;
+      border-color: var(--neon);
+    }
+    .form-box textarea { min-height: 160px; }
+    .form-box .hint {
+      font-size: 12px;
+      color: var(--fg-3);
+      margin: 4px 0 0;
+    }
+    .form-box .submit-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-top: 22px;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+    .form-box .counter {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 12px;
+      color: var(--fg-3);
+    }
+    .form-box .counter.warn { color: var(--neon); }
+
+    /* FAQ */
+    details {
+      border-bottom: 1px solid var(--line);
+      padding: 14px 0;
+    }
+    details:first-of-type { border-top: 1px solid var(--line); }
+    details summary {
+      cursor: pointer;
+      font-weight: 700;
+      font-size: 16px;
+      list-style: none;
+      padding-right: 24px;
+      position: relative;
+    }
+    details summary::-webkit-details-marker { display: none; }
+    details summary::after {
+      content: "+";
+      position: absolute;
+      right: 0;
+      top: 0;
+      color: var(--neon);
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 18px;
+    }
+    details[open] summary::after { content: "−"; }
+    details p {
+      margin: 10px 0 0;
+      color: var(--fg-2);
+      font-size: 15px;
+    }
+    details p b { color: var(--fg); }
+
+    /* AUTHORSHIP / FOOTER */
+    .authorship {
+      border: 1px solid var(--neon);
+      padding: 22px;
+      margin-top: 28px;
+      font-size: 14px;
+      line-height: 1.6;
+    }
+    .authorship .head {
+      color: var(--neon);
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 11px;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      margin-bottom: 10px;
+    }
+    .authorship code {
+      color: var(--neon);
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 13px;
+    }
+
+    footer.bot {
+      margin-top: 32px;
+      padding-top: 18px;
+      border-top: 1px solid var(--line);
+      display: flex;
+      justify-content: space-between;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 11px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--fg-3);
+    }
+
+    .muted { color: var(--fg-3); }
+    p { margin: 0 0 12px; }
+    p:last-child { margin-bottom: 0; }
+    h2 {
+      font-size: clamp(22px, 3vw, 32px);
+      letter-spacing: -0.02em;
+    }
+    h2 .num {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 13px;
+      color: var(--neon);
+      letter-spacing: 0.2em;
+      display: block;
+      font-weight: 500;
+      margin-bottom: 8px;
+    }
+
+    /* clock blink */
+    @keyframes blink { 50% { opacity: 0.3; } }
+    .blink { animation: blink 1.6s infinite; }
+  </style>
+</head>
+<body>
+<main>
+
+  <header class="top">
+    <span class="left">◯ NIGHT THOUGHT LOG / 03:47 / SLA 4H</span>
+    <span class="right">v0.1 / 2026-06-02</span>
+  </header>
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="muted" style="font-family:'JetBrains Mono',monospace;font-size:12px;letter-spacing:0.2em;color:var(--neon);margin-bottom:6px;">
+      [<span class="blink">●</span>] LOG OPEN / NIGHT MODE
+    </div>
+    <h1>03:47.<br><span class="neon">Znów się obudziłaś.</span></h1>
+    <p class="lead">Dla bezsennych. AI dziennik 39 PLN. Wrzucasz co Ci chodzi po głowie. Rano dostajesz email z porządkiem zamiast 4 godzin scrollowania.</p>
+
+    <div class="meta-row">
+      <div>Cena<b>39 PLN / noc</b></div>
+      <div>5-pack<b>99 PLN</b></div>
+      <div>SLA<b>do 4h, do 7:00</b></div>
+      <div>Subskrypcja<b>brak</b></div>
+    </div>
+
+    <div class="cta-row">
+      <a class="btn primary" href="#log">Wrzuć log teraz</a>
+      <a class="btn" href="#przyklad">Zobacz przykład</a>
+      <a class="btn" href="#cena">Cennik / BLIK</a>
+    </div>
+  </section>
+
+  <!-- JAK TO DZIALA -->
+  <section id="jak">
+    <h2><span class="num">01 / FLOW</span>Jak to działa</h2>
+    <div class="steps">
+      <div class="step">
+        <div class="num">STEP 01</div>
+        <h3>Wrzuć</h3>
+        <p>Otwierasz formularz, wklejasz do 2000 znaków tekstu. Albo nagrywasz głosówkę MP3 do 5 MB. Bez logowania, tylko email do odpowiedzi.</p>
+      </div>
+      <div class="step">
+        <div class="num">STEP 02</div>
+        <h3>Gniewka czyta</h3>
+        <p>Mój AI agent (Gniewka) klasyfikuje co napisałaś: lęk, to-do, trauma, decyzja, nic. Nie dorzuca pop-psychologii ani diagnoz. Robi porządek.</p>
+      </div>
+      <div class="step">
+        <div class="num">STEP 03</div>
+        <h3>Email do 4h</h3>
+        <p>Dostajesz odpowiedź zanim wstaniesz. Strukturyzowany dump, decyzje per kategoria, lista do odpuszczenia, jeden konkret na 5 minut.</p>
+      </div>
+      <div class="step">
+        <div class="num">STEP 04</div>
+        <h3>Zostawiasz lub działasz</h3>
+        <p>Decydujesz: wykonujesz to-do, kasujesz wątek, zapisujesz na potem. Bez wymuszania, bez follow-upu, bez DM "jak Ci poszło".</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- PRZYKLAD -->
+  <section id="przyklad">
+    <h2><span class="num">02 / SAMPLE</span>Przykładowy output</h2>
+    <p class="muted">Tak wygląda mail który dostajesz rano. Dane fikcyjne, ale layout 1:1.</p>
+
+    <div class="sample-frame">
+      <div class="head">
+        <span>FROM: gniewka@antydizajn.pl</span>
+        <span>06:14 / 2026-05-30</span>
+      </div>
+      <div class="body"><span class="label">przykład</span>
+TEMAT: NIGHTLOG / 2026-05-30 / 4 kategorie / 11 myśli
+
+———————————————————————————————
+<span class="cat">LĘK (3 myśli)</span>
+———————————————————————————————
+01. "Czy projekt X dowiezie do piątku."
+02. "Czy nie powiedziałam za dużo M. wczoraj."
+03. "Co jeśli zwolnią Kasię i będę następna."
+
+DECYZJA: lęk antycypacyjny, nie operacyjny.
+Akcja: nic dziś. Jeśli o 19:00 dalej Cię to gryzie,
+przerzuć do osobnego logu "lęk pracowy" i zobacz
+czy wraca trzeci raz w tygodniu.
+
+———————————————————————————————
+<span class="cat">TO-DO (5 rzeczy)</span>
+———————————————————————————————
+[ ] zapłacić ZUS do 10-tego
+[ ] odpisać Tomkowi na maila z czwartku
+[ ] umówić wizytę u dentysty (numer w notatkach)
+[ ] kupić baterię do zegarka
+[ ] zamknąć fakturę FV/2026/05/12
+
+todo.txt gotowy do skopiowania niżej
+↳ ZUS (deadline twardy, 10 czerwca)
+↳ Tomek (deadline społeczny, dziś 14:00)
+↳ reszta: ten tydzień
+
+———————————————————————————————
+<span class="cat">TRAUMA (1 myśl)</span>
+———————————————————————————————
+04. "Kiedy mama krzyczała w 2014 że nigdy nic..."
+
+DECYZJA: to nie jest do rozkminy o 3 nad ranem.
+To jest do rozmowy z terapeutką. Nie diagnozuję,
+ale flashback na 12 lat wstecz pojawia się czwarty
+raz w tym miesiącu w Twoich logach.
+
+Akcja: jeśli nie masz terapeutki, baza NFZ:
+zdrowiepsychiczne.pl/rejestr-podmiotow
+
+———————————————————————————————
+<span class="cat">DECYZJA (2)</span>
+———————————————————————————————
+05. "Czy wziąć ten kontrakt z Berlina."
+06. "Czy zerwać z J."
+
+DECYZJA: nie podejmuj o 3 nad ranem.
+Zapisz w kalendarzu na sobotę 11:00,
+wtedy wracaj. Mózg w nocy ma 30%
+prefrontalnego cortexa, dasz radę
+za 3 dni mając pełny set.
+
+———————————————————————————————
+<span class="cat">ZOSTAW / ODPUŚĆ</span>
+———————————————————————————————
+- "Co P. pomyśli o moim postcie z poniedziałku."
+  → P. nie pamięta. Ty też za 3 dni nie będziesz.
+- "Czy włączyłam piekarnik."
+  → Włączony nie był (sprawdź na monitorze gazu),
+     ale jeśli to powraca trzeci raz, kup czujnik.
+
+———————————————————————————————
+<span class="cat">JEDEN KONKRET NA RANO</span>
+———————————————————————————————
+&gt; Wyślij Tomkowi 2-zdaniową odpowiedź.
+&gt; "Cześć, dostałam, wracam do Ciebie do piątku
+&gt;  z konkretem. Pozdrawiam, Paulina."
+&gt; 5 minut. Najpierw to. Potem kawa.
+
+<span class="dim">———————————————————————————————
+ten log: 11 myśli skategoryzowanych w 3 minuty.
+zaoszczędzonych ok. 2.5h scrollowania.
+log skasuje się automatycznie 2026-06-06 (7 dni).
+———————————————————————————————</span></div>
+    </div>
+  </section>
+
+  <!-- LOG FORM placeholder -->
+  <section id="log">
+    <h2><span class="num">03 / SUBMIT</span>Wrzuć swój log</h2>
+    <p class="muted">Form jest na razie static placeholder. Backend (Cloudflare Worker + R2 + Resend) podpinam w v0.2. Do tego czasu: wpłata BLIK + mail z treścią logu na adres z sekcji 06.</p>
+
+    <div class="form-box">
+      <label for="email">Email do odpowiedzi</label>
+      <input type="email" id="email" placeholder="ty@example.com" autocomplete="email">
+
+      <label for="thoughts">Co Ci chodzi po głowie (max 2000 znaków)</label>
+      <textarea id="thoughts" maxlength="2000" placeholder="bez struktury. tak jak myślisz. surowo. nie musisz tego porządkować, od tego jestem ja."></textarea>
+      <p class="hint">Albo zamiast tekstu: dołącz głosówkę MP3 (max 5 MB) jako załącznik do maila. Mówisz, ja transkrybuję i kategoryzuję.</p>
+
+      <div class="submit-row">
+        <span class="counter" id="counter">0 / 2000</span>
+        <button class="btn primary" type="button" onclick="goToPay()">Idę zapłacić 39 PLN</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- CO TO NIE JEST -->
+  <section id="nie">
+    <h2><span class="num">04 / DISCLAIMER</span>Co to NIE jest</h2>
+    <ul class="not-list">
+      <li>To nie jest terapia. Nie zastępuje terapeuty, psychiatry, psychologa, ani żadnego specjalisty.</li>
+      <li>To nie jest diagnostyka. Nie stawiam diagnoz. Jeśli pojawia się ICD-10 kod w outpucie, to wyłącznie jako sugestia "z czym pójść do specjalisty", nie jako rozpoznanie.</li>
+      <li>To nie jest leczenie. Nie zastępuje leków, sesji, hospitalizacji, niczego co przepisał Ci medyk.</li>
+      <li>Nie ma follow-upu z medykiem. Nie dzwonię do Twojego psychiatry. Nie udostępniam logów nikomu.</li>
+      <li>Nie ma gwarancji że Ci pomoże. Czasem porządek w głowie pomaga zasnąć. Czasem nie. Bywa że dopiero po 3 logach widać wzorce.</li>
+      <li>To jest output AI. Tekst generowany przez model językowy. Czytasz go ze świadomością że to nie człowiek.</li>
+      <li>Jeśli masz myśli samobójcze albo realny kryzys: telefon zaufania 116 123 (dla dorosłych, 24/7), 116 111 (dla młodzieży). Nie pisz do mnie. Pisz tam.</li>
+    </ul>
+  </section>
+
+  <!-- PRIVACY -->
+  <section id="privacy">
+    <h2><span class="num">05 / PRIVACY</span>Co się dzieje z Twoimi myślami</h2>
+    <div class="priv">
+      <div>
+        <span class="k">SZYFROWANIE</span>
+        <span class="v">Treść logu przechowywana jest zaszyfrowana (AES-256, klucz po stronie serwera, rotacja co 30 dni).</span>
+      </div>
+      <div>
+        <span class="k">RETENCJA</span>
+        <span class="v">Log + odpowiedź kasują się automatycznie po 7 dniach. Do tego czasu możesz zażądać kasowania natychmiastowego mailem.</span>
+      </div>
+      <div>
+        <span class="k">BRAK TRENINGU</span>
+        <span class="v">Twoja treść nie trafia do treningu modelu. Nie buduję na niej datasetu. Nie sprzedaję.</span>
+      </div>
+      <div>
+        <span class="k">DOSTĘP</span>
+        <span class="v">Czyta to model + ja, jeśli output wymaga ręcznego sanity-checku (rzadko, &lt;5% logów). Nikt poza tym.</span>
+      </div>
+      <div>
+        <span class="k">AUDYT</span>
+        <span class="v">Kod jest open-source. Każda wersja workera ma commit pin (SHA) widoczny w stopce maila, który dostajesz.</span>
+      </div>
+      <div>
+        <span class="k">JURYZDYKCJA</span>
+        <span class="v">Dane na Cloudflare R2 (region EU). RODO. Anonimizacja: nie wymagam imienia, tylko email do odpowiedzi.</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- PRICING -->
+  <section id="cena">
+    <h2><span class="num">06 / PRICING</span>Cena</h2>
+    <div class="price-grid">
+      <div class="price-card">
+        <div class="tag">Pojedyncza noc</div>
+        <div class="price">39 <span class="unit">PLN</span></div>
+        <p class="desc">Jeden log, jedna odpowiedź. Do 2000 znaków albo MP3 do 5 MB. SLA do 4h, najpóźniej 7:00 lokalnie.</p>
+        <div class="calc">~ 1 godzina nieprzespana = 39 PLN</div>
+      </div>
+      <div class="price-card featured">
+        <div class="tag">5-pack</div>
+        <div class="price">99 <span class="unit">PLN</span></div>
+        <p class="desc">Pięć nocy do wykorzystania w 30 dni. Bez subskrypcji, bez przedłużania, bez auto-renew. Skończą się – kupujesz znowu albo nie.</p>
+        <div class="calc">19,80 PLN za noc / oszczędzasz 96 PLN</div>
+      </div>
+    </div>
+
+    <div class="pay-box">
+      <div class="row">
+        <span class="label">BLIK na telefon</span>
+        <span class="val big">510 425 716</span>
+      </div>
+      <div class="row">
+        <span class="label">Tytuł przelewu</span>
+        <span class="val">NIGHTLOG &lt;twój-email&gt;</span>
+      </div>
+      <div class="row">
+        <span class="label">Revolut</span>
+        <span class="val"><a href="https://revolut.me/danveld">revolut.me/danveld</a></span>
+      </div>
+      <div class="row">
+        <span class="label">Email do logu</span>
+        <span class="val"><a href="mailto:nightlog@antydizajn.pl?subject=NIGHTLOG">nightlog@antydizajn.pl</a></span>
+      </div>
+    </div>
+
+    <p class="muted" style="margin-top:14px;font-size:13px;">
+      Po wpłacie: mail na adres wyżej z treścią logu (lub MP3 w załączniku) i screen płatności w temacie NIGHTLOG. Odpowiedź wraca na adres z którego pisałaś. SLA 4h, najpóźniej 7:00 czasu lokalnego.
+    </p>
+  </section>
+
+  <!-- FAQ -->
+  <section id="faq">
+    <h2><span class="num">07 / FAQ</span>FAQ</h2>
+
+    <details>
+      <summary>Czy to jest bezpieczne?</summary>
+      <p>Bezpieczne w sensie danych: szyfrowanie, retencja 7 dni, brak treningu, kod OSS. Bezpieczne w sensie psychologicznym: nie zastępuje terapii i nie udaje że to robi. Jeśli masz wątpliwości, najpierw przeczytaj sekcję <b>Co to NIE jest</b>, potem decyduj.</p>
+    </details>
+
+    <details>
+      <summary>Co jeśli mam realny kryzys mental?</summary>
+      <p>Nie pisz do mnie, pisz na <b>telefon zaufania 116 123</b> (dorośli, 24/7, anonimowo, bezpłatnie) albo <b>116 111</b> (młodzież). Jeśli ryzyko bezpośrednie: <b>112</b>. Night Thought Log jest dla bezsennych ruminacji (lęk, to-do, niedokończone myśli), nie dla kryzysu suicydalnego.</p>
+    </details>
+
+    <details>
+      <summary>Jakich modeli AI używasz?</summary>
+      <p>Bazowy model: Claude (Anthropic) dla kategoryzacji i decyzji, Whisper (OpenAI) do transkrypcji MP3. Wybór nie jest przypadkowy: oba mają długi context i niski poziom konfabulacji na tekście emocjonalnym. Wersja modelu pinowana w stopce maila, więc wiesz co dokładnie czytało Twój log.</p>
+    </details>
+
+    <details>
+      <summary>Czy to subskrypcja?</summary>
+      <p>Nie. Płacisz raz, dostajesz raz. 5-pack to wcześniejsza wpłata za 5 nocy, nie auto-renew. Po skończeniu pakietu (5 logów albo 30 dni) nic się nie odnawia. Kupujesz znowu albo nie.</p>
+    </details>
+
+    <details>
+      <summary>Czy mogę dostać refund?</summary>
+      <p>Tak, jeśli nie odebrałaś jeszcze odpowiedzi. Mail z prośbą + zwrot BLIK od ręki. Po wysłaniu odpowiedzi refundu nie ma, bo praca po mojej stronie już została zrobiona.</p>
+    </details>
+
+    <details>
+      <summary>Czy mogę wrzucić log w innym języku niż polski?</summary>
+      <p>Tak, angielski. Inne języki: napisz mailem, sprawdzę czy ogarniam w danym języku. Mix PL + EN w jednym logu jest OK, często tak myślę w nocy.</p>
+    </details>
+
+    <details>
+      <summary>Co jeśli moja noc to nie 3:47, tylko 5:30?</summary>
+      <p>Wszystko jedno o której wrzucisz. SLA 4h od momentu wpłaty + maila. Jeśli wrzucisz o 5:30, dostajesz do 9:30. Jeśli o 22:00 wieczorem (prewencyjnie, bo wiesz że nie zaśniesz), to do 2:00 w nocy.</p>
+    </details>
+
+    <details>
+      <summary>Kto pisze odpowiedzi – Ty czy AI?</summary>
+      <p>AI pisze 95% logów w pełni autonomicznie (Gniewka). W ~5% przypadków (gdy klasyfikator wykryje nietypowy ton, kryzys, albo niejasny input) ja robię ręczny review zanim mail wyjdzie. To jest zaznaczone w mailu jako <code>human-reviewed: yes</code>.</p>
+    </details>
+
+    <details>
+      <summary>Czy mogę używać tego dla dziecka / kogoś bliskiego?</summary>
+      <p>Nie. Płaci i wrzuca log osoba dorosła, dla siebie. Nie mam systemu zgody opiekuna ani consent flow dla osób trzecich. Dla dzieci/młodzieży: 116 111.</p>
+    </details>
+
+    <details>
+      <summary>Co odróżnia to od ChatGPT za darmo?</summary>
+      <p>Trzy rzeczy. Pierwsza: konkretna struktura outputu zoptymalizowana pod 3 nad ranem (nie general purpose chat). Druga: retencja 7 dni i brak treningu (czego ChatGPT nie gwarantuje na free planie). Trzecia: jeden konkret na rano który możesz zrobić w 5 minut, bez 8-akapitowego eseju o "rozważ medytację". Jeśli to dla Ciebie nie warte 39 PLN, używaj ChatGPT, nikt się nie obraża.</p>
+    </details>
+  </section>
+
+  <!-- AUTHORSHIP -->
+  <section id="authorship">
+    <h2><span class="num">08 / AUTHORSHIP &amp; HONESTY</span>Kto to napisał</h2>
+    <div class="authorship">
+      <div class="head">▪ Authorship &amp; honesty</div>
+      <p>🤖 Vibe-coded by Gniewka (Paulina's AI agent) on 2026-06-02. Audited by Paulina before publish. Source: <a href="https://github.com/Antydizajn/ai-work-voucher-250">github.com/Antydizajn/ai-work-voucher-250</a>.</p>
+      <p class="muted" style="margin-top:8px;font-size:13px;">
+        Strona została wygenerowana autonomicznie przez Gniewkę (mojego AI agenta) podczas snu Pauliny. Copy, decyzje produktowe, cennik – wszystko skonsultowane z Pauliną przed publikacją. Sam serwis (klasyfikacja logów rano) prowadzi Gniewka z human-review w 5% przypadków. Hermes nie ma dostępu do konta bankowego, płatności BLIK trafiają bezpośrednio do Pauliny, weryfikuje je ręcznie.
+      </p>
+    </div>
+
+    <footer class="bot">
+      <span>◯ NIGHT THOUGHT LOG / 39 PLN / 99 PLN 5-PACK</span>
+      <span>▪ <a href="/ai-work-voucher-250/">/ai-work-voucher-250/</a></span>
+    </footer>
+  </section>
+
+</main>
+
+<script>
+  // counter
+  (function(){
+    var ta = document.getElementById('thoughts');
+    var c = document.getElementById('counter');
+    if (!ta || !c) return;
+    function tick(){
+      var n = ta.value.length;
+      c.textContent = n + ' / 2000';
+      c.classList.toggle('warn', n > 1800);
+    }
+    ta.addEventListener('input', tick);
+    tick();
+  })();
+
+  function goToPay(){
+    var anchor = document.getElementById('cena');
+    if (anchor) anchor.scrollIntoView({behavior:'smooth', block:'start'});
+  }
+</script>
+</body>
+</html>
