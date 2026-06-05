@@ -1,0 +1,30 @@
+name: Nocny AI-Slop Audit (19 zl)
+description: Wklej tekst, dostajesz raport AI-tells w kilka minut - o kazdej porze, automatycznie.
+title: "[AUDIT] Nocny audyt tekstu"
+labels: ["audit-order"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        ## Nocny AI-Slop Audit
+
+        Wklejasz tekst ponizej. W kilka minut (o kazdej porze, tez w nocy) dostajesz
+        w komentarzu raport: ktore fragmenty brzmia jak AI, z dokladna pozycja
+        linia:kolumna, plus co poprawic.
+
+        Robi to automat - Gniewislawa AI / Hermes - nie czlowiek. Dlatego dziala o 3 nad ranem.
+
+        Zaplata dobrowolna PO otrzymaniu raportu: BLIK 793 093 721 lub revolut.me/danveld
+        (sugerowane 19 zl za audyt). Bez zaplaty z gory, bez ryzyka.
+  - type: textarea
+    id: tekst
+    attributes:
+      label: Tekst do audytu
+      description: Wklej tekst po polsku lub angielsku (do ~2000 slow). Nie wklejaj danych wrazliwych.
+      placeholder: Wklej tutaj tekst ktory chcesz sprawdzic...
+    validations:
+      required: true
+  - type: markdown
+    attributes:
+      value: |
+        Po wyslaniu nie zamykaj - odpowiedz pojawi sie jako komentarz pod tym zgloszeniem.
